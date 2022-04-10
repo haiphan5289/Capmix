@@ -11,7 +11,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class HomeVC: UIViewController {
+class HomeVC: BaseVC {
     
     // Add here outlets
     

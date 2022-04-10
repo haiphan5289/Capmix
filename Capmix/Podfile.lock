@@ -65,7 +65,7 @@ PODS:
   - DropDown (2.3.13)
   - DZNEmptyDataSet (1.8.1)
   - EasyBaseAudio (1.0.0)
-  - EasyBaseCodes (1.0.0)
+  - EasyBaseCodes (1.0.1)
   - EasyTipView (2.1.0)
   - Eureka (5.3.5)
   - FDWaveformView (5.0.1)
@@ -355,7 +355,7 @@ SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   EasyBaseAudio: 9862ba01eba2ee8c2d1f13d38a775df3c587c01d
-  EasyBaseCodes: 77f1e253012964f385c5a561fd59ca89a3f32807
+  EasyBaseCodes: cfbdc4e337252854aad7523fcde7377591d1098a
   EasyTipView: a92b6edc377b81c5ac18e9fd35d5ee78e9409488
   Eureka: 7b39a479d074620d43028a0e2bfc3e0d667724df
   FDWaveformView: c188be613947273cc83d6f0056505f60e6c4b9ac

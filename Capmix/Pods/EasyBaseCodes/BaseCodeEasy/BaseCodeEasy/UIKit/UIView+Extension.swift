@@ -62,19 +62,6 @@ extension UIView {
         self.layer.cornerRadius = height
         self.layer.addSublayer(gradient)
     }
-    
-    //    func addBottomLine() {
-    //        let lineView = UIView.init()
-    //        lineView.backgroundColor  = UIColor.init(hex: "EFEFF4")
-    //        self.addSubview(lineView)
-    //        lineView.snp.makeConstraints { (make) in
-    //            make.leading.trailing.bottom.equalToSuperview()
-    //            make.height.equalTo(0.5)
-    //        }
-    //    }
-    
-    
-    
 }
 
 extension UIView {

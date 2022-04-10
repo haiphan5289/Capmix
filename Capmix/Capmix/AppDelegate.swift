@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import EasyBaseCodes
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,12 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIFont.overrideInitialize()
+        self.moveToHome()
         return true
     }
     
     private func moveToHome() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let navi = UINavigationController(rootViewController: <#T##UIViewController#>)
+        let vc = HomeVC.createVC()
+        let navi = UINavigationController(rootViewController: vc)
+        self.window?.rootViewController = navi
+        self.window?.makeKeyAndVisible()
     }
 
     // MARK: UISceneSession Lifecycle
