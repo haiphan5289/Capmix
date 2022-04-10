@@ -1,0 +1,6 @@
+framework module AKNumericFormatter {
+  umbrella header "AKNumericFormatter-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module RETrimControl {
+  umbrella header "RETrimControl-umbrella.h"
+
+  export *
+  module * { export * }
+}

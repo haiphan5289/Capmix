@@ -1,0 +1,411 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.7.1)
+  - AKNumericFormatter (0.0.2)
+  - Alamofire (5.2.2)
+  - AlamofireImage (4.1.0):
+    - Alamofire (~> 5.1)
+  - ASAudioWaveformView (1.0.4)
+  - Charts (4.0.2):
+    - Charts/Core (= 4.0.2)
+  - Charts/Core (4.0.2):
+    - SwiftAlgorithms (~> 1.0)
+  - Codextended (0.3.0)
+  - Cosmos (23.0.0)
+  - CropViewController (2.6.1)
+  - CRRefresh (1.1.3)
+  - DKCamera (1.6.7)
+  - DKImagePickerController (4.3.3):
+    - DKImagePickerController/Camera (= 4.3.3)
+    - DKImagePickerController/Core (= 4.3.3)
+    - DKImagePickerController/ImageDataManager (= 4.3.3)
+    - DKImagePickerController/InlineCamera (= 4.3.3)
+    - DKImagePickerController/PhotoEditor (= 4.3.3)
+    - DKImagePickerController/PhotoGallery (= 4.3.3)
+    - DKImagePickerController/Resource (= 4.3.3)
+  - DKImagePickerController/Camera (4.3.3):
+    - DKCamera
+    - DKImagePickerController/Core
+  - DKImagePickerController/Core (4.3.3):
+    - DKImagePickerController/ImageDataManager
+    - DKImagePickerController/Resource
+  - DKImagePickerController/ImageDataManager (4.3.3)
+  - DKImagePickerController/InlineCamera (4.3.3):
+    - DKCamera
+    - DKImagePickerController/Core
+  - DKImagePickerController/PhotoEditor (4.3.3):
+    - CropViewController (~> 2.5)
+    - DKImagePickerController/Core
+  - DKImagePickerController/PhotoGallery (4.3.3):
+    - DKImagePickerController/Core
+    - DKPhotoGallery
+  - DKImagePickerController/Resource (4.3.3)
+  - DKPhotoGallery (0.0.17):
+    - DKPhotoGallery/Core (= 0.0.17)
+    - DKPhotoGallery/Model (= 0.0.17)
+    - DKPhotoGallery/Preview (= 0.0.17)
+    - DKPhotoGallery/Resource (= 0.0.17)
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Core (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Preview
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Model (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Preview (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Resource
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Resource (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - DropDown (2.3.13)
+  - DZNEmptyDataSet (1.8.1)
+  - EasyBaseAudio (1.0.0)
+  - EasyBaseCodes (1.0.0)
+  - EasyTipView (2.1.0)
+  - Eureka (5.3.5)
+  - FDWaveformView (5.0.1)
+  - Firebase (8.14.0):
+    - Firebase/Core (= 8.14.0)
+  - Firebase/Analytics (8.14.0):
+    - Firebase/Core
+  - Firebase/Core (8.14.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (~> 8.14.0)
+  - Firebase/CoreOnly (8.14.0):
+    - FirebaseCore (= 8.14.0)
+  - Firebase/RemoteConfig (8.14.0):
+    - Firebase/CoreOnly
+    - FirebaseRemoteConfig (~> 8.14.0)
+  - FirebaseABTesting (8.14.0):
+    - FirebaseCore (~> 8.0)
+  - FirebaseAnalytics (8.14.0):
+    - FirebaseAnalytics/AdIdSupport (= 8.14.0)
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAnalytics/AdIdSupport (8.14.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleAppMeasurement (= 8.14.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseCore (8.14.0):
+    - FirebaseCoreDiagnostics (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
+  - FirebaseCoreDiagnostics (8.14.0):
+    - GoogleDataTransport (~> 9.1)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/Logger (~> 7.7)
+    - nanopb (~> 2.30908.0)
+  - FirebaseInstallations (8.14.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - GoogleUtilities/UserDefaults (~> 7.7)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseRemoteConfig (8.14.0):
+    - FirebaseABTesting (~> 8.0)
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+  - FSPagerView (0.8.3)
+  - GoogleAppMeasurement (8.14.0):
+    - GoogleAppMeasurement/AdIdSupport (= 8.14.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/AdIdSupport (8.14.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 8.14.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (8.14.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
+    - GoogleUtilities/MethodSwizzler (~> 7.7)
+    - GoogleUtilities/Network (~> 7.7)
+    - "GoogleUtilities/NSData+zlib (~> 7.7)"
+    - nanopb (~> 2.30908.0)
+  - GoogleDataTransport (9.1.2):
+    - GoogleUtilities/Environment (~> 7.2)
+    - nanopb (~> 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.7.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.7.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (7.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (7.7.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.7.0)"
+  - GoogleUtilities/Reachability (7.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.7.0):
+    - GoogleUtilities/Logger
+  - HGCircularSlider (2.2.0)
+  - HKVideoRangeSlider (1.0.0)
+  - IQKeyboardManagerSwift (6.5.9)
+  - KeychainSwift (19.0.0)
+  - Kingfisher (5.12.0):
+    - Kingfisher/Core (= 5.12.0)
+  - Kingfisher/Core (5.12.0)
+  - MBProgressHUD (1.2.0)
+  - MSCircularSlider (1.3.2)
+  - nanopb (2.30908.0):
+    - nanopb/decode (= 2.30908.0)
+    - nanopb/encode (= 2.30908.0)
+  - nanopb/decode (2.30908.0)
+  - nanopb/encode (2.30908.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - PhotoSlider (1.2.0):
+    - Kingfisher
+  - PromisesObjC (2.1.0)
+  - Realm (4.3.2):
+    - Realm/Headers (= 4.3.2)
+  - Realm/Headers (4.3.2)
+  - RealmSwift (4.3.2):
+    - Realm (= 4.3.2)
+  - RETrimControl (1.2)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
+  - SideMenu (6.5.0)
+  - SKPhotoBrowser (7.0.0)
+  - SkyFloatingLabelTextField (4.0.0)
+  - SnapKit (5.0.1)
+  - SVPinView (1.0.11)
+  - SVProgressHUD (2.2.5)
+  - SwiftAlgorithms (1.0.0)
+  - SwiftDate (6.3.1)
+  - SwiftGen (6.5.1)
+  - SwiftPullToRefresh (3.1.1)
+  - SwiftyGif (5.4.3)
+  - SwiftyJSON (5.0.1)
+  - SwiftyStoreKit (0.16.1)
+  - Toast-Swift (4.0.1)
+  - UIDropDown (1.1.1)
+  - ViewAnimator (3.1.0)
+  - WMSegmentControl (2.3)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0
+  - AKNumericFormatter
+  - Alamofire (~> 5.2.2)
+  - AlamofireImage (~> 4.1.0)
+  - ASAudioWaveformView
+  - Charts
+  - Codextended
+  - Cosmos
+  - CRRefresh
+  - DKImagePickerController
+  - DropDown
+  - DZNEmptyDataSet
+  - EasyBaseAudio
+  - EasyBaseCodes
+  - EasyTipView
+  - Eureka
+  - FDWaveformView
+  - Firebase
+  - Firebase/Analytics
+  - Firebase/RemoteConfig
+  - FSPagerView
+  - HGCircularSlider
+  - HKVideoRangeSlider
+  - IQKeyboardManagerSwift
+  - KeychainSwift (~> 19.0)
+  - Kingfisher (~> 5.12.0)
+  - MBProgressHUD
+  - MSCircularSlider
+  - NVActivityIndicatorView
+  - PhotoSlider
+  - RealmSwift (~> 4.3.2)
+  - RETrimControl (~> 1.2)
+  - RxCocoa
+  - RxSwift
+  - SideMenu
+  - SKPhotoBrowser
+  - SkyFloatingLabelTextField
+  - SnapKit
+  - SVPinView
+  - SVProgressHUD
+  - SwiftDate
+  - SwiftGen
+  - SwiftPullToRefresh
+  - SwiftyJSON
+  - SwiftyStoreKit
+  - Toast-Swift (~> 4.0.1)
+  - UIDropDown
+  - ViewAnimator
+  - WMSegmentControl
+
+SPEC REPOS:
+  trunk:
+    - ActionSheetPicker-3.0
+    - AKNumericFormatter
+    - Alamofire
+    - AlamofireImage
+    - ASAudioWaveformView
+    - Charts
+    - Codextended
+    - Cosmos
+    - CropViewController
+    - CRRefresh
+    - DKCamera
+    - DKImagePickerController
+    - DKPhotoGallery
+    - DropDown
+    - DZNEmptyDataSet
+    - EasyBaseAudio
+    - EasyBaseCodes
+    - EasyTipView
+    - Eureka
+    - FDWaveformView
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseRemoteConfig
+    - FSPagerView
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleUtilities
+    - HGCircularSlider
+    - HKVideoRangeSlider
+    - IQKeyboardManagerSwift
+    - KeychainSwift
+    - Kingfisher
+    - MBProgressHUD
+    - MSCircularSlider
+    - nanopb
+    - NVActivityIndicatorView
+    - PhotoSlider
+    - PromisesObjC
+    - Realm
+    - RealmSwift
+    - RETrimControl
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SDWebImage
+    - SideMenu
+    - SKPhotoBrowser
+    - SkyFloatingLabelTextField
+    - SnapKit
+    - SVPinView
+    - SVProgressHUD
+    - SwiftAlgorithms
+    - SwiftDate
+    - SwiftGen
+    - SwiftPullToRefresh
+    - SwiftyGif
+    - SwiftyJSON
+    - SwiftyStoreKit
+    - Toast-Swift
+    - UIDropDown
+    - ViewAnimator
+    - WMSegmentControl
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 36da254b97a09ff89679ecb8b8510bd3e5bdc773
+  AKNumericFormatter: de969ab13c504dca7aa119b558a934ccdbd1e376
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
+  ASAudioWaveformView: 74c46a88a34dd0320a3f145a07df3d02d30ae6e9
+  Charts: cfa4e911e6dc289582c2fe011a0e87c03d96727f
+  Codextended: f384271b8694376ad766ddbf2a011efbfdcee905
+  Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
+  CRRefresh: 1415d4ae06837fa7bb064c44f2e102f3ef517044
+  DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
+  DKImagePickerController: 72fd378f244cef3d27288e0aebf217a4467e4012
+  DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  EasyBaseAudio: 9862ba01eba2ee8c2d1f13d38a775df3c587c01d
+  EasyBaseCodes: 77f1e253012964f385c5a561fd59ca89a3f32807
+  EasyTipView: a92b6edc377b81c5ac18e9fd35d5ee78e9409488
+  Eureka: 7b39a479d074620d43028a0e2bfc3e0d667724df
+  FDWaveformView: c188be613947273cc83d6f0056505f60e6c4b9ac
+  Firebase: 7e8fe528c161b9271d365217a74c16aaf834578e
+  FirebaseABTesting: aaa0e096c9fc9972ce6806d596e8fcc077d4371f
+  FirebaseAnalytics: 2fc3876e2eb347673ad2f35e249ae7b15d6c88f5
+  FirebaseCore: b84a44ee7ba999e0f9f76d198a9c7f60a797b848
+  FirebaseCoreDiagnostics: fd0c8490f34287229c1d6c103d3a55f81ec85712
+  FirebaseInstallations: 7d1d967a307c12f1aadd76844fc321cef699b1ce
+  FirebaseRemoteConfig: a5d9188d8f57f602636f111eca6460ebe32b9b71
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  GoogleAppMeasurement: 71156240babd3cc6ced03e0d54816f01a880c730
+  GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
+  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
+  HGCircularSlider: afb1942743a2df156dcc7a3500216e523e14266b
+  HKVideoRangeSlider: b3ce874781a16f0c8d5e6b3b90bf59de02e1e7cf
+  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
+  Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MSCircularSlider: 07fe922e6a7e05fb67e876d449e365327fdad3d1
+  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PhotoSlider: 0d3c864ddf6edeb1027cb39911a26b3b707e9ba9
+  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
+  Realm: 5e92902e2875dff4bb0fd02f67bb737c3d5db2bc
+  RealmSwift: 9a360fc7bae04fc2e308a34fbd899d5faa2d6b22
+  RETrimControl: f415424c530469b116065d63661e3547d6377bf4
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SKPhotoBrowser: 6aaa8f232752e87c7e76bace183bead0a137097d
+  SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
+  SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
+  SwiftPullToRefresh: f61d67439c5b8d66420fe57193cab8c279398e7a
+  SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
+  UIDropDown: 22e6e3e22d419884c8f21d95ea9be36aac905ed4
+  ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
+  WMSegmentControl: 15120246d0fdbb7530d7fa03e90c3ec6f4fa85bd
+
+PODFILE CHECKSUM: aab7c5b2dc0ad7c1d463d10a4b91b6db59e28d05
+
+COCOAPODS: 1.11.3

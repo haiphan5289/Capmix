@@ -1,0 +1,6 @@
+framework module HKVideoRangeSlider {
+  umbrella header "HKVideoRangeSlider-umbrella.h"
+
+  export *
+  module * { export * }
+}
