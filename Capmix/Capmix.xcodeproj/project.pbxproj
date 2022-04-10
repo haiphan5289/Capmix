@@ -14,6 +14,31 @@
 		936E9FE12802CE920034E2CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936E9FDF2802CE920034E2CC /* Main.storyboard */; };
 		936E9FE32802CE940034E2CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 936E9FE22802CE940034E2CC /* Assets.xcassets */; };
 		936E9FE62802CE940034E2CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936E9FE42802CE940034E2CC /* LaunchScreen.storyboard */; };
+		936E9FF82802D8C10034E2CC /* OptionalMessageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FEF2802D8C10034E2CC /* OptionalMessageDTO.swift */; };
+		936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FF02802D8C10034E2CC /* ErrorTracker.swift */; };
+		936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FF12802D8C10034E2CC /* ReadJson.swift */; };
+		936E9FFB2802D8C10034E2CC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FF22802D8C10034E2CC /* Request.swift */; };
+		936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FF42802D8C10034E2CC /* RealmManager.swift */; };
+		936E9FFD2802D8C10034E2CC /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FF62802D8C10034E2CC /* RealmModel.swift */; };
+		936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FFF2802D9090034E2CC /* Obserable+Extension.swift */; };
+		936EA00C2802DBE70034E2CC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0042802DBE70034E2CC /* Storage.swift */; };
+		936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0052802DBE70034E2CC /* AppSettings.swift */; };
+		936EA00F2802DBE70034E2CC /* ResultURLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0092802DBE70034E2CC /* ResultURLModel.swift */; };
+		936EA0102802DBE70034E2CC /* RangeTimeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA00B2802DBE70034E2CC /* RangeTimeSlider.swift */; };
+		936EA0152802DF510034E2CC /* CampixManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0142802DF510034E2CC /* CampixManage.swift */; };
+		936EA01A2802DFCC0034E2CC /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0172802DFCC0034E2CC /* HomeVC.xib */; };
+		936EA01B2802DFCC0034E2CC /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0182802DFCC0034E2CC /* HomeVM.swift */; };
+		936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0192802DFCC0034E2CC /* HomeVC.swift */; };
+		936EA01E2802E0A20034E2CC /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA01D2802E0A20034E2CC /* UIFont+Extension.swift */; };
+		936EA0232802E0C90034E2CC /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0202802E0C90034E2CC /* Constant.swift */; };
+		936EA0242802E0C90034E2CC /* GetHeightSafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0212802E0C90034E2CC /* GetHeightSafeArea.swift */; };
+		936EA0252802E0C90034E2CC /* SettingDefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0222802E0C90034E2CC /* SettingDefaultFont.swift */; };
+		936EA02A2802E1780034E2CC /* ListFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EA0282802E1780034E2CC /* ListFont.swift */; };
+		936EA02B2802E1780034E2CC /* ListFont.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0292802E1780034E2CC /* ListFont.xib */; };
+		936EA03F2802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0352802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf */; };
+		936EA0402802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0362802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf */; };
+		936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0372802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf */; };
+		936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +52,31 @@
 		936E9FE22802CE940034E2CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		936E9FE52802CE940034E2CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		936E9FE72802CE950034E2CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		936E9FEF2802D8C10034E2CC /* OptionalMessageDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalMessageDTO.swift; sourceTree = "<group>"; };
+		936E9FF02802D8C10034E2CC /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		936E9FF12802D8C10034E2CC /* ReadJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadJson.swift; sourceTree = "<group>"; };
+		936E9FF22802D8C10034E2CC /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		936E9FF42802D8C10034E2CC /* RealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		936E9FF62802D8C10034E2CC /* RealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		936E9FFF2802D9090034E2CC /* Obserable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Obserable+Extension.swift"; sourceTree = "<group>"; };
+		936EA0042802DBE70034E2CC /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		936EA0052802DBE70034E2CC /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		936EA0092802DBE70034E2CC /* ResultURLModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultURLModel.swift; sourceTree = "<group>"; };
+		936EA00B2802DBE70034E2CC /* RangeTimeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeTimeSlider.swift; sourceTree = "<group>"; };
+		936EA0142802DF510034E2CC /* CampixManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampixManage.swift; sourceTree = "<group>"; };
+		936EA0172802DFCC0034E2CC /* HomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
+		936EA0182802DFCC0034E2CC /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		936EA0192802DFCC0034E2CC /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		936EA01D2802E0A20034E2CC /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		936EA0202802E0C90034E2CC /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		936EA0212802E0C90034E2CC /* GetHeightSafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetHeightSafeArea.swift; sourceTree = "<group>"; };
+		936EA0222802E0C90034E2CC /* SettingDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDefaultFont.swift; sourceTree = "<group>"; };
+		936EA0282802E1780034E2CC /* ListFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFont.swift; sourceTree = "<group>"; };
+		936EA0292802E1780034E2CC /* ListFont.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListFont.xib; sourceTree = "<group>"; };
+		936EA0352802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		936EA0362802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		936EA0372802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProText-Medium.ttf"; sourceTree = "<group>"; };
+		936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
 		97BC998B569D8DEBB99121D5 /* Pods-Capmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capmix.release.xcconfig"; path = "Target Support Files/Pods-Capmix/Pods-Capmix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,6 +113,13 @@
 		936E9FD82802CE920034E2CC /* Capmix */ = {
 			isa = PBXGroup;
 			children = (
+				936EA02C2802E1C80034E2CC /* Resources */,
+				936E9FFE2802D8FB0034E2CC /* Library */,
+				936E9FED2802D8C10034E2CC /* Networking */,
+				936EA0022802DBE70034E2CC /* Common */,
+				936EA0262802E13C0034E2CC /* CustomView */,
+				936EA0012802DB9F0034E2CC /* Manage */,
+				936EA0132802DF320034E2CC /* Modules */,
 				936E9FD92802CE920034E2CC /* AppDelegate.swift */,
 				936E9FDB2802CE920034E2CC /* SceneDelegate.swift */,
 				936E9FDD2802CE920034E2CC /* ViewController.swift */,
@@ -74,13 +131,174 @@
 			path = Capmix;
 			sourceTree = "<group>";
 		};
+		936E9FED2802D8C10034E2CC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				936E9FEF2802D8C10034E2CC /* OptionalMessageDTO.swift */,
+				936E9FF02802D8C10034E2CC /* ErrorTracker.swift */,
+				936E9FF12802D8C10034E2CC /* ReadJson.swift */,
+				936E9FF22802D8C10034E2CC /* Request.swift */,
+				936E9FF32802D8C10034E2CC /* Realm */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		936E9FF32802D8C10034E2CC /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				936E9FF42802D8C10034E2CC /* RealmManager.swift */,
+				936E9FF52802D8C10034E2CC /* Realm */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		936E9FF52802D8C10034E2CC /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				936E9FF62802D8C10034E2CC /* RealmModel.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		936E9FFE2802D8FB0034E2CC /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				936EA01D2802E0A20034E2CC /* UIFont+Extension.swift */,
+				936E9FFF2802D9090034E2CC /* Obserable+Extension.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		936EA0012802DB9F0034E2CC /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0142802DF510034E2CC /* CampixManage.swift */,
+			);
+			path = Manage;
+			sourceTree = "<group>";
+		};
+		936EA0022802DBE70034E2CC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				936EA01F2802E0C90034E2CC /* Constant */,
+				936EA0032802DBE70034E2CC /* AppConfig */,
+				936EA0082802DBE70034E2CC /* ResultURLModel */,
+				936EA00A2802DBE70034E2CC /* RangeTimeSlider */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		936EA0032802DBE70034E2CC /* AppConfig */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0042802DBE70034E2CC /* Storage.swift */,
+				936EA0052802DBE70034E2CC /* AppSettings.swift */,
+			);
+			path = AppConfig;
+			sourceTree = "<group>";
+		};
+		936EA0082802DBE70034E2CC /* ResultURLModel */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0092802DBE70034E2CC /* ResultURLModel.swift */,
+			);
+			path = ResultURLModel;
+			sourceTree = "<group>";
+		};
+		936EA00A2802DBE70034E2CC /* RangeTimeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				936EA00B2802DBE70034E2CC /* RangeTimeSlider.swift */,
+			);
+			path = RangeTimeSlider;
+			sourceTree = "<group>";
+		};
+		936EA0132802DF320034E2CC /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0162802DFAD0034E2CC /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		936EA0162802DFAD0034E2CC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0172802DFCC0034E2CC /* HomeVC.xib */,
+				936EA0182802DFCC0034E2CC /* HomeVM.swift */,
+				936EA0192802DFCC0034E2CC /* HomeVC.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		936EA01F2802E0C90034E2CC /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0202802E0C90034E2CC /* Constant.swift */,
+				936EA0212802E0C90034E2CC /* GetHeightSafeArea.swift */,
+				936EA0222802E0C90034E2CC /* SettingDefaultFont.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		936EA0262802E13C0034E2CC /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0272802E1500034E2CC /* ListFont */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		936EA0272802E1500034E2CC /* ListFont */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0282802E1780034E2CC /* ListFont.swift */,
+				936EA0292802E1780034E2CC /* ListFont.xib */,
+			);
+			path = ListFont;
+			sourceTree = "<group>";
+		};
+		936EA02C2802E1C80034E2CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0332802E1C80034E2CC /* font */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		936EA0332802E1C80034E2CC /* font */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0342802E1C80034E2CC /* fontSFPro */,
+				936EA0382802E1C80034E2CC /* display */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		936EA0342802E1C80034E2CC /* fontSFPro */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0352802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf */,
+				936EA0362802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf */,
+				936EA0372802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf */,
+			);
+			path = fontSFPro;
+			sourceTree = "<group>";
+		};
+		936EA0382802E1C80034E2CC /* display */ = {
+			isa = PBXGroup;
+			children = (
+				936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */,
+			);
+			path = display;
+			sourceTree = "<group>";
+		};
 		A5690CE4BFE8650CDAE6A7B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				43D4E4D20EEDDB4E3399CC79 /* Pods-Capmix.debug.xcconfig */,
 				97BC998B569D8DEBB99121D5 /* Pods-Capmix.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -152,9 +370,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936EA0402802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf in Resources */,
+				936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */,
+				936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */,
 				936E9FE62802CE940034E2CC /* LaunchScreen.storyboard in Resources */,
+				936EA01A2802DFCC0034E2CC /* HomeVC.xib in Resources */,
 				936E9FE32802CE940034E2CC /* Assets.xcassets in Resources */,
+				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
 				936E9FE12802CE920034E2CC /* Main.storyboard in Resources */,
+				936EA03F2802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,9 +431,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936E9FFB2802D8C10034E2CC /* Request.swift in Sources */,
+				936EA01E2802E0A20034E2CC /* UIFont+Extension.swift in Sources */,
+				936EA00C2802DBE70034E2CC /* Storage.swift in Sources */,
+				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
+				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
+				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
+				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,
+				936EA0232802E0C90034E2CC /* Constant.swift in Sources */,
+				936EA01B2802DFCC0034E2CC /* HomeVM.swift in Sources */,
+				936E9FFD2802D8C10034E2CC /* RealmModel.swift in Sources */,
 				936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */,
+				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,
 				936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */,
+				936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */,
 				936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */,
+				936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */,
+				936EA00F2802DBE70034E2CC /* ResultURLModel.swift in Sources */,
+				936E9FF82802D8C10034E2CC /* OptionalMessageDTO.swift in Sources */,
+				936EA02A2802E1780034E2CC /* ListFont.swift in Sources */,
+				936EA0102802DBE70034E2CC /* RangeTimeSlider.swift in Sources */,
+				936EA0242802E0C90034E2CC /* GetHeightSafeArea.swift in Sources */,
+				936EA0252802E0C90034E2CC /* SettingDefaultFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
