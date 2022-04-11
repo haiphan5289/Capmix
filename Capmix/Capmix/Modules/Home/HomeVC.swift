@@ -13,6 +13,38 @@ import RxSwift
 
 class HomeVC: BaseVC {
     
+    enum ElementHomeCell: Int, CaseIterable {
+        case newMix, myMusic, projects, recording
+        
+        var title: String {
+            switch self {
+            case .newMix: return "Create New Mix"
+            case .myMusic: return "My Music"
+            case .projects: return "Projects"
+            case .recording: return "Recording"
+            }
+        }
+        
+        var subTitle: String {
+            switch self {
+            case .newMix: return "Make the music or podcast easy than you think"
+            case .myMusic: return "Browe your music that you’ve mixed"
+            case .projects: return "Your nearly projects"
+            case .recording: return "Record audio with high quality"
+            }
+        }
+        
+        var img: UIImage {
+            switch self {
+            case .newMix: return Asset.imgCreate.image
+            case .myMusic: return Asset.imgCreate.image
+            case .projects: return Asset.imgCreate.image
+            case .recording: return Asset.imgCreate.image
+            }
+        }
+        
+    }
+    
     // Add here outlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -37,9 +69,22 @@ extension HomeVC {
     
     private func setupRX() {
         // Add here the setup for the RX
-        Observable.just([1,2])
-            .bind(to: tableView.rx.items(cellIdentifier: HomeCell.identifier, cellType: HomeCell.self)) {(row, element, cell) in
-            }.disposed(by: disposeBag)
+        
+        Observable.just(ElementHomeCell.allCases).bind(to: tableView.rx.items){(tv, row, item) -> UITableViewCell in
+            
+            if row == 0 {
+                guard let cell = tv.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: IndexPath.init(row: row, section: 0)) as? HomeCell else {
+                    fatalError()
+                }
+                return cell
+            }else{
+                guard let cell = tv.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: IndexPath.init(row: row, section: 0)) as? HomeCell else {
+                    fatalError()
+                }
+                return cell
+            }
+            
+        }.disposed(by: disposeBag)
     }
 }
 extension HomeVC: UITableViewDelegate {

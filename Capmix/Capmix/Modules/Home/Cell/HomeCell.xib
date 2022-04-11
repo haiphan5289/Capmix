@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,9 +20,59 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l7h-yJ-0Xi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="138"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVi-Nf-7T5">
+                                <rect key="frame" x="18" y="20" width="277" height="98"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bj0-Om-cPD">
+                                        <rect key="frame" x="0.0" y="0.0" width="189" height="98"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J6p-Xp-jB3">
+                                                <rect key="frame" x="0.0" y="0.0" width="189" height="98"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New Mix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnE-Ro-h3f">
+                                                        <rect key="frame" x="0.0" y="0.0" width="189" height="26.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8dp-OH-HPz">
+                                                        <rect key="frame" x="0.0" y="26.5" width="189" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make the music or podcast easy than you think" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Moh-RG-eID">
+                                                        <rect key="frame" x="0.0" y="76.5" width="189" height="21.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" name="charcoalGrey60"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="J6p-Xp-jB3" firstAttribute="top" secondItem="bj0-Om-cPD" secondAttribute="top" id="HPn-jX-t8S"/>
+                                            <constraint firstItem="J6p-Xp-jB3" firstAttribute="leading" secondItem="bj0-Om-cPD" secondAttribute="leading" id="TbI-Iu-0DA"/>
+                                            <constraint firstAttribute="trailing" secondItem="J6p-Xp-jB3" secondAttribute="trailing" id="irP-tc-R82"/>
+                                            <constraint firstAttribute="bottom" secondItem="J6p-Xp-jB3" secondAttribute="bottom" id="jeJ-ys-b2h"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_create" translatesAutoresizingMaskIntoConstraints="NO" id="gCP-D2-Hhm">
+                                        <rect key="frame" x="189" y="0.0" width="88" height="98"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="88" id="1LP-sA-Pem"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MVi-Nf-7T5" secondAttribute="trailing" constant="25" id="1fe-iI-ePY"/>
+                            <constraint firstItem="MVi-Nf-7T5" firstAttribute="leading" secondItem="l7h-yJ-0Xi" secondAttribute="leading" constant="18" id="5YC-JC-rQ5"/>
                             <constraint firstAttribute="height" constant="138" id="bed-ip-33p"/>
+                            <constraint firstItem="MVi-Nf-7T5" firstAttribute="top" secondItem="l7h-yJ-0Xi" secondAttribute="top" constant="20" id="nOr-si-pCI"/>
+                            <constraint firstAttribute="bottom" secondItem="MVi-Nf-7T5" secondAttribute="bottom" constant="20" id="qVJ-4z-aTV"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -43,10 +94,14 @@
             <connections>
                 <outlet property="shadowView" destination="l7h-yJ-0Xi" id="JBH-1R-Z9j"/>
             </connections>
-            <point key="canvasLocation" x="132" y="131"/>
+            <point key="canvasLocation" x="131.8840579710145" y="130.58035714285714"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="img_create" width="88" height="88"/>
+        <namedColor name="charcoalGrey60">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -20,7 +20,7 @@ class HomeCell: BaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.shadowView.layer.applySketchShadow(color: UIColor.black, alpha: 1, x: Constant.positionX, y: Constant.positionY, blur: Constant.blur, spread: Constant.spread)
+        self.shadowView.layer.applySketchShadow(color: Asset.backOpacity60.color, alpha: 1, x: Constant.positionX, y: Constant.positionY, blur: Constant.blur, spread: Constant.spread)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
