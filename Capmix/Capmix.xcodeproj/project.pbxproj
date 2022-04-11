@@ -40,6 +40,9 @@
 		936EA0402802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0362802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf */; };
 		936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0372802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf */; };
 		936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */; };
+		93B257632803E172000BECA5 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B257612803E172000BECA5 /* HomeCell.swift */; };
+		93B257642803E172000BECA5 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B257622803E172000BECA5 /* HomeCell.xib */; };
+		93B257662803E50D000BECA5 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B257652803E50D000BECA5 /* BaseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +82,9 @@
 		936EA0362802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProText-Semibold.ttf"; sourceTree = "<group>"; };
 		936EA0372802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProText-Medium.ttf"; sourceTree = "<group>"; };
 		936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		93B257612803E172000BECA5 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		93B257622803E172000BECA5 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		93B257652803E50D000BECA5 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		97BC998B569D8DEBB99121D5 /* Pods-Capmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capmix.release.xcconfig"; path = "Target Support Files/Pods-Capmix/Pods-Capmix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				9317580D2802F01C007FB3FE /* BaseVC.swift */,
+				93B257652803E50D000BECA5 /* BaseTableViewCell.swift */,
 			);
 			path = BaseVC;
 			sourceTree = "<group>";
@@ -235,6 +242,7 @@
 		936EA0162802DFAD0034E2CC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				93B257602803E15A000BECA5 /* Cell */,
 				936EA0172802DFCC0034E2CC /* HomeVC.xib */,
 				936EA0182802DFCC0034E2CC /* HomeVM.swift */,
 				936EA0192802DFCC0034E2CC /* HomeVC.swift */,
@@ -302,6 +310,15 @@
 				936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */,
 			);
 			path = display;
+			sourceTree = "<group>";
+		};
+		93B257602803E15A000BECA5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				93B257612803E172000BECA5 /* HomeCell.swift */,
+				93B257622803E172000BECA5 /* HomeCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		A5690CE4BFE8650CDAE6A7B7 /* Pods */ = {
@@ -385,6 +402,7 @@
 				936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */,
 				936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */,
 				936E9FE62802CE940034E2CC /* LaunchScreen.storyboard in Resources */,
+				93B257642803E172000BECA5 /* HomeCell.xib in Resources */,
 				936EA01A2802DFCC0034E2CC /* HomeVC.xib in Resources */,
 				936E9FE32802CE940034E2CC /* Assets.xcassets in Resources */,
 				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
@@ -445,6 +463,7 @@
 				936E9FFB2802D8C10034E2CC /* Request.swift in Sources */,
 				936EA01E2802E0A20034E2CC /* UIFont+Extension.swift in Sources */,
 				936EA00C2802DBE70034E2CC /* Storage.swift in Sources */,
+				93B257662803E50D000BECA5 /* BaseTableViewCell.swift in Sources */,
 				9317580E2802F01C007FB3FE /* BaseVC.swift in Sources */,
 				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
@@ -452,6 +471,7 @@
 				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,
 				936EA0232802E0C90034E2CC /* Constant.swift in Sources */,
 				936EA01B2802DFCC0034E2CC /* HomeVM.swift in Sources */,
+				93B257632803E172000BECA5 /* HomeCell.swift in Sources */,
 				936E9FFD2802D8C10034E2CC /* RealmModel.swift in Sources */,
 				936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */,
 				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,

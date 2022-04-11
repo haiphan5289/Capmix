@@ -14,6 +14,7 @@ import RxSwift
 class HomeVC: BaseVC {
     
     // Add here outlets
+    @IBOutlet weak var tableView: UITableView!
     
     // Add here your view model
     private var viewModel: HomeVM = HomeVM()
@@ -30,9 +31,19 @@ extension HomeVC {
     
     private func setupUI() {
         // Add here the setup for the UI
+        self.tableView.register(HomeCell.nib, forCellReuseIdentifier: HomeCell.identifier)
+        self.tableView.delegate = self
     }
     
     private func setupRX() {
         // Add here the setup for the RX
+        Observable.just([1,2])
+            .bind(to: tableView.rx.items(cellIdentifier: HomeCell.identifier, cellType: HomeCell.self)) {(row, element, cell) in
+            }.disposed(by: disposeBag)
+    }
+}
+extension HomeVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.1
     }
 }
