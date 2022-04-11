@@ -43,6 +43,9 @@
 		93B257632803E172000BECA5 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B257612803E172000BECA5 /* HomeCell.swift */; };
 		93B257642803E172000BECA5 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B257622803E172000BECA5 /* HomeCell.xib */; };
 		93B257662803E50D000BECA5 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B257652803E50D000BECA5 /* BaseTableViewCell.swift */; };
+		93B2576A2803E72C000BECA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93B257692803E72C000BECA5 /* Localizable.strings */; };
+		93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2576C2803E762000BECA5 /* Assets-Gen.swift */; };
+		93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2576D2803E762000BECA5 /* Strings-Gen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +88,10 @@
 		93B257612803E172000BECA5 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		93B257622803E172000BECA5 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		93B257652803E50D000BECA5 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		93B257672803E704000BECA5 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		93B257692803E72C000BECA5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		93B2576C2803E762000BECA5 /* Assets-Gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets-Gen.swift"; sourceTree = "<group>"; };
+		93B2576D2803E762000BECA5 /* Strings-Gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings-Gen.swift"; sourceTree = "<group>"; };
 		97BC998B569D8DEBB99121D5 /* Pods-Capmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capmix.release.xcconfig"; path = "Target Support Files/Pods-Capmix/Pods-Capmix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +137,9 @@
 		936E9FD82802CE920034E2CC /* Capmix */ = {
 			isa = PBXGroup;
 			children = (
+				93B257672803E704000BECA5 /* swiftgen.yml */,
+				93B257682803E715000BECA5 /* Localizable */,
+				93B2576B2803E73F000BECA5 /* SwiftGen */,
 				936EA02C2802E1C80034E2CC /* Resources */,
 				936E9FFE2802D8FB0034E2CC /* Library */,
 				936E9FED2802D8C10034E2CC /* Networking */,
@@ -321,6 +331,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		93B257682803E715000BECA5 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				93B257692803E72C000BECA5 /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
+		93B2576B2803E73F000BECA5 /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				93B2576C2803E762000BECA5 /* Assets-Gen.swift */,
+				93B2576D2803E762000BECA5 /* Strings-Gen.swift */,
+			);
+			path = SwiftGen;
+			sourceTree = "<group>";
+		};
 		A5690CE4BFE8650CDAE6A7B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +427,7 @@
 			files = (
 				936EA0402802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf in Resources */,
 				936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */,
+				93B2576A2803E72C000BECA5 /* Localizable.strings in Resources */,
 				936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */,
 				936E9FE62802CE940034E2CC /* LaunchScreen.storyboard in Resources */,
 				93B257642803E172000BECA5 /* HomeCell.xib in Resources */,
@@ -468,6 +496,7 @@
 				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
+				93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */,
 				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,
 				936EA0232802E0C90034E2CC /* Constant.swift in Sources */,
 				936EA01B2802DFCC0034E2CC /* HomeVM.swift in Sources */,
@@ -477,6 +506,7 @@
 				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,
 				936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */,
 				936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */,
+				93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */,
 				936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */,
 				936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */,
 				936EA00F2802DBE70034E2CC /* ResultURLModel.swift in Sources */,
