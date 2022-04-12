@@ -17,6 +17,9 @@ class HomeCell: BaseTableViewCell {
     }
 
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var lbSubtitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,4 +32,11 @@ class HomeCell: BaseTableViewCell {
         // Configure the view for the selected state
     }
     
+}
+extension HomeCell {
+    func dataHomeCell(element: HomeVC.ElementHomeCell) {
+        self.lbTitle.text = element.title
+        self.lbSubtitle.text = element.subTitle
+        self.img.image = element.img
+    }
 }

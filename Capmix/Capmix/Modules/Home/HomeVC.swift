@@ -37,9 +37,9 @@ class HomeVC: BaseVC {
         var img: UIImage {
             switch self {
             case .newMix: return Asset.imgCreate.image
-            case .myMusic: return Asset.imgCreate.image
+            case .myMusic: return Asset.imgMusic.image
             case .projects: return Asset.imgCreate.image
-            case .recording: return Asset.imgCreate.image
+            case .recording: return Asset.imgRecording.image
             }
         }
         
@@ -64,6 +64,7 @@ extension HomeVC {
     private func setupUI() {
         // Add here the setup for the UI
         self.tableView.register(HomeCell.nib, forCellReuseIdentifier: HomeCell.identifier)
+        self.tableView.register(ProjectsCell.nib, forCellReuseIdentifier: ProjectsCell.identifier)
         self.tableView.delegate = self
     }
     
@@ -71,16 +72,21 @@ extension HomeVC {
         // Add here the setup for the RX
         
         Observable.just(ElementHomeCell.allCases).bind(to: tableView.rx.items){(tv, row, item) -> UITableViewCell in
-            
-            if row == 0 {
-                guard let cell = tv.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: IndexPath.init(row: row, section: 0)) as? HomeCell else {
+            guard let type = ElementHomeCell(rawValue: row) else {
+                fatalError()
+            }
+            switch type {
+            case .projects:
+                guard let cell = tv.dequeueReusableCell(withIdentifier: ProjectsCell.identifier, for: IndexPath.init(row: row, section: 0)) as? ProjectsCell else {
                     fatalError()
                 }
+                cell.dataProjects()
                 return cell
-            }else{
+            default:
                 guard let cell = tv.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: IndexPath.init(row: row, section: 0)) as? HomeCell else {
                     fatalError()
                 }
+                cell.dataHomeCell(element: item)
                 return cell
             }
             
@@ -90,5 +96,9 @@ extension HomeVC {
 extension HomeVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
