@@ -91,6 +91,16 @@ extension HomeVC {
             }
             
         }.disposed(by: disposeBag)
+        
+        self.tableView.rx.itemSelected.bind { [weak self] idx in
+            guard let wSelf = self, let type = ElementHomeCell(rawValue: idx.row) else { return }
+            switch type {
+            case .recording:
+                let vc = RecordingVC.createVC()
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
+            case .newMix, .myMusic, .projects: break
+            }
+        }.disposed(by: disposeBag)
     }
 }
 extension HomeVC: UITableViewDelegate {

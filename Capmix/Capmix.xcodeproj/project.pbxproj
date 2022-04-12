@@ -11,6 +11,14 @@
 		9317580E2802F01C007FB3FE /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9317580D2802F01C007FB3FE /* BaseVC.swift */; };
 		931CD1FA280563C9004EC061 /* NearsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD1F8280563C9004EC061 /* NearsCell.swift */; };
 		931CD1FB280563C9004EC061 /* NearsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931CD1F9280563C9004EC061 /* NearsCell.xib */; };
+		931CD2002805680F004EC061 /* CheckVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931CD1FD2805680F004EC061 /* CheckVC.xib */; };
+		931CD2012805680F004EC061 /* CheckVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD1FE2805680F004EC061 /* CheckVM.swift */; };
+		931CD2022805680F004EC061 /* CheckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD1FF2805680F004EC061 /* CheckVC.swift */; };
+		931CD2062805690A004EC061 /* CheclCLCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD2042805690A004EC061 /* CheclCLCell.swift */; };
+		931CD2072805690A004EC061 /* CheclCLCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931CD2052805690A004EC061 /* CheclCLCell.xib */; };
+		931CD20C28056D0F004EC061 /* RecordingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931CD20928056D0F004EC061 /* RecordingVC.xib */; };
+		931CD20D28056D0F004EC061 /* RecordingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD20A28056D0F004EC061 /* RecordingVM.swift */; };
+		931CD20E28056D0F004EC061 /* RecordingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD20B28056D0F004EC061 /* RecordingVC.swift */; };
 		936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FD92802CE920034E2CC /* AppDelegate.swift */; };
 		936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDB2802CE920034E2CC /* SceneDelegate.swift */; };
 		936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDD2802CE920034E2CC /* ViewController.swift */; };
@@ -58,6 +66,14 @@
 		9317580D2802F01C007FB3FE /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		931CD1F8280563C9004EC061 /* NearsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearsCell.swift; sourceTree = "<group>"; };
 		931CD1F9280563C9004EC061 /* NearsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearsCell.xib; sourceTree = "<group>"; };
+		931CD1FD2805680F004EC061 /* CheckVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckVC.xib; sourceTree = "<group>"; };
+		931CD1FE2805680F004EC061 /* CheckVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVM.swift; sourceTree = "<group>"; };
+		931CD1FF2805680F004EC061 /* CheckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckVC.swift; sourceTree = "<group>"; };
+		931CD2042805690A004EC061 /* CheclCLCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheclCLCell.swift; sourceTree = "<group>"; };
+		931CD2052805690A004EC061 /* CheclCLCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheclCLCell.xib; sourceTree = "<group>"; };
+		931CD20928056D0F004EC061 /* RecordingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordingVC.xib; sourceTree = "<group>"; };
+		931CD20A28056D0F004EC061 /* RecordingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingVM.swift; sourceTree = "<group>"; };
+		931CD20B28056D0F004EC061 /* RecordingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingVC.swift; sourceTree = "<group>"; };
 		936E9FD62802CE920034E2CC /* Capmix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capmix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936E9FD92802CE920034E2CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		936E9FDB2802CE920034E2CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +147,36 @@
 				931CD1F9280563C9004EC061 /* NearsCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		931CD1FC28056801004EC061 /* Check */ = {
+			isa = PBXGroup;
+			children = (
+				931CD203280568F8004EC061 /* Cell */,
+				931CD1FD2805680F004EC061 /* CheckVC.xib */,
+				931CD1FE2805680F004EC061 /* CheckVM.swift */,
+				931CD1FF2805680F004EC061 /* CheckVC.swift */,
+			);
+			path = Check;
+			sourceTree = "<group>";
+		};
+		931CD203280568F8004EC061 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				931CD2042805690A004EC061 /* CheclCLCell.swift */,
+				931CD2052805690A004EC061 /* CheclCLCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		931CD20828056CFC004EC061 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				931CD20928056D0F004EC061 /* RecordingVC.xib */,
+				931CD20A28056D0F004EC061 /* RecordingVM.swift */,
+				931CD20B28056D0F004EC061 /* RecordingVC.swift */,
+			);
+			path = Recording;
 			sourceTree = "<group>";
 		};
 		936E9FCD2802CE920034E2CC = {
@@ -261,6 +307,8 @@
 		936EA0132802DF320034E2CC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				931CD1FC28056801004EC061 /* Check */,
+				931CD20828056CFC004EC061 /* Recording */,
 				936EA0162802DFAD0034E2CC /* Home */,
 			);
 			path = Modules;
@@ -461,13 +509,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931CD2072805690A004EC061 /* CheclCLCell.xib in Resources */,
 				936EA0402802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf in Resources */,
 				936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */,
 				93B2576A2803E72C000BECA5 /* Localizable.strings in Resources */,
 				936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */,
 				931CD1FB280563C9004EC061 /* NearsCell.xib in Resources */,
+				931CD20C28056D0F004EC061 /* RecordingVC.xib in Resources */,
 				936E9FE62802CE940034E2CC /* LaunchScreen.storyboard in Resources */,
 				93B257642803E172000BECA5 /* HomeCell.xib in Resources */,
+				931CD2002805680F004EC061 /* CheckVC.xib in Resources */,
 				936EA01A2802DFCC0034E2CC /* HomeVC.xib in Resources */,
 				93B37A5728050CE800058E10 /* ProjectsCell.xib in Resources */,
 				936E9FE32802CE940034E2CC /* Assets.xcassets in Resources */,
@@ -535,6 +586,7 @@
 				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
+				931CD2012805680F004EC061 /* CheckVM.swift in Sources */,
 				93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */,
 				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,
 				936EA0232802E0C90034E2CC /* Constant.swift in Sources */,
@@ -545,16 +597,20 @@
 				936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */,
 				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,
 				936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */,
+				931CD20E28056D0F004EC061 /* RecordingVC.swift in Sources */,
 				936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */,
+				931CD20D28056D0F004EC061 /* RecordingVM.swift in Sources */,
 				93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */,
 				936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */,
 				936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */,
 				936EA00F2802DBE70034E2CC /* ResultURLModel.swift in Sources */,
 				936E9FF82802D8C10034E2CC /* OptionalMessageDTO.swift in Sources */,
+				931CD2062805690A004EC061 /* CheclCLCell.swift in Sources */,
 				936EA02A2802E1780034E2CC /* ListFont.swift in Sources */,
 				936EA0102802DBE70034E2CC /* RangeTimeSlider.swift in Sources */,
 				936EA0242802E0C90034E2CC /* GetHeightSafeArea.swift in Sources */,
 				936EA0252802E0C90034E2CC /* SettingDefaultFont.swift in Sources */,
+				931CD2022805680F004EC061 /* CheckVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,7 +687,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -686,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -712,6 +768,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,6 +798,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

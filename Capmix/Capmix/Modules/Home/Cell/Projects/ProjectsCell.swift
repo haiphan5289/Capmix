@@ -27,6 +27,7 @@ class ProjectsCell: BaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.selectionStyle = .none
         self.shadowView.layer.applySketchShadow(color: Asset.backOpacity60.color, alpha: 1, x: Constant.positionX, y: Constant.positionY, blur: Constant.blur, spread: Constant.spread)
         self.setupUI()
         self.setupRX()
@@ -42,7 +43,7 @@ class ProjectsCell: BaseTableViewCell {
 extension ProjectsCell {
     
     private func setupUI() {
-        self.collectionView.register(NearsCell.self, forCellWithReuseIdentifier: NearsCell.identifier)
+        self.collectionView.register(NearsCell.nib, forCellWithReuseIdentifier: NearsCell.identifier)
         self.collectionView.delegate = self
     }
     

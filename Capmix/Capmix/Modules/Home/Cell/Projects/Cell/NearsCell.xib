@@ -11,24 +11,42 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NearsCell" customModule="Capmix" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="152" height="146"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="152" height="146"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXX-Uc-aCN">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                        <color key="backgroundColor" name="AccentColor"/>
-                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qSX-hr-eST">
+                        <rect key="frame" x="16" y="16" width="120" height="114"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maps - Maroon 5 Remix" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3s-c2-QCi">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="41"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghV-nu-voU">
+                                <rect key="frame" x="0.0" y="41" width="120" height="57"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:16 4 tracks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LK-vw-ThA">
+                                <rect key="frame" x="0.0" y="98" width="120" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="charcoalGrey60"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" name="paleGrey"/>
             <constraints>
-                <constraint firstItem="kXX-Uc-aCN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6YC-He-Qkf"/>
-                <constraint firstAttribute="bottom" secondItem="kXX-Uc-aCN" secondAttribute="bottom" id="B8b-Tl-pmb"/>
-                <constraint firstAttribute="trailing" secondItem="kXX-Uc-aCN" secondAttribute="trailing" id="IY6-gg-iTo"/>
-                <constraint firstItem="kXX-Uc-aCN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nIA-PN-Q3a"/>
+                <constraint firstAttribute="bottom" secondItem="qSX-hr-eST" secondAttribute="bottom" constant="16" id="Arm-SV-1oa"/>
+                <constraint firstItem="qSX-hr-eST" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="QtE-iD-GLf"/>
+                <constraint firstItem="qSX-hr-eST" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="gNc-uD-Eln"/>
+                <constraint firstAttribute="trailing" secondItem="qSX-hr-eST" secondAttribute="trailing" constant="16" id="v94-px-bLW"/>
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -39,8 +57,11 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="charcoalGrey60">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paleGrey">
+            <color red="0.96862745098039216" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

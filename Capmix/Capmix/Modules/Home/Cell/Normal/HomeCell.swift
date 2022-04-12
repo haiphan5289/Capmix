@@ -23,6 +23,7 @@ class HomeCell: BaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.selectionStyle = .none
         self.shadowView.layer.applySketchShadow(color: Asset.backOpacity60.color, alpha: 1, x: Constant.positionX, y: Constant.positionY, blur: Constant.blur, spread: Constant.spread)
     }
 
