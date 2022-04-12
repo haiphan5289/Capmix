@@ -26,6 +26,7 @@ final class ConstantApp {
     let folderMusics: String = "Music"
     let folderDocuments: String = "Documents"
     let folderTrashs: String = "Trashs"
+    let folderRecording: String = "Recording"
     let SHARE_APPLICATION_DELEGATE = UIApplication.shared.delegate as! AppDelegate
     let linkTerm: String = "https://sites.google.com/view/filza-file-manager-document/terms-and-condition?authuser=0"
     let linkSUpport: String = "https://sites.google.com/view/filza-file-manager-document/support?authuser=0"

@@ -58,6 +58,11 @@ class HomeVC: BaseVC {
         self.setupRX()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
 }
 extension HomeVC {
     
