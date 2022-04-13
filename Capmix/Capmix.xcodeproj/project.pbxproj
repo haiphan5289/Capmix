@@ -50,6 +50,8 @@
 		936EA0402802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0362802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf */; };
 		936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0372802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf */; };
 		936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */; };
+		9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399C1F52806D9E9007414FC /* TimeLineView.swift */; };
+		9399C1F82806D9FB007414FC /* TimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9399C1F72806D9FB007414FC /* TimeLineView.xib */; };
 		939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939BADB82805BEBE0054768D /* PropertyWapper.swift */; };
 		93B257632803E172000BECA5 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B257612803E172000BECA5 /* HomeCell.swift */; };
 		93B257642803E172000BECA5 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B257622803E172000BECA5 /* HomeCell.xib */; };
@@ -108,6 +110,8 @@
 		936EA0362802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProText-Semibold.ttf"; sourceTree = "<group>"; };
 		936EA0372802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProText-Medium.ttf"; sourceTree = "<group>"; };
 		936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		9399C1F52806D9E9007414FC /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
+		9399C1F72806D9FB007414FC /* TimeLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeLineView.xib; sourceTree = "<group>"; };
 		939BADB82805BEBE0054768D /* PropertyWapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWapper.swift; sourceTree = "<group>"; };
 		93B257612803E172000BECA5 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		93B257622803E172000BECA5 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 		936EA0262802E13C0034E2CC /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				9399C1F42806D9C2007414FC /* TimeLine */,
 				936EA0272802E1500034E2CC /* ListFont */,
 			);
 			path = CustomView;
@@ -388,6 +393,15 @@
 				936EA0392802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf */,
 			);
 			path = display;
+			sourceTree = "<group>";
+		};
+		9399C1F42806D9C2007414FC /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				9399C1F52806D9E9007414FC /* TimeLineView.swift */,
+				9399C1F72806D9FB007414FC /* TimeLineView.xib */,
+			);
+			path = TimeLine;
 			sourceTree = "<group>";
 		};
 		93B257602803E15A000BECA5 /* Cell */ = {
@@ -518,6 +532,7 @@
 				93B2576A2803E72C000BECA5 /* Localizable.strings in Resources */,
 				936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */,
 				931CD1FB280563C9004EC061 /* NearsCell.xib in Resources */,
+				9399C1F82806D9FB007414FC /* TimeLineView.xib in Resources */,
 				931CD20C28056D0F004EC061 /* RecordingVC.xib in Resources */,
 				936E9FE62802CE940034E2CC /* LaunchScreen.storyboard in Resources */,
 				93B257642803E172000BECA5 /* HomeCell.xib in Resources */,
@@ -587,6 +602,7 @@
 				93B257662803E50D000BECA5 /* BaseTableViewCell.swift in Sources */,
 				9317580E2802F01C007FB3FE /* BaseVC.swift in Sources */,
 				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
+				9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */,
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
 				931CD2012805680F004EC061 /* CheckVM.swift in Sources */,

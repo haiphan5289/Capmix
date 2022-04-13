@@ -15,6 +15,7 @@
                 <outlet property="btStop" destination="wSo-lv-kUR" id="BEb-9Q-kIV"/>
                 <outlet property="centerView" destination="DDA-cu-Ewt" id="jwz-sK-OiX"/>
                 <outlet property="scrollView" destination="liG-wo-XEY" id="Fx0-1v-7QG"/>
+                <outlet property="timeLineStackView" destination="Tcr-oP-gfS" id="NJn-pd-eK7"/>
                 <outlet property="vContentView" destination="yKS-WT-eeo" id="g9E-AH-y9v"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,6 +34,10 @@
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liG-wo-XEY">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                     <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Tcr-oP-gfS">
+                                            <rect key="frame" x="200" y="0.0" width="60" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yKS-WT-eeo">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -51,7 +56,7 @@
                                     <viewLayoutGuide key="frameLayoutGuide" id="0m6-j6-WI3"/>
                                 </scrollView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DDA-cu-Ewt">
-                                    <rect key="frame" x="206.5" y="12" width="1" height="641"/>
+                                    <rect key="frame" x="206.5" y="42" width="1" height="611"/>
                                     <color key="backgroundColor" red="0.17254901960784313" green="0.16078431372549018" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="e6w-03-lTC"/>
@@ -75,7 +80,7 @@
                                 <constraint firstAttribute="trailing" secondItem="liG-wo-XEY" secondAttribute="trailing" id="i60-AB-jA1"/>
                                 <constraint firstAttribute="bottom" secondItem="liG-wo-XEY" secondAttribute="bottom" id="kEd-zc-yBt"/>
                                 <constraint firstItem="r1u-Kg-YoG" firstAttribute="centerX" secondItem="jPG-BN-qMa" secondAttribute="centerX" id="kTI-hx-MBI"/>
-                                <constraint firstItem="DDA-cu-Ewt" firstAttribute="top" secondItem="jPG-BN-qMa" secondAttribute="top" constant="12" id="urP-BI-2ho"/>
+                                <constraint firstItem="DDA-cu-Ewt" firstAttribute="top" secondItem="jPG-BN-qMa" secondAttribute="top" constant="42" id="urP-BI-2ho"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oHS-Wy-fWr">
@@ -183,7 +188,7 @@
             <color red="1" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="rownGrey">
-            <color red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="0.20000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
