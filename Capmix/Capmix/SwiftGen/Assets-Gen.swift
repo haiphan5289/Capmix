@@ -22,13 +22,29 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
+  internal static let back37 = ColorAsset(name: "back37")
   internal static let backOpacity60 = ColorAsset(name: "backOpacity60")
+  internal static let backOpcacity20 = ColorAsset(name: "backOpcacity20")
+  internal static let brownishGrey60 = ColorAsset(name: "brownishGrey60")
   internal static let charcoalGrey60 = ColorAsset(name: "charcoalGrey60")
   internal static let paleGrey = ColorAsset(name: "paleGrey")
+  internal static let pink = ColorAsset(name: "pink")
   internal static let red = ColorAsset(name: "red")
+  internal static let rownGrey = ColorAsset(name: "rownGrey")
   internal static let imgCreate = ImageAsset(name: "img_create")
   internal static let imgMusic = ImageAsset(name: "img_music")
   internal static let imgRecording = ImageAsset(name: "img_recording")
+  internal static let icCloseProject = ImageAsset(name: "ic_close_project")
+  internal static let icImport = ImageAsset(name: "ic_import")
+  internal static let icImportInactive = ImageAsset(name: "ic_import_inactive")
+  internal static let icMymusic = ImageAsset(name: "ic_mymusic")
+  internal static let icMymusicInactive = ImageAsset(name: "ic_mymusic_inactive")
+  internal static let icProjectInactive = ImageAsset(name: "ic_project_inactive")
+  internal static let icProjects = ImageAsset(name: "ic_projects")
+  internal static let icRecording = ImageAsset(name: "ic_recording")
+  internal static let icRecordingInactive = ImageAsset(name: "ic_recording_inactive")
+  internal static let icSearchProject = ImageAsset(name: "ic_search_project")
+  internal static let icCloseRecording = ImageAsset(name: "ic_close_recording")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

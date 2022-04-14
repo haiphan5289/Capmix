@@ -53,13 +53,14 @@ class RecordingVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        self.buttonLeft.setImage(Asset.icCloseRecording.image, for: .normal)
         self.setupBackButtonSingle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.currentPosition = self.positionXBetweenCenterAndScrollView()
-        self.startPosition = self.positionXBetweenCenterAndScrollView()
+        self.currentPosition = self.positionCenter()
+        self.startPosition = self.positionCenter()
     }
     
 }
@@ -79,7 +80,7 @@ extension RecordingVC {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             var f = self.timeLineStackView.frame
             f.origin.y = 0
-            f.origin.x = self.positionXBetweenCenterAndScrollView()
+            f.origin.x = self.positionCenter()
             self.timeLineStackView.frame = f
         }
         self.numberOfRecording(addSecond: 60)
@@ -138,7 +139,7 @@ extension RecordingVC {
     }
     
     private func drawWaveView(height: Float) {
-        let position = self.startPosition - self.positionXBetweenCenterAndScrollView() + self.startPosition
+        let position = self.startPosition - self.positionCenter() + self.startPosition
         let v: UIView = UIView(frame: .zero)
         v.backgroundColor = .red
         self.vContentView.addSubview(v)
@@ -158,7 +159,7 @@ extension RecordingVC {
         }
     }
     
-    private func positionXBetweenCenterAndScrollView() -> CGFloat {
+    private func positionCenter() -> CGFloat {
         return self.vContentView.convert(self.centerView.frame, to: nil).origin.x
     }
     

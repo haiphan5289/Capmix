@@ -103,7 +103,10 @@ extension HomeVC {
             case .recording:
                 let vc = RecordingVC.createVC()
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
-            case .newMix, .myMusic, .projects: break
+            case .projects:
+                let vc = ProjectListVC.createVC()
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
+            case .newMix, .myMusic: break
             }
         }.disposed(by: disposeBag)
     }

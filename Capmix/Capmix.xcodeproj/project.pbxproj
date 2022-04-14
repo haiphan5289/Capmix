@@ -61,6 +61,9 @@
 		93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2576D2803E762000BECA5 /* Strings-Gen.swift */; };
 		93B37A5628050CE800058E10 /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B37A5428050CE800058E10 /* ProjectsCell.swift */; };
 		93B37A5728050CE800058E10 /* ProjectsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B37A5528050CE800058E10 /* ProjectsCell.xib */; };
+		93DA6C55280874E40077D3F7 /* ProjectListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DA6C52280874E40077D3F7 /* ProjectListVC.xib */; };
+		93DA6C56280874E40077D3F7 /* ProjectListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA6C53280874E40077D3F7 /* ProjectListVM.swift */; };
+		93DA6C57280874E40077D3F7 /* ProjectListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA6C54280874E40077D3F7 /* ProjectListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +125,9 @@
 		93B2576D2803E762000BECA5 /* Strings-Gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings-Gen.swift"; sourceTree = "<group>"; };
 		93B37A5428050CE800058E10 /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
 		93B37A5528050CE800058E10 /* ProjectsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectsCell.xib; sourceTree = "<group>"; };
+		93DA6C52280874E40077D3F7 /* ProjectListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectListVC.xib; sourceTree = "<group>"; };
+		93DA6C53280874E40077D3F7 /* ProjectListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListVM.swift; sourceTree = "<group>"; };
+		93DA6C54280874E40077D3F7 /* ProjectListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListVC.swift; sourceTree = "<group>"; };
 		97BC998B569D8DEBB99121D5 /* Pods-Capmix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capmix.release.xcconfig"; path = "Target Support Files/Pods-Capmix/Pods-Capmix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +164,7 @@
 		931CD1FC28056801004EC061 /* Check */ = {
 			isa = PBXGroup;
 			children = (
+				93DA6C51280874D20077D3F7 /* ProjectList */,
 				931CD203280568F8004EC061 /* Cell */,
 				931CD1FD2805680F004EC061 /* CheckVC.xib */,
 				931CD1FE2805680F004EC061 /* CheckVM.swift */,
@@ -449,6 +456,16 @@
 			path = Projects;
 			sourceTree = "<group>";
 		};
+		93DA6C51280874D20077D3F7 /* ProjectList */ = {
+			isa = PBXGroup;
+			children = (
+				93DA6C52280874E40077D3F7 /* ProjectListVC.xib */,
+				93DA6C53280874E40077D3F7 /* ProjectListVM.swift */,
+				93DA6C54280874E40077D3F7 /* ProjectListVC.swift */,
+			);
+			path = ProjectList;
+			sourceTree = "<group>";
+		};
 		A5690CE4BFE8650CDAE6A7B7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +557,7 @@
 				936EA01A2802DFCC0034E2CC /* HomeVC.xib in Resources */,
 				93B37A5728050CE800058E10 /* ProjectsCell.xib in Resources */,
 				936E9FE32802CE940034E2CC /* Assets.xcassets in Resources */,
+				93DA6C55280874E40077D3F7 /* ProjectListVC.xib in Resources */,
 				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
 				936E9FE12802CE920034E2CC /* Main.storyboard in Resources */,
 				936EA03F2802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf in Resources */,
@@ -616,10 +634,12 @@
 				936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */,
 				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,
 				936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */,
+				93DA6C56280874E40077D3F7 /* ProjectListVM.swift in Sources */,
 				931CD20E28056D0F004EC061 /* RecordingVC.swift in Sources */,
 				936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */,
 				931CD20D28056D0F004EC061 /* RecordingVM.swift in Sources */,
 				93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */,
+				93DA6C57280874E40077D3F7 /* ProjectListVC.swift in Sources */,
 				936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */,
 				936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */,
 				939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */,
