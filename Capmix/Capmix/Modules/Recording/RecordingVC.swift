@@ -13,6 +13,10 @@ import RxSwift
 import SnapKit
 import EasyBaseAudio
 
+protocol RecordingDelegate {
+    func updateRecordings()
+}
+
 class RecordingVC: BaseVC {
     
     struct Constant {
@@ -26,6 +30,8 @@ class RecordingVC: BaseVC {
     enum Action {
         case prepare, play, stop
     }
+    
+    var delegate: RecordingDelegate?
     
     // Add here outlets
     @IBOutlet weak var btPlay: UIButton!
@@ -134,6 +140,11 @@ extension RecordingVC {
             let valueMeter = value + Constant.miniMeter
             wSelf.autoScrollView()
             wSelf.drawWaveView(height: valueMeter)
+        }.disposed(by: self.disposeBag)
+        
+        self.buttonLeft.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self else { return }
+            wSelf.delegate?.updateRecordings()
         }.disposed(by: self.disposeBag)
         
     }

@@ -194,6 +194,17 @@ extension ProjectListVC: UITableViewDelegate {
             make.edges.equalToSuperview()
         }
         
+        btHeader.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self else { return }
+            switch wSelf.statusTap {
+            case .recordings:
+                let vc = RecordingVC.createVC()
+                vc.delegate = wSelf
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
+            case .projects, .myMusic, .importFiles: break
+            }
+        }.disposed(by: self.disposeBag)
+        
         
         return v
     }
@@ -207,5 +218,11 @@ extension ProjectListVC: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+extension ProjectListVC: RecordingDelegate {
+    func updateRecordings() {
+        self.viewModel.getItemRecords()
+        self.tableView.reloadData()
     }
 }
