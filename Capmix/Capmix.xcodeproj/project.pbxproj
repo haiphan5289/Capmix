@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		52561BFB5BAEB3D46C369B17 /* Pods_Capmix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A79D60AF815412A0681B9D9 /* Pods_Capmix.framework */; };
+		931701252809A42E0005C030 /* ProjectListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931701232809A42E0005C030 /* ProjectListCell.swift */; };
+		931701262809A42E0005C030 /* ProjectListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931701242809A42E0005C030 /* ProjectListCell.xib */; };
+		9317012A2809A63A0005C030 /* MyMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931701282809A63A0005C030 /* MyMusicCell.swift */; };
+		9317012B2809A63A0005C030 /* MyMusicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931701292809A63A0005C030 /* MyMusicCell.xib */; };
 		9317580E2802F01C007FB3FE /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9317580D2802F01C007FB3FE /* BaseVC.swift */; };
 		931CD1FA280563C9004EC061 /* NearsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD1F8280563C9004EC061 /* NearsCell.swift */; };
 		931CD1FB280563C9004EC061 /* NearsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931CD1F9280563C9004EC061 /* NearsCell.xib */; };
@@ -69,6 +73,10 @@
 /* Begin PBXFileReference section */
 		1A79D60AF815412A0681B9D9 /* Pods_Capmix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capmix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D4E4D20EEDDB4E3399CC79 /* Pods-Capmix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capmix.debug.xcconfig"; path = "Target Support Files/Pods-Capmix/Pods-Capmix.debug.xcconfig"; sourceTree = "<group>"; };
+		931701232809A42E0005C030 /* ProjectListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListCell.swift; sourceTree = "<group>"; };
+		931701242809A42E0005C030 /* ProjectListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectListCell.xib; sourceTree = "<group>"; };
+		931701282809A63A0005C030 /* MyMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicCell.swift; sourceTree = "<group>"; };
+		931701292809A63A0005C030 /* MyMusicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMusicCell.xib; sourceTree = "<group>"; };
 		9317580D2802F01C007FB3FE /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		931CD1F8280563C9004EC061 /* NearsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearsCell.swift; sourceTree = "<group>"; };
 		931CD1F9280563C9004EC061 /* NearsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearsCell.xib; sourceTree = "<group>"; };
@@ -143,6 +151,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9317011D2809A3B50005C030 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				931701272809A6220005C030 /* MyMusicCell */,
+				931701222809A4180005C030 /* ProjectListCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		931701222809A4180005C030 /* ProjectListCell */ = {
+			isa = PBXGroup;
+			children = (
+				931701232809A42E0005C030 /* ProjectListCell.swift */,
+				931701242809A42E0005C030 /* ProjectListCell.xib */,
+			);
+			path = ProjectListCell;
+			sourceTree = "<group>";
+		};
+		931701272809A6220005C030 /* MyMusicCell */ = {
+			isa = PBXGroup;
+			children = (
+				931701282809A63A0005C030 /* MyMusicCell.swift */,
+				931701292809A63A0005C030 /* MyMusicCell.xib */,
+			);
+			path = MyMusicCell;
+			sourceTree = "<group>";
+		};
 		9317580C2802EFFB007FB3FE /* BaseVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +494,7 @@
 		93DA6C51280874D20077D3F7 /* ProjectList */ = {
 			isa = PBXGroup;
 			children = (
+				9317011D2809A3B50005C030 /* Cell */,
 				93DA6C52280874E40077D3F7 /* ProjectListVC.xib */,
 				93DA6C53280874E40077D3F7 /* ProjectListVM.swift */,
 				93DA6C54280874E40077D3F7 /* ProjectListVC.swift */,
@@ -560,7 +596,9 @@
 				93DA6C55280874E40077D3F7 /* ProjectListVC.xib in Resources */,
 				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
 				936E9FE12802CE920034E2CC /* Main.storyboard in Resources */,
+				931701262809A42E0005C030 /* ProjectListCell.xib in Resources */,
 				936EA03F2802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf in Resources */,
+				9317012B2809A63A0005C030 /* MyMusicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +661,7 @@
 				9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */,
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
+				931701252809A42E0005C030 /* ProjectListCell.swift in Sources */,
 				931CD2012805680F004EC061 /* CheckVM.swift in Sources */,
 				93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */,
 				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,
@@ -647,6 +686,7 @@
 				936E9FF82802D8C10034E2CC /* OptionalMessageDTO.swift in Sources */,
 				931CD2062805690A004EC061 /* CheclCLCell.swift in Sources */,
 				936EA02A2802E1780034E2CC /* ListFont.swift in Sources */,
+				9317012A2809A63A0005C030 /* MyMusicCell.swift in Sources */,
 				936EA0102802DBE70034E2CC /* RangeTimeSlider.swift in Sources */,
 				936EA0242802E0C90034E2CC /* GetHeightSafeArea.swift in Sources */,
 				936EA0252802E0C90034E2CC /* SettingDefaultFont.swift in Sources */,

@@ -12,6 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectListVC" customModule="Capmix" customModuleProvider="target">
             <connections>
+                <outlet property="btImported" destination="BWK-I8-kSI" id="noq-RX-0Q8"/>
+                <outlet property="btMusicApp" destination="IEC-LQ-UxV" id="VFa-oP-gAH"/>
+                <outlet property="importView" destination="b4s-uh-ewO" id="JcV-VU-EvC"/>
+                <outlet property="tableView" destination="haQ-gn-vKg" id="2H3-TO-vdc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="ims" destination="a5f-Mr-r1W" collectionClass="NSMutableArray" id="eC1-iI-WaK"/>
                 <outletCollection property="lbs" destination="tmf-i9-qY9" collectionClass="NSMutableArray" id="zSW-NO-q2r"/>
@@ -185,9 +189,77 @@
                                 <constraint firstItem="Pbp-yJ-1he" firstAttribute="leading" secondItem="HrD-B8-3IO" secondAttribute="leading" constant="30" id="zIl-nm-hEi"/>
                             </constraints>
                         </view>
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4s-uh-ewO">
+                            <rect key="frame" x="0.0" y="52" width="414" height="72"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="bQI-kl-UKy">
+                                    <rect key="frame" x="16" y="12" width="382" height="48"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWK-I8-kSI">
+                                            <rect key="frame" x="0.0" y="0.0" width="185" height="48"/>
+                                            <color key="backgroundColor" name="paleLavender"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="  Imported" image="ic_imports_projects">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="24"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEC-LQ-UxV">
+                                            <rect key="frame" x="197" y="0.0" width="185" height="48"/>
+                                            <color key="backgroundColor" name="paleGrey"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="  Music App" image="ic_musicapp">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="24"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCF-VM-IHG">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                    <color key="backgroundColor" name="lineView"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="Vwk-bR-IlK"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="QCF-VM-IHG" secondAttribute="trailing" id="58K-98-Z58"/>
+                                <constraint firstItem="QCF-VM-IHG" firstAttribute="leading" secondItem="b4s-uh-ewO" secondAttribute="leading" id="INb-oR-biI"/>
+                                <constraint firstItem="QCF-VM-IHG" firstAttribute="top" secondItem="b4s-uh-ewO" secondAttribute="top" id="Ta3-3W-jrJ"/>
+                                <constraint firstAttribute="height" constant="72" id="WVV-t0-yP4"/>
+                                <constraint firstItem="bQI-kl-UKy" firstAttribute="top" secondItem="b4s-uh-ewO" secondAttribute="top" constant="12" id="Xhw-tO-HSK"/>
+                                <constraint firstItem="bQI-kl-UKy" firstAttribute="leading" secondItem="b4s-uh-ewO" secondAttribute="leading" constant="16" id="eBJ-Iv-MtP"/>
+                                <constraint firstAttribute="trailing" secondItem="bQI-kl-UKy" secondAttribute="trailing" constant="16" id="rcs-37-Og2"/>
+                                <constraint firstAttribute="bottom" secondItem="bQI-kl-UKy" secondAttribute="bottom" constant="12" id="tfo-Gn-fJN"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8v1-UZ-T5T">
                             <rect key="frame" x="0.0" y="52" width="414" height="800"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="haQ-gn-vKg">
+                                    <rect key="frame" x="16" y="14" width="382" height="786"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </tableView>
+                            </subviews>
                             <color key="backgroundColor" name="paleGrey"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="haQ-gn-vKg" secondAttribute="bottom" id="2dA-W4-WxM"/>
+                                <constraint firstItem="haQ-gn-vKg" firstAttribute="leading" secondItem="8v1-UZ-T5T" secondAttribute="leading" constant="16" id="QFj-xB-3uW"/>
+                                <constraint firstItem="haQ-gn-vKg" firstAttribute="top" secondItem="8v1-UZ-T5T" secondAttribute="top" constant="14" id="d0q-wR-sQY"/>
+                                <constraint firstAttribute="trailing" secondItem="haQ-gn-vKg" secondAttribute="trailing" constant="16" id="ehK-v4-dCl"/>
+                            </constraints>
                         </view>
                     </subviews>
                 </stackView>
@@ -205,14 +277,22 @@
     </objects>
     <resources>
         <image name="ic_import_inactive" width="24" height="24"/>
+        <image name="ic_imports_projects" width="20" height="20"/>
+        <image name="ic_musicapp" width="20" height="20"/>
         <image name="ic_mymusic_inactive" width="24" height="24"/>
         <image name="ic_projects" width="24" height="24"/>
         <image name="ic_recording_inactive" width="24" height="24"/>
         <namedColor name="charcoalGrey60">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="lineView">
+            <color red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="paleGrey">
             <color red="0.96862745098039216" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paleLavender">
+            <color red="0.89803921568627454" green="0.88235294117647056" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="pink">
             <color red="0.50980392156862742" green="0.40000000000000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
