@@ -12,6 +12,9 @@
 		931701262809A42E0005C030 /* ProjectListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931701242809A42E0005C030 /* ProjectListCell.xib */; };
 		9317012A2809A63A0005C030 /* MyMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931701282809A63A0005C030 /* MyMusicCell.swift */; };
 		9317012B2809A63A0005C030 /* MyMusicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931701292809A63A0005C030 /* MyMusicCell.xib */; };
+		931701302809D3720005C030 /* ImportPopupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9317012D2809D3720005C030 /* ImportPopupVC.xib */; };
+		931701312809D3720005C030 /* ImportPopupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9317012E2809D3720005C030 /* ImportPopupVM.swift */; };
+		931701322809D3720005C030 /* ImportPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9317012F2809D3720005C030 /* ImportPopupVC.swift */; };
 		9317580E2802F01C007FB3FE /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9317580D2802F01C007FB3FE /* BaseVC.swift */; };
 		931CD1FA280563C9004EC061 /* NearsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD1F8280563C9004EC061 /* NearsCell.swift */; };
 		931CD1FB280563C9004EC061 /* NearsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931CD1F9280563C9004EC061 /* NearsCell.xib */; };
@@ -77,6 +80,9 @@
 		931701242809A42E0005C030 /* ProjectListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectListCell.xib; sourceTree = "<group>"; };
 		931701282809A63A0005C030 /* MyMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicCell.swift; sourceTree = "<group>"; };
 		931701292809A63A0005C030 /* MyMusicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMusicCell.xib; sourceTree = "<group>"; };
+		9317012D2809D3720005C030 /* ImportPopupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImportPopupVC.xib; sourceTree = "<group>"; };
+		9317012E2809D3720005C030 /* ImportPopupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportPopupVM.swift; sourceTree = "<group>"; };
+		9317012F2809D3720005C030 /* ImportPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportPopupVC.swift; sourceTree = "<group>"; };
 		9317580D2802F01C007FB3FE /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		931CD1F8280563C9004EC061 /* NearsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearsCell.swift; sourceTree = "<group>"; };
 		931CD1F9280563C9004EC061 /* NearsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NearsCell.xib; sourceTree = "<group>"; };
@@ -178,6 +184,16 @@
 			path = MyMusicCell;
 			sourceTree = "<group>";
 		};
+		9317012C2809D35A0005C030 /* ImportPopup */ = {
+			isa = PBXGroup;
+			children = (
+				9317012D2809D3720005C030 /* ImportPopupVC.xib */,
+				9317012E2809D3720005C030 /* ImportPopupVM.swift */,
+				9317012F2809D3720005C030 /* ImportPopupVC.swift */,
+			);
+			path = ImportPopup;
+			sourceTree = "<group>";
+		};
 		9317580C2802EFFB007FB3FE /* BaseVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +215,6 @@
 		931CD1FC28056801004EC061 /* Check */ = {
 			isa = PBXGroup;
 			children = (
-				93DA6C51280874D20077D3F7 /* ProjectList */,
 				931CD203280568F8004EC061 /* Cell */,
 				931CD1FD2805680F004EC061 /* CheckVC.xib */,
 				931CD1FE2805680F004EC061 /* CheckVM.swift */,
@@ -356,7 +371,9 @@
 		936EA0132802DF320034E2CC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9317012C2809D35A0005C030 /* ImportPopup */,
 				931CD1FC28056801004EC061 /* Check */,
+				93DA6C51280874D20077D3F7 /* ProjectList */,
 				931CD20828056CFC004EC061 /* Recording */,
 				936EA0162802DFAD0034E2CC /* Home */,
 			);
@@ -596,6 +613,7 @@
 				93DA6C55280874E40077D3F7 /* ProjectListVC.xib in Resources */,
 				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
 				936E9FE12802CE920034E2CC /* Main.storyboard in Resources */,
+				931701302809D3720005C030 /* ImportPopupVC.xib in Resources */,
 				931701262809A42E0005C030 /* ProjectListCell.xib in Resources */,
 				936EA03F2802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf in Resources */,
 				9317012B2809A63A0005C030 /* MyMusicCell.xib in Resources */,
@@ -652,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				931CD1FA280563C9004EC061 /* NearsCell.swift in Sources */,
+				931701312809D3720005C030 /* ImportPopupVM.swift in Sources */,
 				936E9FFB2802D8C10034E2CC /* Request.swift in Sources */,
 				936EA01E2802E0A20034E2CC /* UIFont+Extension.swift in Sources */,
 				936EA00C2802DBE70034E2CC /* Storage.swift in Sources */,
@@ -662,6 +681,7 @@
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
 				931701252809A42E0005C030 /* ProjectListCell.swift in Sources */,
+				931701322809D3720005C030 /* ImportPopupVC.swift in Sources */,
 				931CD2012805680F004EC061 /* CheckVM.swift in Sources */,
 				93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */,
 				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,

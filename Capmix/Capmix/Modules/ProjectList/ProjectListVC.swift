@@ -10,6 +10,11 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import MobileCoreServices
+import MediaPlayer
+import StoreKit
+import EasyBaseAudio
+
 
 class ProjectListVC: BaseVC {
     
@@ -34,6 +39,7 @@ class ProjectListVC: BaseVC {
     private var viewModel: ProjectListVM = ProjectListVM()
     @VariableReplay private var statusTap: TabAction = .projects
     private var recordings: [URL] = []
+    var mediaItems = [MPMediaItem]()
     
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -59,6 +65,8 @@ extension ProjectListVC {
         self.tableView.register(MyMusicCell.nib, forCellReuseIdentifier: MyMusicCell.identifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        self.checkAppleMusicPermission()
     }
     
     private func setupRX() {
@@ -78,6 +86,21 @@ extension ProjectListVC {
             guard let wSelf = self else { return }
             wSelf.recordings = list
         }).disposed(by: self.disposeBag)
+        
+        let imported = self.btImported.rx.tap.map { ActionImported.imported }
+        let musicApp = self.btMusicApp.rx.tap.map { ActionImported.musicApp }
+        Observable.merge(imported, musicApp).bind { [weak self] action in
+            guard let wSelf = self else { return }
+            switch action {
+            case .imported:
+                let vc = ImportPopupVC.createVC()
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .overFullScreen
+                vc.delegate = self
+                wSelf.present(vc, animated: true, completion: nil)
+            case .musicApp: break
+            }
+        }.disposed(by: self.disposeBag)
         
         self.$statusTap.asObservable().bind { [weak self] action in
             guard let wSelf = self else { return }
@@ -124,6 +147,105 @@ extension ProjectListVC {
                 wSelf.lbs[TabAction.recordings.rawValue].textColor = Asset.charcoalGrey60.color
             }
         }.disposed(by: self.disposeBag)
+        
+    }
+    
+    func save(index: Int, mediaItem: MPMediaItem, success: @escaping ((Int, URL) -> Void), failure: @escaping ((Error?) -> Void)) {
+        //get media item first
+        
+        let songUrl = mediaItem.value(forProperty: MPMediaItemPropertyAssetURL) as! URL
+        print(songUrl)
+        
+        // get file extension andmime type
+        let str = songUrl.absoluteString
+        let str2 = str.replacingOccurrences( of : "ipod-library://item/item", with: "")
+        let arr = str2.components(separatedBy: "?")
+        var mimeType = arr[0]
+        mimeType = mimeType.replacingOccurrences( of : ".", with: "")
+        
+        let exportSession = AVAssetExportSession(asset: AVAsset(url: songUrl), presetName: AVAssetExportPresetAppleM4A)
+        exportSession?.shouldOptimizeForNetworkUse = true
+        exportSession?.outputFileType = AVFileType.m4a
+        
+        //save it into your local directory
+        let outputURL = CampixManage.shared.createURL(folder: "AppleMusic", name: mediaItem.title ?? "", type: .m4a)
+        //Delete Existing file
+        do
+            {
+                try FileManager.default.removeItem(at: outputURL)
+            }
+        catch let error as NSError
+        {
+            print(error.debugDescription)
+        }
+        
+        if let exportSession = exportSession {
+            exportSession.outputURL = outputURL
+            /// try to export the file and handle the status cases
+            exportSession.exportAsynchronously(completionHandler: {
+                switch exportSession.status {
+                case .failed:
+                    if let _error = exportSession.error {
+                        failure(_error)
+                    }
+                    
+                case .cancelled:
+                    if let _error = exportSession.error {
+                        failure(_error)
+                    }
+                default:
+                    print("finished")
+                    success(index, outputURL)
+                }
+            })
+        } else {
+            failure(nil)
+        }
+    }
+    
+    func fetchApple() {
+        mediaItems = MPMediaQuery.songs().items ?? []
+        mediaItems.enumerated().forEach { (item) in
+        }
+    }
+    
+    func checkAppleMusicPermission() {
+        guard SKCloudServiceController.authorizationStatus() == .notDetermined else { return }
+        SKCloudServiceController.requestAuthorization {(status: SKCloudServiceAuthorizationStatus) in
+            switch status {
+            case .denied, .restricted: break
+            case .authorized:
+                self.fetchApple()
+            default: break
+            }
+        }
+    }
+    
+}
+extension ProjectListVC: ImportPopupDelegate {
+    func action(action: ImportPopupVC.Action) {
+        switch action {
+        case .close: break
+        case .photoLibrary:
+            let vc = UIImagePickerController()
+            vc.sourceType = .photoLibrary
+            vc.mediaTypes = [kUTTypeMovie as String]
+            self.present(vc, animated: true, completion: nil)
+        case .files:
+            let types = [kUTTypeMovie, kUTTypeVideo, kUTTypeAudio, kUTTypeQuickTimeMovie]
+            let documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
+            documentPicker.delegate = self
+            documentPicker.allowsMultipleSelection = false
+            //                        documentPicker.shouldShowFileExtensions = true
+            self.present(documentPicker, animated: true, completion: nil)
+        }
+    }
+}
+extension ProjectListVC: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let first = urls.first else {
+            return
+        }
     }
 }
 extension ProjectListVC: UITableViewDataSource {

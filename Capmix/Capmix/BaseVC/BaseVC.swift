@@ -20,6 +20,13 @@ class BaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupRX()
+        AudioManage.shared.createFolder(path: "\(ConstantApp.shared.folderRecording)") { outputURL in
+            print("==== \(outputURL)")
+        } failure: { _ in
+            
+        }
+        AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderApple)", success: nil, failure: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
