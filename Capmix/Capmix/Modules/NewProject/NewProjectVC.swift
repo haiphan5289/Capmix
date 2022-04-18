@@ -77,13 +77,13 @@ extension NewProjectVC {
         // Add here the setup for the RX
         self.$sourcesURL.asObservable().bind { [weak self] list in
             guard let wSelf = self else { return }
-            if list.count > 0 {
-                wSelf.processView.isHidden = false
-                wSelf.emptyView.isHidden = true
-            } else {
-                wSelf.processView.isHidden = true
-                wSelf.emptyView.isHidden = false
-            }
+//            if list.count > 0 {
+//                wSelf.processView.isHidden = false
+//                wSelf.emptyView.isHidden = true
+//            } else {
+//                wSelf.processView.isHidden = true
+//                wSelf.emptyView.isHidden = false
+//            }
         }.disposed(by: self.disposeBag)
         
         self.btAddSound.rx.tap.bind { [weak self] _ in
