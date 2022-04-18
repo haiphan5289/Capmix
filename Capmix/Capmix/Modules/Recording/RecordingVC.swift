@@ -89,7 +89,7 @@ extension RecordingVC {
             f.origin.x = self.positionCenter()
             self.timeLineStackView.frame = f
         }
-        self.numberOfRecording(addSecond: 60)
+        self.numberOfRecording(addSecond: 600)
     }
     
     private func setupRX() {

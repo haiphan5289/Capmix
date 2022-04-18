@@ -68,6 +68,9 @@
 		93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2576D2803E762000BECA5 /* Strings-Gen.swift */; };
 		93B37A5628050CE800058E10 /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B37A5428050CE800058E10 /* ProjectsCell.swift */; };
 		93B37A5728050CE800058E10 /* ProjectsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B37A5528050CE800058E10 /* ProjectsCell.xib */; };
+		93D59771280D905300C4C345 /* NewProjectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D5976E280D905300C4C345 /* NewProjectVC.xib */; };
+		93D59772280D905300C4C345 /* NewProjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D5976F280D905300C4C345 /* NewProjectVM.swift */; };
+		93D59773280D905300C4C345 /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D59770280D905300C4C345 /* NewProjectVC.swift */; };
 		93DA6C55280874E40077D3F7 /* ProjectListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DA6C52280874E40077D3F7 /* ProjectListVC.xib */; };
 		93DA6C56280874E40077D3F7 /* ProjectListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA6C53280874E40077D3F7 /* ProjectListVM.swift */; };
 		93DA6C57280874E40077D3F7 /* ProjectListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DA6C54280874E40077D3F7 /* ProjectListVC.swift */; };
@@ -139,6 +142,9 @@
 		93B2576D2803E762000BECA5 /* Strings-Gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings-Gen.swift"; sourceTree = "<group>"; };
 		93B37A5428050CE800058E10 /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
 		93B37A5528050CE800058E10 /* ProjectsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectsCell.xib; sourceTree = "<group>"; };
+		93D5976E280D905300C4C345 /* NewProjectVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewProjectVC.xib; sourceTree = "<group>"; };
+		93D5976F280D905300C4C345 /* NewProjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectVM.swift; sourceTree = "<group>"; };
+		93D59770280D905300C4C345 /* NewProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectVC.swift; sourceTree = "<group>"; };
 		93DA6C52280874E40077D3F7 /* ProjectListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectListVC.xib; sourceTree = "<group>"; };
 		93DA6C53280874E40077D3F7 /* ProjectListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListVM.swift; sourceTree = "<group>"; };
 		93DA6C54280874E40077D3F7 /* ProjectListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListVC.swift; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 		936EA0132802DF320034E2CC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				93D5976D280D903700C4C345 /* NewProject */,
 				9317012C2809D35A0005C030 /* ImportPopup */,
 				931CD1FC28056801004EC061 /* Check */,
 				93DA6C51280874D20077D3F7 /* ProjectList */,
@@ -508,6 +515,16 @@
 			path = Projects;
 			sourceTree = "<group>";
 		};
+		93D5976D280D903700C4C345 /* NewProject */ = {
+			isa = PBXGroup;
+			children = (
+				93D5976E280D905300C4C345 /* NewProjectVC.xib */,
+				93D5976F280D905300C4C345 /* NewProjectVM.swift */,
+				93D59770280D905300C4C345 /* NewProjectVC.swift */,
+			);
+			path = NewProject;
+			sourceTree = "<group>";
+		};
 		93DA6C51280874D20077D3F7 /* ProjectList */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,6 +626,7 @@
 				931CD2002805680F004EC061 /* CheckVC.xib in Resources */,
 				936EA01A2802DFCC0034E2CC /* HomeVC.xib in Resources */,
 				93B37A5728050CE800058E10 /* ProjectsCell.xib in Resources */,
+				93D59771280D905300C4C345 /* NewProjectVC.xib in Resources */,
 				936E9FE32802CE940034E2CC /* Assets.xcassets in Resources */,
 				93DA6C55280874E40077D3F7 /* ProjectListVC.xib in Resources */,
 				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
@@ -684,11 +702,13 @@
 				931701322809D3720005C030 /* ImportPopupVC.swift in Sources */,
 				931CD2012805680F004EC061 /* CheckVM.swift in Sources */,
 				93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */,
+				93D59773280D905300C4C345 /* NewProjectVC.swift in Sources */,
 				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,
 				936EA0232802E0C90034E2CC /* Constant.swift in Sources */,
 				93B37A5628050CE800058E10 /* ProjectsCell.swift in Sources */,
 				936EA01B2802DFCC0034E2CC /* HomeVM.swift in Sources */,
 				93B257632803E172000BECA5 /* HomeCell.swift in Sources */,
+				93D59772280D905300C4C345 /* NewProjectVM.swift in Sources */,
 				936E9FFD2802D8C10034E2CC /* RealmModel.swift in Sources */,
 				936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */,
 				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,

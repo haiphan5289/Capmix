@@ -1,0 +1,18 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_right.pdf",
+      "idiom" : "universal"
+    },
+    {
+      "idiom" : "car"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}

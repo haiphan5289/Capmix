@@ -15,6 +15,7 @@
                 <outlet property="btImported" destination="BWK-I8-kSI" id="noq-RX-0Q8"/>
                 <outlet property="btMusicApp" destination="IEC-LQ-UxV" id="VFa-oP-gAH"/>
                 <outlet property="importView" destination="b4s-uh-ewO" id="JcV-VU-EvC"/>
+                <outlet property="projectView" destination="jk8-Mq-5y8" id="Tk1-ou-dlz"/>
                 <outlet property="tableView" destination="haQ-gn-vKg" id="2H3-TO-vdc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="ims" destination="a5f-Mr-r1W" collectionClass="NSMutableArray" id="eC1-iI-WaK"/>
@@ -45,7 +46,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Pbp-yJ-1he">
                                     <rect key="frame" x="30" y="0.0" width="354" height="52"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jk8-Mq-5y8">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jk8-Mq-5y8">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="52"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="cKi-iw-mFI">

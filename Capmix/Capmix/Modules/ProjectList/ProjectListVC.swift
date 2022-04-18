@@ -15,6 +15,9 @@ import MediaPlayer
 import StoreKit
 import EasyBaseAudio
 
+protocol ProjectListDelegate {
+    func addMusic(url: URL)
+}
 
 class ProjectListVC: BaseVC {
     
@@ -26,6 +29,12 @@ class ProjectListVC: BaseVC {
         case imported, musicApp
     }
     
+    enum openfrom {
+        case newProject, other
+    }
+    var openfrom: openfrom = .other
+    var delegate: ProjectListDelegate?
+    
     // Add here outlets
     @IBOutlet var ims: [UIImageView]!
     @IBOutlet var lbs: [UILabel]!
@@ -34,6 +43,7 @@ class ProjectListVC: BaseVC {
     @IBOutlet weak var importView: UIView!
     @IBOutlet weak var btImported: UIButton!
     @IBOutlet weak var btMusicApp: UIButton!
+    @IBOutlet weak var projectView: UIView!
     
     // Add here your view model
     private var viewModel: ProjectListVM = ProjectListVM()
@@ -67,6 +77,12 @@ extension ProjectListVC {
         self.tableView.delegate = self
         
         self.checkAppleMusicPermission()
+        
+        if self.openfrom == .newProject {
+            self.statusTap = .myMusic
+            self.projectView.isHidden = true
+            self.tableView.reloadData()
+        }
     }
     
     private func setupRX() {
@@ -150,62 +166,15 @@ extension ProjectListVC {
         
     }
     
-    func save(index: Int, mediaItem: MPMediaItem, success: @escaping ((Int, URL) -> Void), failure: @escaping ((Error?) -> Void)) {
-        //get media item first
-        
-        let songUrl = mediaItem.value(forProperty: MPMediaItemPropertyAssetURL) as! URL
-        print(songUrl)
-        
-        // get file extension andmime type
-        let str = songUrl.absoluteString
-        let str2 = str.replacingOccurrences( of : "ipod-library://item/item", with: "")
-        let arr = str2.components(separatedBy: "?")
-        var mimeType = arr[0]
-        mimeType = mimeType.replacingOccurrences( of : ".", with: "")
-        
-        let exportSession = AVAssetExportSession(asset: AVAsset(url: songUrl), presetName: AVAssetExportPresetAppleM4A)
-        exportSession?.shouldOptimizeForNetworkUse = true
-        exportSession?.outputFileType = AVFileType.m4a
-        
-        //save it into your local directory
-        let outputURL = CampixManage.shared.createURL(folder: "AppleMusic", name: mediaItem.title ?? "", type: .m4a)
-        //Delete Existing file
-        do
-            {
-                try FileManager.default.removeItem(at: outputURL)
-            }
-        catch let error as NSError
-        {
-            print(error.debugDescription)
-        }
-        
-        if let exportSession = exportSession {
-            exportSession.outputURL = outputURL
-            /// try to export the file and handle the status cases
-            exportSession.exportAsynchronously(completionHandler: {
-                switch exportSession.status {
-                case .failed:
-                    if let _error = exportSession.error {
-                        failure(_error)
-                    }
-                    
-                case .cancelled:
-                    if let _error = exportSession.error {
-                        failure(_error)
-                    }
-                default:
-                    print("finished")
-                    success(index, outputURL)
-                }
-            })
-        } else {
-            failure(nil)
-        }
-    }
-    
     func fetchApple() {
         mediaItems = MPMediaQuery.songs().items ?? []
         mediaItems.enumerated().forEach { (item) in
+            AudioManage.shared.saveAppleMusic(folder: ConstantApp.shared.folderApple, mediaItem: item.element) { outputURL in
+                
+            } failure: { _ in
+                
+            }
+
         }
     }
     
@@ -281,6 +250,20 @@ extension ProjectListVC: UITableViewDataSource {
         }
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch self.statusTap {
+        case .recordings:
+            let item = self.recordings[indexPath.row]
+            self.navigationController?.popViewController(animated: true, {
+                self.delegate?.addMusic(url: item)
+            })
+        case .myMusic, .importFiles: break
+            
+        case .projects: break
+        }
+    }
+    
 }
 extension ProjectListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
