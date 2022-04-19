@@ -1343,13 +1343,13 @@ public struct MutePoint {
     var url: URL
     let start: Float
     let end: Float
-    init(start: Float, end: Float, url: URL) {
+    public init(start: Float, end: Float, url: URL) {
         self.start = start
         self.end = end
         self.url = url
     }
     
-    func getEndTime() -> Float {
+    public func getEndTime() -> Float {
         return self.start + self.end
     }
 }

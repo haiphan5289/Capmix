@@ -66,6 +66,7 @@
 		93B2576A2803E72C000BECA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93B257692803E72C000BECA5 /* Localizable.strings */; };
 		93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2576C2803E762000BECA5 /* Assets-Gen.swift */; };
 		93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B2576D2803E762000BECA5 /* Strings-Gen.swift */; };
+		93B36BE6280ED9FB004DA899 /* waveformview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B36BE5280ED9FB004DA899 /* waveformview.swift */; };
 		93B37A5628050CE800058E10 /* ProjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B37A5428050CE800058E10 /* ProjectsCell.swift */; };
 		93B37A5728050CE800058E10 /* ProjectsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B37A5528050CE800058E10 /* ProjectsCell.xib */; };
 		93D59771280D905300C4C345 /* NewProjectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D5976E280D905300C4C345 /* NewProjectVC.xib */; };
@@ -140,6 +141,7 @@
 		93B257692803E72C000BECA5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		93B2576C2803E762000BECA5 /* Assets-Gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets-Gen.swift"; sourceTree = "<group>"; };
 		93B2576D2803E762000BECA5 /* Strings-Gen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings-Gen.swift"; sourceTree = "<group>"; };
+		93B36BE5280ED9FB004DA899 /* waveformview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = waveformview.swift; sourceTree = "<group>"; };
 		93B37A5428050CE800058E10 /* ProjectsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCell.swift; sourceTree = "<group>"; };
 		93B37A5528050CE800058E10 /* ProjectsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectsCell.xib; sourceTree = "<group>"; };
 		93D5976E280D905300C4C345 /* NewProjectVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewProjectVC.xib; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		936EA0262802E13C0034E2CC /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				93B36BE4280ED9FB004DA899 /* WaveFormView */,
 				9399C1F42806D9C2007414FC /* TimeLine */,
 				936EA0272802E1500034E2CC /* ListFont */,
 			);
@@ -494,6 +497,14 @@
 				93B2576D2803E762000BECA5 /* Strings-Gen.swift */,
 			);
 			path = SwiftGen;
+			sourceTree = "<group>";
+		};
+		93B36BE4280ED9FB004DA899 /* WaveFormView */ = {
+			isa = PBXGroup;
+			children = (
+				93B36BE5280ED9FB004DA899 /* waveformview.swift */,
+			);
+			path = WaveFormView;
 			sourceTree = "<group>";
 		};
 		93B37A5228050CAE00058E10 /* Normal */ = {
@@ -715,6 +726,7 @@
 				936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */,
 				93DA6C56280874E40077D3F7 /* ProjectListVM.swift in Sources */,
 				931CD20E28056D0F004EC061 /* RecordingVC.swift in Sources */,
+				93B36BE6280ED9FB004DA899 /* waveformview.swift in Sources */,
 				936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */,
 				931CD20D28056D0F004EC061 /* RecordingVM.swift in Sources */,
 				93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */,

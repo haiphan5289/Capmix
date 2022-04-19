@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewProjectVC" customModule="Capmix" customModuleProvider="target">
             <connections>
+                <outlet property="audioStackView" destination="vGJ-c8-yYQ" id="bzQ-SZ-h7N"/>
                 <outlet property="btAddSound" destination="ihv-I3-xfM" id="uaE-je-G8B"/>
                 <outlet property="centerView" destination="qas-aY-Okb" id="P6q-36-niZ"/>
                 <outlet property="emptyView" destination="mxJ-0y-fEs" id="0Xl-mW-CcS"/>
@@ -41,14 +42,20 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82I-1W-ixk">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="obT-sy-gLX">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOv-7S-fK9">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vGJ-c8-yYQ">
+                                                                    <rect key="frame" x="87" y="247" width="240" height="80"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" name="paleGrey"/>
+                                                        </view>
+                                                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="obT-sy-gLX">
                                                             <rect key="frame" x="200" y="0.0" width="60" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </stackView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOv-7S-fK9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
-                                                            <color key="backgroundColor" name="paleGrey"/>
-                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
