@@ -9,17 +9,14 @@ import UIKit
 import Foundation
 import AVFoundation
 import Accelerate
-import SVProgressHUD
-import RxSwift
-import RxCocoa
 
-struct PointWave {
+public struct PointWave {
     let positionX: CGFloat
     let height: CGFloat
     let url: URL
 }
 
-enum ViewSoundWave {
+public enum ViewSoundWave {
     case audio
     case showAudio
 }
@@ -31,13 +28,15 @@ public enum WaveformStyle {
 public class WaveformZoomable : UIView {
     
     //call back
-    @Replay(queue: MainScheduler.asyncInstance) var listPoint: [CGFloat]
-    @Replay(queue: MainScheduler.asyncInstance) var listPointOrigin: [CGPoint]
-    @Replay(queue: MainScheduler.asyncInstance) var isLoading: Bool
+    var listPoint: [CGFloat] = []
+    var listPointOrigin: [CGPoint] = []
+    var isLoading: Bool = false
     
     var listPointAudio: [CGFloat] = []
     var listPoinAudiotOrigin: [CGPoint] = []
     var isSelect: Bool = true
+    var colorShow: UIColor = .red
+    var colorDisappaer: UIColor = .gray
     
     private var listPointDraw: [CGFloat] = []
     private var url: URL?
@@ -70,10 +69,11 @@ public class WaveformZoomable : UIView {
     let pixelWidth: CGFloat = 2.0
     let pixelSpacing: CGFloat = 2.0
     
-    public convenience init(withFile: URL, style: WaveformStyle = .soundcloud) {
+    public convenience init(withFile: URL, style: WaveformStyle = .soundcloud, colorShow: UIColor, colorDisappaer: UIColor) {
         self.init()
         openFile(withFile)
-        
+        self.colorShow = colorShow
+        self.colorDisappaer = colorDisappaer
         self.style = style
     }
     
@@ -83,7 +83,6 @@ public class WaveformZoomable : UIView {
         do {
             audioFile = try AVAudioFile(forReading: file)
         }catch{
-            SVProgressHUD.showInfo(withStatus:"Error Sound File Crupted")
             return
         }
         
@@ -107,7 +106,7 @@ public class WaveformZoomable : UIView {
         setNeedsDisplay()
     }
     
-    func makePoints() {
+    public func makePoints() {
         //        if !readFile.populated { return }
         
         let viewWidth = bounds.width
@@ -164,8 +163,10 @@ public class WaveformZoomable : UIView {
         
     }
     
-    func listPointtoDraw(file: URL, viewSoundWave: ViewSoundWave, comlention: ((([PointWave]) -> Void)?) ) {
+    public func listPointtoDraw(file: URL, colorShow: UIColor, colorDisappear: UIColor, viewSoundWave: ViewSoundWave, comlention: ((([PointWave]) -> Void)?) ) {
         self.isLoading = true
+        self.colorShow = colorShow
+        self.colorDisappaer = colorDisappear
         self.url = file
         var audioFile = AVAudioFile()
         do {
@@ -173,7 +174,6 @@ public class WaveformZoomable : UIView {
             
         }catch {
             self.isLoading = false
-            SVProgressHUD.showInfo(withStatus:"Error Sound File Crupted")
             return
         }
         
@@ -264,7 +264,7 @@ public class WaveformZoomable : UIView {
         
     }
     
-    func drawDetailedWaveform(_ rect: CGRect) {
+    public func drawDetailedWaveform(_ rect: CGRect) {
         let path = UIBezierPath()
         
         path.move(to: CGPoint(x: 0.0, y: rect.height/2))
@@ -420,7 +420,7 @@ public class WaveformZoomable : UIView {
         self.layer.addSublayer(fillLayer)
     }
     
-    func hideOrShowPath(isHidden: Bool) {
+    public func hideOrShowPath(isHidden: Bool) {
         guard let subplayers = self.layer.sublayers else {
             return
         }
@@ -448,7 +448,7 @@ public class WaveformZoomable : UIView {
 //
 //    }
     
-    func removePath() {
+    public func removePath() {
         guard let subplayers = self.layer.sublayers else {
             return
         }
@@ -458,23 +458,23 @@ public class WaveformZoomable : UIView {
         }
     }
     
-    func drawSoundWave(_ rect: CGRect) {
-        self.drawSound(rect: rect, colorPath: UIColor(named: "dodgerBlue1"), listPoint: readFile.leftPoints)
+    public func drawSoundWave(_ rect: CGRect) {
+        self.drawSound(rect: rect, colorPath: self.colorShow, listPoint: readFile.leftPoints)
         
         //remove dot black on device
-        self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: readFile.leftPoints)
-        self.drawSound(rect: rect, colorPath: UIColor(named: "dodgerBlue1"), listPoint: readFile.leftPoints)
+        self.drawSound(rect: rect, colorPath: self.colorDisappaer, listPoint: readFile.leftPoints)
+        self.drawSound(rect: rect, colorPath: self.colorShow, listPoint: readFile.leftPoints)
     }
     
-    func drawSoundWaveCheck(_ rect: CGRect, listPoint: [CGPoint]) {
+    public func drawSoundWaveCheck(_ rect: CGRect, listPoint: [CGPoint]) {
         if self.isSelect {
-            self.drawSound(rect: rect, colorPath: Asset.pink.color, listPoint: listPoint)
+            self.drawSound(rect: rect, colorPath: self.colorShow, listPoint: listPoint)
             
             //remove dot black on device
 //            self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: listPoint)
 //            self.drawSound(rect: rect, colorPath: UIColor(named: "dodgerBlue1"), listPoint: listPoint)
         } else {
-            self.drawSound(rect: rect, colorPath: Asset.pink.color, listPoint: listPoint)
+            self.drawSound(rect: rect, colorPath: self.colorShow, listPoint: listPoint)
             
             //remove dot black on device
 //            self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: listPoint)
@@ -482,11 +482,11 @@ public class WaveformZoomable : UIView {
         }
     }
     
-    func updateSound(rect: CGRect, from: CGFloat, to: CGFloat) {
+    public func updateSound(rect: CGRect, from: CGFloat, to: CGFloat) {
         self.drawRead(rect: rect, from: from, to: to)
     }
     
-    func drawReadUpdate(rect: CGRect, from: CGFloat, to: CGFloat, listPoint: [CGPoint], listPosition: [CGFloat]) {
+    public func drawReadUpdate(rect: CGRect, from: CGFloat, to: CGFloat, listPoint: [CGPoint], listPosition: [CGFloat]) {
         //find start & end point in list point draw
         var indexStartPointDraw: Int = 0
         var indexEndPointDraw: Int = 0
@@ -533,9 +533,9 @@ public class WaveformZoomable : UIView {
 //        let setCurrentList = Set(list)
 //        let listOutput = Array(setListPrevious.subtracting(setCurrentList))
         
-        self.drawSound(rect: rect, colorPath: UIColor(named: "dodgerBlue1"), listPoint: list)
-        self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: listUnRedStart)
-        self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: listUnreadEnd)
+        self.drawSound(rect: rect, colorPath: self.colorShow, listPoint: list)
+        self.drawSound(rect: rect, colorPath: self.colorDisappaer, listPoint: listUnRedStart)
+        self.drawSound(rect: rect, colorPath: self.colorDisappaer, listPoint: listUnreadEnd)
     }
     
     private func drawRead(rect: CGRect, from: CGFloat, to: CGFloat) {
@@ -578,9 +578,9 @@ public class WaveformZoomable : UIView {
 //        let setCurrentList = Set(list)
 //        let listOutput = Array(setListPrevious.subtracting(setCurrentList))
         
-        self.drawSound(rect: rect, colorPath: UIColor(named: "dodgerBlue1"), listPoint: list)
-        self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: listUnRedStart)
-        self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: listUnreadEnd)
+        self.drawSound(rect: rect, colorPath: self.colorShow, listPoint: list)
+        self.drawSound(rect: rect, colorPath: self.colorDisappaer, listPoint: listUnRedStart)
+        self.drawSound(rect: rect, colorPath: self.colorDisappaer, listPoint: listUnreadEnd)
     }
     
     private func drawUnRead(rect: CGRect, from: CGFloat, to: CGFloat) {
@@ -608,7 +608,7 @@ public class WaveformZoomable : UIView {
 //        let setCurrentList = Set(list)
 //        let listOutput = Array(setCurrentList.subtracting(setListPrevious))
         
-        self.drawSound(rect: rect, colorPath: UIColor(named: "lightGreyBlue"), listPoint: list)
+        self.drawSound(rect: rect, colorPath: self.colorDisappaer, listPoint: list)
     }
     
     override public func draw(_ rect: CGRect) {

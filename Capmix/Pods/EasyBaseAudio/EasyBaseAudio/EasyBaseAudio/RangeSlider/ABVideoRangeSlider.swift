@@ -47,6 +47,7 @@ public class ABVideoRangeSlider: UIView {
     public var maxSpace: Float = 0              // In Seconds
     
     var isUpdatingThumbnails = false
+    public var waveForm: WaveformZoomable = WaveformZoomable(frame: .zero)
     
     public enum ABTimeViewPosition{
         case top
@@ -58,9 +59,15 @@ public class ABVideoRangeSlider: UIView {
         self.setup()
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
+        var f = self.waveForm.frame
+        f.origin.x = 0
+        f.origin.y = 10
+        f.size = CGSize(width: self.frame.size.width, height: self.frame.size.height - 10)
+        self.waveForm.frame = f
+        self.addSubview(waveForm)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -157,6 +164,20 @@ public class ABVideoRangeSlider: UIView {
     
     // MARK: Public functions
     
+    public func updateBgColor(colorBg: UIColor) {
+        let views = [self.startIndicator, self.endIndicator, self.topLine, self.bottomLine]
+        views.forEach { v in
+            v.backgroundColor = colorBg
+        }
+    }
+    
+    public func hideTimeLine(hide: Bool) {
+        let views = [self.endTimeView, self.startTimeView]
+        views.forEach { v in
+            v.isHidden = hide
+        }
+    }
+    
     public func hideViews(hide: Bool) {
         let views = [self.startIndicator, self.endIndicator, self.topLine, self.bottomLine]
         views.forEach { v in
@@ -210,9 +231,15 @@ public class ABVideoRangeSlider: UIView {
         }
     }
     
-    public func setVideoURL(videoURL: URL){
+    public func setVideoURL(videoURL: URL, colorShow: UIColor, colorDisappear: UIColor) {
         self.duration = ABVideoHelper.videoDuration(videoURL: videoURL)
         self.videoURL = videoURL
+        self.waveForm.listPointtoDraw(file: videoURL,
+                                      colorShow: colorShow,
+                                      colorDisappear: colorDisappear,
+                                      viewSoundWave: .showAudio) { _ in
+            
+        }
         self.superview?.layoutSubviews()
 //        self.updateThumbnails()
     }

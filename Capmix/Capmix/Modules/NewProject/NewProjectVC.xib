@@ -17,6 +17,7 @@
                 <outlet property="centerView" destination="qas-aY-Okb" id="P6q-36-niZ"/>
                 <outlet property="emptyView" destination="mxJ-0y-fEs" id="0Xl-mW-CcS"/>
                 <outlet property="processView" destination="crW-9b-KPo" id="jfI-4l-bBv"/>
+                <outlet property="scrollView" destination="82I-1W-ixk" id="0Zs-go-f2U"/>
                 <outlet property="timeLineStackView" destination="obT-sy-gLX" id="bfZ-fu-eKh"/>
                 <outlet property="vContentView" destination="fOv-7S-fK9" id="sBb-Jm-HsY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -55,7 +56,7 @@
                                                                 <constraint firstAttribute="width" constant="1000" id="5ji-DF-WRo"/>
                                                             </constraints>
                                                         </view>
-                                                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="obT-sy-gLX">
+                                                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="obT-sy-gLX">
                                                             <rect key="frame" x="200" y="0.0" width="60" height="28"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </stackView>

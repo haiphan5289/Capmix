@@ -64,7 +64,7 @@ PODS:
     - SwiftyGif
   - DropDown (2.3.13)
   - DZNEmptyDataSet (1.8.1)
-  - EasyBaseAudio (1.0.3)
+  - EasyBaseAudio (1.0.5)
   - EasyBaseCodes (1.0.1)
   - EasyTipView (2.1.0)
   - Eureka (5.3.5)
@@ -354,7 +354,7 @@ SPEC CHECKSUMS:
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  EasyBaseAudio: 735745d40f43d8105fc003383064bd4f6ca0b66c
+  EasyBaseAudio: 76843d06451d52fb8f84e53ed7977555d14513be
   EasyBaseCodes: cfbdc4e337252854aad7523fcde7377591d1098a
   EasyTipView: a92b6edc377b81c5ac18e9fd35d5ee78e9409488
   Eureka: 7b39a479d074620d43028a0e2bfc3e0d667724df

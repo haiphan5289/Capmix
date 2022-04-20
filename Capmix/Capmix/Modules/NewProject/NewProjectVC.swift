@@ -19,6 +19,7 @@ class NewProjectVC: BaseVC {
         static let withTimeLine: CGFloat = 60
         static let heightAudio: CGFloat = 80
         static let tagAddView: Int = 9999
+        static let space: Int = 16
     }
     
     // Add here outlets
@@ -29,12 +30,14 @@ class NewProjectVC: BaseVC {
     @IBOutlet weak var processView: UIView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var audioStackView: UIStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
     private var audioWidthConstraint: Constraint!
     
     // Add here your view model
     private var viewModel: NewProjectVM = NewProjectVM()
     @VariableReplay private var sourcesURL: [MutePoint] = []
     private let addAudioEvent: PublishSubject<Void> = PublishSubject.init()
+    private var startPosition: CGFloat = 0
     
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -49,12 +52,18 @@ class NewProjectVC: BaseVC {
         self.setupBackButtonSingle()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startPosition = self.positionCenter()
+    }
+    
 }
 extension NewProjectVC {
     
     private func setupUI() {
         // Add here the setup for the UI
         title = "New Projfect"
+        self.scrollView.delegate = self
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             var f = self.timeLineStackView.frame
@@ -99,9 +108,9 @@ extension NewProjectVC {
     
     private func modifyAudioFrame(maxLenght: Int, count: Int) {
         var f = self.audioStackView.frame
-        f.size = CGSize(width: maxLenght, height: count * Int(Constant.heightAudio))
+        let height = count * Int(Constant.heightAudio) + ((count - 1) * Constant.space )
+        f.size = CGSize(width: maxLenght * Int(Constant.withTimeLine), height: height)
         self.audioStackView.frame = f
-        print("======  audioStackView \(self.audioStackView.frame)")
         
         if self.audioStackView.subviews.firstIndex(where: { $0.tag == Constant.tagAddView }) == nil {
             self.setupAddView()
@@ -111,17 +120,18 @@ extension NewProjectVC {
     private func setupAudioView(url: URL) {
         let v: UIView = UIView(frame: .zero)
         v.backgroundColor = .clear
-        let contentView1: UIView = UIView(frame: CGRect(x: 0, y: 0, width: url.getDuration() * 60, height: 70))
+        let contentView1: UIView = UIView(frame: CGRect(x: 0, y: 0, width: url.getDuration() * Constant.withTimeLine, height: 80))
         contentView1.backgroundColor = .clear
-        let waveForm: WaveformZoomable = WaveformZoomable(frame: CGRect(x: 0,
-                                                                        y: 5,
-                                                                        width: url.getDuration() * 60,
-                                                                        height: 70))
-        waveForm.backgroundColor = .clear
-        waveForm.listPointtoDraw(file: url, viewSoundWave: .audio) { [weak self] list in
-
-        }
-        contentView1.addSubview(waveForm)
+        let rangeSliderView: ABVideoRangeSlider = ABVideoRangeSlider(frame: CGRect(x: contentView1.frame.origin.x + 8,
+                                                                                   y: 5,
+                                                                                   width: contentView1.frame.size.width - 30,
+                                                                                   height: 80))
+        rangeSliderView.setVideoURL(videoURL: url, colorShow: Asset.pink.color, colorDisappear: Asset.charcoalGrey60.color)
+        rangeSliderView.updateBgColor(colorBg: Asset.pink.color)
+        rangeSliderView.hideTimeLine(hide: true)
+        
+//        contentView1.addSubview(waveForm)
+        contentView1.addSubview(rangeSliderView)
         v.addSubview(contentView1)
         self.audioStackView.insertArrangedSubview(v, at: 0)
         
@@ -176,7 +186,7 @@ extension NewProjectVC {
     }
     
     private func positionCenter() -> CGFloat {
-        return self.vContentView.convert(self.centerView.frame, to: nil).origin.x
+        return self.scrollView.convert(self.centerView.frame, to: nil).origin.x
     }
     
     private func numberOfRecording(addSecond: Int) {
@@ -200,8 +210,14 @@ extension NewProjectVC {
 }
 extension NewProjectVC: ProjectListDelegate {
     func addMusic(url: URL) {
-        let mutePoint: MutePoint = MutePoint(start: Float(self.positionCenter()), end: Float(url.getDuration()), url: url)
+        let position = self.startPosition - self.positionCenter()
+        let detectTimeStart = position / Constant.withTimeLine
+        let mutePoint: MutePoint = MutePoint(start: Float(detectTimeStart), end: Float(url.getDuration()), url: url)
         self.sourcesURL.append(mutePoint)
         self.setupAudioView(url: url)
+    }
+}
+extension NewProjectVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
 }
