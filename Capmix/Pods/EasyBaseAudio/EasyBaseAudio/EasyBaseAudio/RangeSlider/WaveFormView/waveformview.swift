@@ -71,13 +71,15 @@ public class WaveformZoomable : UIView {
     
     public convenience init(withFile: URL, style: WaveformStyle = .soundcloud, colorShow: UIColor, colorDisappaer: UIColor) {
         self.init()
-        openFile(withFile)
+        self.openFile(withFile, colorShow: .red, colorDisappear: .blue)
         self.colorShow = colorShow
         self.colorDisappaer = colorDisappaer
         self.style = style
     }
     
-    public func openFile(_ file: URL) {
+    public func openFile(_ file: URL, colorShow: UIColor, colorDisappear: UIColor ) {
+        self.colorShow = colorShow
+        self.colorDisappaer = colorDisappear
         self.url = file
         var audioFile = AVAudioFile()
         do {

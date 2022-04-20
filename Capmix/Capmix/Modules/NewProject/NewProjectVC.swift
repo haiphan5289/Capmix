@@ -31,6 +31,7 @@ class NewProjectVC: BaseVC {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var audioStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var widthContentView: NSLayoutConstraint!
     private var audioWidthConstraint: Constraint!
     
     // Add here your view model
@@ -111,18 +112,19 @@ extension NewProjectVC {
         let height = count * Int(Constant.heightAudio) + ((count - 1) * Constant.space )
         f.size = CGSize(width: maxLenght * Int(Constant.withTimeLine), height: height)
         self.audioStackView.frame = f
+        self.widthContentView.constant = CGFloat((maxLenght * Int(Constant.withTimeLine))) + self.startPosition + 100
         
         if self.audioStackView.subviews.firstIndex(where: { $0.tag == Constant.tagAddView }) == nil {
             self.setupAddView()
         }
     }
     
-    private func setupAudioView(url: URL) {
+    private func setupAudioView(url: URL, startTime: CGFloat) {
         let v: UIView = UIView(frame: .zero)
         v.backgroundColor = .clear
-        let contentView1: UIView = UIView(frame: CGRect(x: 0, y: 0, width: url.getDuration() * Constant.withTimeLine, height: 80))
+        let contentView1: UIView = UIView(frame: CGRect(x: Int(startTime) * Int(Constant.withTimeLine) , y: 0, width: Int(url.getDuration()) * Int(Constant.withTimeLine), height: 80))
         contentView1.backgroundColor = .clear
-        let rangeSliderView: ABVideoRangeSlider = ABVideoRangeSlider(frame: CGRect(x: contentView1.frame.origin.x + 8,
+        let rangeSliderView: ABVideoRangeSlider = ABVideoRangeSlider(frame: CGRect(x: 8,
                                                                                    y: 5,
                                                                                    width: contentView1.frame.size.width - 30,
                                                                                    height: 80))
@@ -133,8 +135,12 @@ extension NewProjectVC {
 //        contentView1.addSubview(waveForm)
         contentView1.addSubview(rangeSliderView)
         v.addSubview(contentView1)
-        self.audioStackView.insertArrangedSubview(v, at: 0)
-        
+        let count = self.audioStackView.subviews.count
+        if count <= 0 {
+            self.audioStackView.insertArrangedSubview(v, at: 0)
+        } else {
+            self.audioStackView.insertArrangedSubview(v, at: count - 1)
+        }
     }
     
     private func setupAddView() {
@@ -214,7 +220,7 @@ extension NewProjectVC: ProjectListDelegate {
         let detectTimeStart = position / Constant.withTimeLine
         let mutePoint: MutePoint = MutePoint(start: Float(detectTimeStart), end: Float(url.getDuration()), url: url)
         self.sourcesURL.append(mutePoint)
-        self.setupAudioView(url: url)
+        self.setupAudioView(url: url, startTime: detectTimeStart)
     }
 }
 extension NewProjectVC: UIScrollViewDelegate {

@@ -237,8 +237,7 @@ public class ABVideoRangeSlider: UIView {
         self.waveForm.listPointtoDraw(file: videoURL,
                                       colorShow: colorShow,
                                       colorDisappear: colorDisappear,
-                                      viewSoundWave: .showAudio) { _ in
-            
+                                      viewSoundWave: .audio) { _ in
         }
         self.superview?.layoutSubviews()
 //        self.updateThumbnails()
@@ -333,6 +332,7 @@ public class ABVideoRangeSlider: UIView {
         
         self.delegate?.didChangeValue(videoRangeSlider: self, startTime: startSeconds, endTime: endSeconds)
         self.delegate?.updateFrameSlide(videoRangeSlider: self, startIndicator: startIndicator.frame.origin.x, endIndicator: endIndicator.frame.origin.x)
+        self.waveForm.drawReadUpdate(rect: self.waveForm.frame, from: startIndicator.frame.origin.x, to: endIndicator.frame.origin.x, listPoint: self.waveForm.listPointOrigin, listPosition: self.waveForm.listPoint)
     
         if self.progressPercentage != progressPercentage{
             let progressSeconds = secondsFromValue(value: progressPercentage)
