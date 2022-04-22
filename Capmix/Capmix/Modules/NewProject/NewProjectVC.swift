@@ -12,6 +12,7 @@ import RxCocoa
 import RxSwift
 import SnapKit
 import EasyBaseAudio
+import AVFoundation
 
 class NewProjectVC: BaseVC {
     
@@ -33,10 +34,12 @@ class NewProjectVC: BaseVC {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var widthContentView: NSLayoutConstraint!
     private var audioWidthConstraint: Constraint!
+    private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
     // Add here your view model
     private var viewModel: NewProjectVM = NewProjectVM()
     @VariableReplay private var sourcesURL: [MutePoint] = []
+    @VariableReplay private var audios: [SplitAudioModel] = []
     private let addAudioEvent: PublishSubject<Void> = PublishSubject.init()
     private var startPosition: CGFloat = 0
     
@@ -55,7 +58,6 @@ class NewProjectVC: BaseVC {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.startPosition = self.positionCenter()
     }
     
 }
@@ -80,6 +82,7 @@ extension NewProjectVC {
             
             self.numberOfRecording(addSecond: 600)
         }
+        self.startPosition = self.positionCenter()
     }
     
     private func setupRX() {
@@ -105,6 +108,13 @@ extension NewProjectVC {
             vc.delegate = self
             wSelf.navigationController?.pushViewController(vc, completion: nil)
         }.disposed(by: self.disposeBag)
+        
+        self.$audios.asObservable().bind { [weak self] list in
+            guard let wSelf = self else { return }
+            let l = list.sorted(by: { $0.endSecond > $1.endSecond })
+            wSelf.exportURLAudio(list: l)
+        }.disposed(by: self.disposeBag)
+        
     }
     
     private func modifyAudioFrame(maxLenght: Int, count: Int) {
@@ -140,6 +150,62 @@ extension NewProjectVC {
             self.audioStackView.insertArrangedSubview(v, at: 0)
         } else {
             self.audioStackView.insertArrangedSubview(v, at: count - 1)
+        }
+        let s: SplitAudioModel = SplitAudioModel(view: contentView1,
+                                                 startSecond: startTime,
+                                                 endSecond: startTime + url.getDuration(),
+                                                 url: url)
+        self.audios.append(s)
+    }
+    
+    private func exportURLAudio(list: [SplitAudioModel]) {
+        guard let first = list.first, let url = first.url else { return }
+        var l = list
+        l.removeFirst()
+        
+        let audioEffect = AudioEffect()
+        audioEffect.mergeAudiosSplits(musicUrl: url,
+                                      timeStart: 0,
+                                      timeEnd: first.endSecond,
+                                      index: 1, listAudioProtocol: l,
+                                      deplayTime: first.startAudio(), nameMusic: "self.nameMusic",
+                                      folderName: ConstantApp.shared.folderConvert,
+                                      nameId: "String") { [weak self] (outputURL, _) in
+            guard let wSelf = self else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                AudioManage.shared.covertToAudio(url: outputURL, folder: ConstantApp.shared.folderConvert, type: .m4a) { [weak self] audioURL in
+                    guard let wSelf = self else { return }
+                    wSelf.playAudio(url: audioURL, rate: 1, currentTime: 0)
+                } failure: { _ in
+
+                }
+            }
+//            wSelf.delegate?.mergeAudio(url: outputURL)
+        } failure: { [weak self] (err, txt) in
+            guard let wSelf = self else { return }
+//            wSelf.delegate?.msgError(text: txt)
+        }
+    }
+    
+    private func pauseAudio() {
+        self.audioPlayer.pause()
+    }
+    
+    private func continueAudio(currenTime: CGFloat) {
+        self.audioPlayer.currentTime = TimeInterval(currenTime)
+        self.audioPlayer.play()
+    }
+    
+    private func playAudio(url: URL, rate: Float, currentTime: CGFloat) {
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+            self.audioPlayer.delegate = self
+            self.audioPlayer.enableRate = true
+            self.audioPlayer.prepareToPlay()
+            self.audioPlayer.volume = rate
+            self.audioPlayer.play()
+            self.audioPlayer.currentTime = TimeInterval(currentTime)
+        } catch {
         }
     }
     
@@ -226,4 +292,7 @@ extension NewProjectVC: ProjectListDelegate {
 extension NewProjectVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
     }
+}
+extension NewProjectVC: AVAudioPlayerDelegate {
+    
 }

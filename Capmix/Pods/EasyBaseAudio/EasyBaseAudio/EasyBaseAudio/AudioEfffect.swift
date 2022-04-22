@@ -11,7 +11,7 @@ import AVFoundation
 import UIKit
 
 @available(iOS 11.0, *)
-final class AudioEffect {
+public final class AudioEffect {
     
     var songLengthSamples: AVAudioFramePosition!
     var sampleRateSong: Float = 0
@@ -42,6 +42,10 @@ final class AudioEffect {
     let lowShelf = AVAudioUnitEQ(numberOfBands: 1)
     let highShelf = AVAudioUnitEQ(numberOfBands: 1)
     var folderName: String = ""
+    
+    public init() {
+        
+    }
     
     func initation(musicUrl: URL,
                    timeStart: Float,
@@ -656,7 +660,7 @@ final class AudioEffect {
     
     
     
-    func mergeAudiosSplits(musicUrl: URL,
+    public func mergeAudiosSplits(musicUrl: URL,
                    timeStart: CGFloat,
                    timeEnd: CGFloat,
                    index: Int,
@@ -748,7 +752,7 @@ final class AudioEffect {
                 do {
                     try engine.start()
                     listPlayer.enumerated().forEach { (item) in
-                        let s = listAudioProtocol[item.offset].startAudio()
+                        let s = listAudioProtocol[item.offset].startSecond
                         item.element.play(at: self.delayTime(avAudioPLayerNode: item.element, delayTime: TimeInterval(s)))
                     }
                     player.play(at: self.delayTime(avAudioPLayerNode: self.player, delayTime: TimeInterval(deplayTime)))
@@ -1359,17 +1363,24 @@ public struct SplitAudioModel {
         case addMusic, addBgMusic
     }
     
-    let view: UIView
-    var listPointWave: [UIView]
-    var positionX: CGFloat
-    var startSecond: CGFloat
-    var endSecond: CGFloat
-    var url: URL?
-    let distanceToLeft: CGFloat
-    var rangeSlider: ABVideoRangeSlider?
-    var addMusicStatus: AddMusicStatus = .addMusic
+    public let view: UIView
+    public var listPointWave: [UIView] = []
+    public var positionX: CGFloat = 0
+    public var startSecond: CGFloat
+    public var endSecond: CGFloat
+    public var url: URL?
+    public let distanceToLeft: CGFloat = 0
+    public var rangeSlider: ABVideoRangeSlider?
+    public var addMusicStatus: AddMusicStatus = .addMusic
     
-    func startAudio() -> CGFloat {
+    public init(view: UIView, startSecond: CGFloat, endSecond: CGFloat, url: URL) {
+        self.view = view
+        self.startSecond = startSecond
+        self.endSecond = endSecond
+        self.url = url
+    }
+    
+    public func startAudio() -> CGFloat {
         switch self.addMusicStatus {
         case .addMusic:
             return (self.view.frame.origin.x - self.distanceToLeft) / 80
