@@ -117,7 +117,18 @@ extension NewProjectVC {
                     if let index = list.firstIndex(where: { $0 == selectView }) {
                         wSelf.audioStackView.subviews[index].removeFromSuperview()
                     }
-                case .split, .volume: break
+                case .volume:
+                    wSelf.changeVolume(url: url, valueVolume: 10) { [weak self] outputURL in
+                        guard let wSelf = self else { return }
+                        if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }) {
+                            wSelf.sourcesURL[index].url = outputURL
+                            
+                        }
+                        if let index = wSelf.audios.firstIndex(where: { $0.url == url }) {
+                            wSelf.audios[index].url = outputURL
+                        }
+                    }
+                case .split: break
                 }
             }.disposed(by: wSelf.disposeBag)
         }
@@ -250,6 +261,23 @@ extension NewProjectVC {
             guard let wSelf = self else { return }
 //            wSelf.delegate?.msgError(text: txt)
         }
+    }
+    
+    private func changeVolume(url: URL, valueVolume: Float, complention: @escaping ((URL) -> Void)) {
+        let audioEffect = AudioEffect()
+        audioEffect.changeVolume(musicUrl: url,
+                                 timeStart: 0,
+                                 timeEnd: 0,
+                                 valueVolume: valueVolume,
+                                 folderName: ConstantApp.shared.folderConvert) { outputURL, _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                complention(outputURL)
+            }
+        } failure: { error, _ in
+            print(error.localizedDescription)
+        }
+
+
     }
     
     private func pauseAudio() {

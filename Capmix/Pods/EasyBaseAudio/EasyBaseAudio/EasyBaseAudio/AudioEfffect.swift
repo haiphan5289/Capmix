@@ -276,6 +276,156 @@ public final class AudioEffect {
         
     }
     
+    public func changeVolume(musicUrl: URL,
+                      timeStart: Float,
+                      timeEnd: Float,
+                      valueVolume: Float,
+                      folderName: String,
+                      complention: ((URL, Float64) -> Void),
+                      failure: ((Error, String) -> Void)) {
+        //: ## Source File
+        //: Open the audio file to process
+        
+        let sourceFile: AVAudioFile
+        let format: AVAudioFormat
+        do {
+//            let sourceFileURL = Bundle.main.url(forResource: "nhaccuatui", withExtension: "caf")!
+            sourceFile = try AVAudioFile(forReading: musicUrl)
+            format = sourceFile.processingFormat
+        } catch {
+            failure(error, "could not open source audio file")
+            fatalError("could not open source audio file, \(error)")
+        }
+        
+        songLengthSamples = sourceFile.length
+        let songFormat = sourceFile.processingFormat
+        sampleRateSong = Float(songFormat.sampleRate)
+        lengthSongSeconds = Float(songLengthSamples) / sampleRateSong
+        
+        engine.attach(player)
+        engine.connect(player, to: engine.mainMixerNode, format: nil)
+
+        // schedule source file
+//        player.scheduleFile(sourceFile, at: nil)
+        //setup start time
+        let startSample = floor(Float(Int(timeStart)) * sampleRateSong)
+        var lengthSamples: Float
+        
+        if timeEnd > 0 {
+            lengthSamples = floor(Float(Int(timeEnd)) * sampleRateSong) - startSample
+        } else {
+            lengthSamples = Float(songLengthSamples) - startSample
+
+        }
+        
+        player.scheduleSegment(sourceFile, startingFrame: AVAudioFramePosition(startSample), frameCount: AVAudioFrameCount(lengthSamples), at: nil, completionHandler: {
+//                                self.player.pause()
+            
+        })
+//        audioPlayer2.scheduleFile(sourceFile, at: nil, completionHandler: nil)
+        //: ### Enable offline manual rendering mode
+        do {
+            let maxNumberOfFrames: AVAudioFrameCount = 4096 // maximum number of frames the engine will be asked to render in any single render call
+            try engine.enableManualRenderingMode(.offline, format: format, maximumFrameCount: maxNumberOfFrames)
+        } catch {
+            failure(error, "could not enable manual rendering mode")
+        }
+        //: ### Start the engine and player
+        do {
+            try engine.start()
+            player.play(at: self.delayTime(avAudioPLayerNode: self.player, delayTime: TimeInterval(0)))
+            player.volume = valueVolume
+        } catch {
+            failure(error, "could not start engine")
+        }
+        //: ## Offline Render
+        //: ### Create an output buffer and an output file
+        //: Output buffer format must be same as engine's manual rendering output format
+        let outputFile: AVAudioFile
+        do {
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            let date = Date()
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.year, .month, .day, .second], from: date)
+            
+            let year =  components.year
+            let month = components.month
+            let day = components.day
+            let second = components.second
+            let randomInt = Int.random(in: 0..<1000000)
+            
+            var s = sourceFile.fileFormat.settings
+            s["AVFormatIDKey"] = kAudioFormatMPEG4AAC
+            
+            //If convert to m4a is Error, try to use like .caf or .aifc or aiff.
+            let outputURL = URL(fileURLWithPath: documentsPath).appendingPathComponent("\(self.folderName)/\(year ?? 0 )-AudioEffect-\(month ?? 0)-\(day ?? 0)-\(second ?? 0)-\(randomInt).caf")
+            outputFile = try AVAudioFile(forWriting: outputURL, settings: s)
+            
+            // buffer to which the engine will render the processed data
+            let buffer: AVAudioPCMBuffer = AVAudioPCMBuffer(pcmFormat: engine.manualRenderingFormat, frameCapacity: engine.manualRenderingMaximumFrameCount)!
+            
+            //: ### Render loop
+            //: Pull the engine for desired number of frames, write the output to the destination file
+    //        var duration: TimeInterval{
+    //            let sampleRateSong = Double(processingFormat.sampleRate)
+    //            let lengthSongSeconds = Double(length) / sampleRateSong
+    //            return lengthSongSeconds
+            
+    //        let lenght = sourceFile.length
+    //        }
+            
+            //Calculator Duration Audio Again
+            var countCheck: Int64 = 0
+            while countCheck <= Int64(lengthSamples) {
+                countCheck += 4096
+                do {
+                    let framesToRender = min(buffer.frameCapacity, AVAudioFrameCount(lengthSamples - Float(engine.manualRenderingSampleTime)))
+                    let status = try engine.renderOffline(framesToRender, to: buffer)
+                    switch status {
+                    case .success:
+                        // data rendered successfully
+                        try outputFile.write(from: buffer)
+
+                    case .insufficientDataFromInputNode:
+                        // applicable only if using the input node as one of the sources
+                        break
+
+                    case .cannotDoInCurrentContext:
+                        // engine could not render in the current render call, retry in next iteration
+                        break
+
+                    case .error:
+                        // error occurred while rendering
+                        print("render failed")
+                    @unknown default:
+                        break
+                    }
+                } catch {
+                    failure(error, "render failed")
+                }
+            }
+            
+            player.stop()
+            engine.stop()
+            
+            print("AVAudioEngine offline rendering completed")
+            
+            //calculator time audio with rate
+            var duration: Double
+            if timeEnd > 0 {
+                duration = Double(timeEnd - timeStart)
+            } else {
+                duration = sourceFile.duration
+            }
+//            let time = duration / Double(setting.rate)
+            let time = duration / Double(1)
+            complention(outputFile.url, time)
+        } catch {
+            failure(error, "could not open output audio file \(index)")
+        }
+        
+    }
+    
     func generateRate(musicUrl: URL,
                       timeStart: Float,
                       timeEnd: Float,
@@ -770,7 +920,7 @@ public final class AudioEffect {
                     
                     //If convert to m4a is Error, try to use like .caf or .aifc or aiff.
                     let outputURL = URL(fileURLWithPath: documentsPath)
-                        .appendingPathComponent("\(self.folderName)/\(nameMusic).\(nameId)")
+                        .appendingPathComponent("\(self.folderName)/\(nameMusic)\(nameId)")
                         .appendingPathExtension("caf")
                     outputFile = try AVAudioFile(forWriting: outputURL, settings: s)
                     
