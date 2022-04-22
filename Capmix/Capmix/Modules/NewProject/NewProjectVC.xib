@@ -22,6 +22,9 @@
                 <outlet property="vContentView" destination="fOv-7S-fK9" id="sBb-Jm-HsY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="widthContentView" destination="5ji-DF-WRo" id="YPt-5g-BlL"/>
+                <outletCollection property="bts" destination="KWu-0V-S8g" collectionClass="NSMutableArray" id="ddv-GN-hpX"/>
+                <outletCollection property="bts" destination="sfi-hQ-HKb" collectionClass="NSMutableArray" id="xuE-K7-kkg"/>
+                <outletCollection property="bts" destination="Uh3-TJ-czJ" collectionClass="NSMutableArray" id="TqS-FZ-aXc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

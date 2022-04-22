@@ -432,23 +432,22 @@ public class WaveformZoomable : UIView {
         }
     }
     
-//    func changeColor(state: ShowAllAudio.StateSelectAudio) {
-//        guard let subplayers = self.layer.sublayers else {
-//            return
-//        }
-//
-//        for sublayer in subplayers where sublayer is CAShapeLayer {
-//            guard let fillLayer = sublayer as? CAShapeLayer else { return }
-//
-//            switch state {
-//            case .select:
-//                fillLayer.fillColor = UIColor(named: "dodgerBlue1")?.cgColor
-//            default:
-//                fillLayer.fillColor = UIColor(named: "lightGreyBlue")?.cgColor
-//            }
-//        }
-//
-//    }
+    public func changeColor(isSelect: Bool) {
+        guard let subplayers = self.layer.sublayers else {
+            return
+        }
+
+        for sublayer in subplayers where sublayer is CAShapeLayer {
+            guard let fillLayer = sublayer as? CAShapeLayer else { return }
+            
+            if isSelect {
+                fillLayer.fillColor = self.colorShow.cgColor
+            } else {
+                fillLayer.fillColor = self.colorDisappaer.cgColor
+            }
+        }
+
+    }
     
     public func removePath() {
         guard let subplayers = self.layer.sublayers else {

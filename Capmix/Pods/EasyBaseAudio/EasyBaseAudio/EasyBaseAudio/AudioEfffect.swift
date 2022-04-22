@@ -1344,7 +1344,7 @@ public struct RecordAudioModel: Codable {
 }
 
 public struct MutePoint {
-    var url: URL
+    public var url: URL
     let start: Float
     let end: Float
     public init(start: Float, end: Float, url: URL) {

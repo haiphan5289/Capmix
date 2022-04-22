@@ -23,6 +23,10 @@ class NewProjectVC: BaseVC {
         static let space: Int = 16
     }
     
+    enum Action: Int, CaseIterable {
+        case volume, delete, split
+    }
+    
     // Add here outlets
     @IBOutlet weak var timeLineStackView: UIStackView!
     @IBOutlet weak var vContentView: UIView!
@@ -33,6 +37,7 @@ class NewProjectVC: BaseVC {
     @IBOutlet weak var audioStackView: UIStackView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var widthContentView: NSLayoutConstraint!
+    @IBOutlet var bts: [UIButton]!
     private var audioWidthConstraint: Constraint!
     private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
@@ -42,6 +47,10 @@ class NewProjectVC: BaseVC {
     @VariableReplay private var audios: [SplitAudioModel] = []
     private let addAudioEvent: PublishSubject<Void> = PublishSubject.init()
     private var startPosition: CGFloat = 0
+    private var listRange: [ABVideoRangeSlider] = []
+    private var selectAudio: URL?
+    private var selectRange: ABVideoRangeSlider?
+    private var selectView: UIView?
     
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -87,6 +96,31 @@ extension NewProjectVC {
     
     private func setupRX() {
         // Add here the setup for the RX
+        Action.allCases.forEach { [weak self] type in
+            guard let wSelf = self else { return }
+            let bt = wSelf.bts[type.rawValue]
+            bt.rx.tap.bind { [weak self] _ in
+                guard let wSelf = self, let url = wSelf.selectAudio, let selectView = wSelf.selectView else { return }
+                switch type {
+                case .delete:
+                    if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }) {
+                        wSelf.sourcesURL.remove(at: index)
+                    }
+                    if let index = wSelf.audios.firstIndex(where: { $0.url == url }) {
+                        wSelf.audios.remove(at: index)
+                    }
+                    if let range = wSelf.selectRange, let index = wSelf.listRange.firstIndex(where: { $0 == range }) {
+                        wSelf.listRange[index].waveForm.removePath()
+                        wSelf.listRange.remove(at: index)
+                    }
+                    let list = wSelf.audioStackView.subviews
+                    if let index = list.firstIndex(where: { $0 == selectView }) {
+                        wSelf.audioStackView.subviews[index].removeFromSuperview()
+                    }
+                case .split, .volume: break
+                }
+            }.disposed(by: wSelf.disposeBag)
+        }
         self.$sourcesURL.asObservable().bind { [weak self] list in
             guard let wSelf = self else { return }
             if list.count > 0 {
@@ -130,6 +164,12 @@ extension NewProjectVC {
     }
     
     private func setupAudioView(url: URL, startTime: CGFloat) {
+        
+        self.listRange.forEach { v in
+            v.hideViews(hide: true)
+            v.waveForm.changeColor(isSelect: false)
+        }
+        
         let v: UIView = UIView(frame: .zero)
         v.backgroundColor = .clear
         let contentView1: UIView = UIView(frame: CGRect(x: Int(startTime) * Int(Constant.withTimeLine) , y: 0, width: Int(url.getDuration()) * Int(Constant.withTimeLine), height: 80))
@@ -151,11 +191,36 @@ extension NewProjectVC {
         } else {
             self.audioStackView.insertArrangedSubview(v, at: count - 1)
         }
+        
+        let btSelect: UIButton = UIButton(type: .custom)
+        btSelect.setTitle(nil, for: .normal)
+        contentView1.addSubview(btSelect)
+        btSelect.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        btSelect.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self else { return }
+            wSelf.listRange.forEach { v in
+                v.hideViews(hide: true)
+                v.waveForm.changeColor(isSelect: false)
+            }
+            rangeSliderView.hideViews(hide: false)
+            rangeSliderView.waveForm.changeColor(isSelect: true)
+            wSelf.selectAudio = url
+            wSelf.selectRange = rangeSliderView
+            wSelf.selectView = v
+        }.disposed(by: self.disposeBag)
+        
+        
         let s: SplitAudioModel = SplitAudioModel(view: contentView1,
                                                  startSecond: startTime,
                                                  endSecond: startTime + url.getDuration(),
                                                  url: url)
+        self.selectAudio = url
+        self.selectRange = rangeSliderView
+        self.selectView = v
         self.audios.append(s)
+        self.listRange.append(rangeSliderView)
     }
     
     private func exportURLAudio(list: [SplitAudioModel]) {
@@ -175,7 +240,7 @@ extension NewProjectVC {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 AudioManage.shared.covertToAudio(url: outputURL, folder: ConstantApp.shared.folderConvert, type: .m4a) { [weak self] audioURL in
                     guard let wSelf = self else { return }
-                    wSelf.playAudio(url: audioURL, rate: 1, currentTime: 0)
+//                    wSelf.playAudio(url: audioURL, rate: 1, currentTime: 0)
                 } failure: { _ in
 
                 }
