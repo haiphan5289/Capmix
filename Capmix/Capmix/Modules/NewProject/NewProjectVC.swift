@@ -20,6 +20,8 @@ class NewProjectVC: BaseVC {
         static let withTimeLine: CGFloat = 60
         static let heightAudio: CGFloat = 80
         static let tagAddView: Int = 9999
+        static let adjustAudio: CGFloat = 5
+        static let increaseAudio: CGFloat = adjustAudio * 60
         static let space: Int = 16
         static let spaceMoveScroll: CGFloat = 6
     }
@@ -165,20 +167,27 @@ extension NewProjectVC {
                         wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = false
                         wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPlayProject.image, for: .normal)
                     } else {
-                        if wSelf.audioPlayer.currentTime >= wSelf.audioPlayer.duration {
-                            wSelf.playAudio(url: url, rate: 1, currentTime: 0)
-                            wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
-                            wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
-                        } else {
+                        if wSelf.audioPlayer.rate > 0 {
                             wSelf.playAudio()
                             wSelf.autoRunTime()
                             wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
                             wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
+                        } else {
+                            wSelf.playAudio(url: url, rate: 1, currentTime: 0)
+                            wSelf.autoRunTime()
+                            wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
+                            wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
                         }
-                        
                     }
                     
-                case .next, .previous: break
+                case .next, .previous:
+                    var currentTime = wSelf.audioPlayer.currentTime
+                    if type == .next {
+                        currentTime += Constant.adjustAudio
+                    } else {
+                        currentTime -= Constant.adjustAudio
+                    }
+                    wSelf.continueAudio(currenTime: currentTime)
                 }
             }.disposed(by: wSelf.disposeBag)
         }
@@ -343,6 +352,10 @@ extension NewProjectVC {
         self.audioPlayer.play()
     }
     
+    private func stopAudio() {
+        self.audioPlayer.stop()
+    }
+    
     private func pauseAudio() {
         self.audioPlayer.pause()
     }
@@ -350,7 +363,25 @@ extension NewProjectVC {
     private func continueAudio(currenTime: CGFloat) {
         if currenTime >= self.audioPlayer.duration {
             self.audioPlayer.stop()
+            self.finishAudio()
+        } else if currenTime <= 0 {
+            self.audioPlayer.currentTime = TimeInterval(0)
+            self.audioPlayer.play()
+            self.scrollView.setContentOffset(.zero, animated: true)
         } else {
+            if currenTime >= self.audioPlayer.currentTime {
+                UIView.animate(withDuration: 0.1) {
+                    self.scrollView.contentOffset.x += Constant.increaseAudio
+                } completion: { _ in
+                    self.view.layoutIfNeeded()
+                }
+            } else {
+                UIView.animate(withDuration: 0.1) {
+                    self.scrollView.contentOffset.x -= Constant.increaseAudio
+                } completion: { _ in
+                    self.view.layoutIfNeeded()
+                }
+            }
             self.audioPlayer.currentTime = TimeInterval(currenTime)
             self.audioPlayer.play()
         }
@@ -418,6 +449,15 @@ extension NewProjectVC {
         self.audioStackView.addArrangedSubview(v)
     }
     
+    private func finishAudio() {
+        scrollView.setContentOffset(.zero, animated: true)
+        self.clearAction()
+        self.stopAudio()
+        self.btsAudio[ActionAudio.play.rawValue].isSelected = false
+        self.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPlayProject.image, for: .normal)
+        self.lbTime.text = "00:00"
+    }
+    
     private func detectPositionView(view: UIView) -> CGFloat {
         return view.convert(self.centerView.frame, from: nil).origin.x
     }
@@ -478,6 +518,6 @@ extension NewProjectVC: UIScrollViewDelegate {
 }
 extension NewProjectVC: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        
+        self.finishAudio()
     }
 }
