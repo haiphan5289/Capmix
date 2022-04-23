@@ -42,6 +42,7 @@ internal enum Asset {
   internal static let icDeleteProject = ImageAsset(name: "ic_delete_project")
   internal static let icEmptyview = ImageAsset(name: "ic_emptyview")
   internal static let icNext5 = ImageAsset(name: "ic_next_5")
+  internal static let icPauseProject = ImageAsset(name: "ic_pause_project")
   internal static let icPlayProject = ImageAsset(name: "ic_play_project")
   internal static let icPlusAudio = ImageAsset(name: "ic_plus_audio")
   internal static let icPrevious5 = ImageAsset(name: "ic_previous_5")

@@ -21,10 +21,15 @@ class NewProjectVC: BaseVC {
         static let heightAudio: CGFloat = 80
         static let tagAddView: Int = 9999
         static let space: Int = 16
+        static let spaceMoveScroll: CGFloat = 6
     }
     
     enum Action: Int, CaseIterable {
         case volume, delete, split
+    }
+    
+    enum ActionAudio: Int, CaseIterable {
+        case play, previous, next
     }
     
     // Add here outlets
@@ -35,9 +40,11 @@ class NewProjectVC: BaseVC {
     @IBOutlet weak var processView: UIView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var audioStackView: UIStackView!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var widthContentView: NSLayoutConstraint!
     @IBOutlet var bts: [UIButton]!
+    @IBOutlet var btsAudio: [UIButton]!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var lbTime: UILabel!
     private var audioWidthConstraint: Constraint!
     private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
@@ -51,6 +58,7 @@ class NewProjectVC: BaseVC {
     private var selectAudio: URL?
     private var selectRange: ABVideoRangeSlider?
     private var selectView: UIView?
+    private var detectTime: Disposable?
     
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -128,10 +136,53 @@ extension NewProjectVC {
                             wSelf.audios[index].url = outputURL
                         }
                     }
-                case .split: break
+                case .split:
+                    if let range = wSelf.selectRange?.waveForm {
+                        print("==== detectPositionView \(wSelf.detectPositionView(view: range))")
+                        let asset: AVAsset = AVAsset(url: url)
+                        AudioManage.shared.trimmSound(inUrl: url, index: 1, start: 0, end: 5, folderSplit: ConstantApp.shared.folderConvert) { outputURL in
+                            print(outputURL)
+                        } failure: { _ in
+                            
+                        }
+
+//                        AudioManage.shared.splitAudio(asset: asset, segment: 2, folderSplit: ConstantApp.shared.folderConvert)
+                    }
                 }
             }.disposed(by: wSelf.disposeBag)
         }
+        
+        ActionAudio.allCases.forEach { [weak self] type in
+            guard let wSelf = self else { return }
+            let bt = wSelf.btsAudio[type.rawValue]
+            bt.rx.tap.bind { [weak self] _ in
+                guard let wSelf = self, let url = wSelf.selectAudio else { return }
+                switch type {
+                case .play:
+                    if wSelf.btsAudio[ActionAudio.play.rawValue].isSelected {
+                        wSelf.pauseAudio()
+                        wSelf.clearAction()
+                        wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = false
+                        wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPlayProject.image, for: .normal)
+                    } else {
+                        if wSelf.audioPlayer.currentTime >= wSelf.audioPlayer.duration {
+                            wSelf.playAudio(url: url, rate: 1, currentTime: 0)
+                            wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
+                            wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
+                        } else {
+                            wSelf.playAudio()
+                            wSelf.autoRunTime()
+                            wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
+                            wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
+                        }
+                        
+                    }
+                    
+                case .next, .previous: break
+                }
+            }.disposed(by: wSelf.disposeBag)
+        }
+        
         self.$sourcesURL.asObservable().bind { [weak self] list in
             guard let wSelf = self else { return }
             if list.count > 0 {
@@ -171,6 +222,14 @@ extension NewProjectVC {
         
         if self.audioStackView.subviews.firstIndex(where: { $0.tag == Constant.tagAddView }) == nil {
             self.setupAddView()
+        }
+    }
+    
+    private func autoScrollView() {
+        UIView.animate(withDuration: 0.1) {
+            self.scrollView.contentOffset.x += Constant.spaceMoveScroll
+        } completion: { _ in
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -280,13 +339,21 @@ extension NewProjectVC {
 
     }
     
+    private func playAudio() {
+        self.audioPlayer.play()
+    }
+    
     private func pauseAudio() {
         self.audioPlayer.pause()
     }
     
     private func continueAudio(currenTime: CGFloat) {
-        self.audioPlayer.currentTime = TimeInterval(currenTime)
-        self.audioPlayer.play()
+        if currenTime >= self.audioPlayer.duration {
+            self.audioPlayer.stop()
+        } else {
+            self.audioPlayer.currentTime = TimeInterval(currenTime)
+            self.audioPlayer.play()
+        }
     }
     
     private func playAudio(url: URL, rate: Float, currentTime: CGFloat) {
@@ -298,6 +365,7 @@ extension NewProjectVC {
             self.audioPlayer.volume = rate
             self.audioPlayer.play()
             self.audioPlayer.currentTime = TimeInterval(currentTime)
+            self.autoRunTime()
         } catch {
         }
     }
@@ -350,6 +418,10 @@ extension NewProjectVC {
         self.audioStackView.addArrangedSubview(v)
     }
     
+    private func detectPositionView(view: UIView) -> CGFloat {
+        return view.convert(self.centerView.frame, from: nil).origin.x
+    }
+    
     private func positionCenter() -> CGFloat {
         return self.scrollView.convert(self.centerView.frame, to: nil).origin.x
     }
@@ -372,14 +444,32 @@ extension NewProjectVC {
         self.timeLineStackView.addArrangedSubview(v)
     }
     
+    private func addURL(detectTimeStart: CGFloat, url: URL) {
+        let mutePoint: MutePoint = MutePoint(start: Float(detectTimeStart), end: Float(url.getDuration()), url: url)
+        self.sourcesURL.append(mutePoint)
+        self.setupAudioView(url: url, startTime: detectTimeStart)
+    }
+    
+    private func clearAction() {
+        detectTime?.dispose()
+    }
+    private func autoRunTime() {
+        detectTime?.dispose()
+        
+        detectTime = Observable<Int>.interval(.milliseconds(100), scheduler: MainScheduler.asyncInstance)
+            .bind(onNext: { [weak self] (time) in
+                guard let wSelf = self else { return }
+                wSelf.autoScrollView()
+                wSelf.lbTime.text = "\(Int(wSelf.audioPlayer.currentTime).getTextFromSecond())"
+            })
+    }
+    
 }
 extension NewProjectVC: ProjectListDelegate {
     func addMusic(url: URL) {
         let position = self.startPosition - self.positionCenter()
         let detectTimeStart = position / Constant.withTimeLine
-        let mutePoint: MutePoint = MutePoint(start: Float(detectTimeStart), end: Float(url.getDuration()), url: url)
-        self.sourcesURL.append(mutePoint)
-        self.setupAudioView(url: url, startTime: detectTimeStart)
+        self.addURL(detectTimeStart: detectTimeStart, url: url)
     }
 }
 extension NewProjectVC: UIScrollViewDelegate {
@@ -387,5 +477,7 @@ extension NewProjectVC: UIScrollViewDelegate {
     }
 }
 extension NewProjectVC: AVAudioPlayerDelegate {
-    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        
+    }
 }

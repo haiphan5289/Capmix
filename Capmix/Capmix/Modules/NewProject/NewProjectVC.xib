@@ -16,8 +16,9 @@
                 <outlet property="btAddSound" destination="ihv-I3-xfM" id="uaE-je-G8B"/>
                 <outlet property="centerView" destination="qas-aY-Okb" id="P6q-36-niZ"/>
                 <outlet property="emptyView" destination="mxJ-0y-fEs" id="0Xl-mW-CcS"/>
+                <outlet property="lbTime" destination="PUt-Hi-O2H" id="8WH-Km-aVx"/>
                 <outlet property="processView" destination="crW-9b-KPo" id="jfI-4l-bBv"/>
-                <outlet property="scrollView" destination="82I-1W-ixk" id="0Zs-go-f2U"/>
+                <outlet property="scrollView" destination="82I-1W-ixk" id="Fup-nA-n9j"/>
                 <outlet property="timeLineStackView" destination="obT-sy-gLX" id="bfZ-fu-eKh"/>
                 <outlet property="vContentView" destination="fOv-7S-fK9" id="sBb-Jm-HsY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,6 +26,9 @@
                 <outletCollection property="bts" destination="KWu-0V-S8g" collectionClass="NSMutableArray" id="ddv-GN-hpX"/>
                 <outletCollection property="bts" destination="sfi-hQ-HKb" collectionClass="NSMutableArray" id="xuE-K7-kkg"/>
                 <outletCollection property="bts" destination="Uh3-TJ-czJ" collectionClass="NSMutableArray" id="TqS-FZ-aXc"/>
+                <outletCollection property="btsAudio" destination="3QF-Cg-Inm" collectionClass="NSMutableArray" id="xeg-Jk-ATT"/>
+                <outletCollection property="btsAudio" destination="TVx-r1-Dc0" collectionClass="NSMutableArray" id="7pc-6C-97m"/>
+                <outletCollection property="btsAudio" destination="SO5-2v-Qhj" collectionClass="NSMutableArray" id="jl7-lH-iP7"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
