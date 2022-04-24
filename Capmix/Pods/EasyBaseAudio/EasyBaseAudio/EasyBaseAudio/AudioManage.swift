@@ -151,7 +151,7 @@ public class AudioManage {
     
     public func changeNameFile(folderName: String, oldURL: URL, newName: String, complention: ((URL) -> Void)?, failure: ((String) -> Void)?) {
         do {
-            let createURL = self.createURL(folder: folderName, name: "\(newName).\(oldURL.getDate() )", type: .m4a)
+            let createURL = self.createURL(folder: folderName, name: "\(newName)", type: .mp3)
             try FileManager.default.moveItem(at: oldURL, to: createURL)
             complention?(createURL)
         } catch {

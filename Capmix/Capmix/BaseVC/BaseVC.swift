@@ -27,6 +27,7 @@ class BaseVC: UIViewController {
         }
         AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderApple)", success: nil, failure: nil)
         AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderConvert)", success: nil, failure: nil)
+        AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderProject)", success: nil, failure: nil)
         
     }
     
@@ -61,13 +62,13 @@ extension BaseVC {
         navigationItem.leftBarButtonItem = leftBarButton
     }
     
-    func setupBtSearch() {
-        self.buttonLeft.setImage(Asset.icCloseProject.image, for: .normal)
+    func setupBtSearch(imageBack: UIImage, imgRight: UIImage) {
+        self.buttonLeft.setImage(imageBack, for: .normal)
         self.buttonLeft.contentEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         let leftBarButton = UIBarButtonItem(customView: buttonLeft)
         navigationItem.leftBarButtonItem = leftBarButton
         
-        self.btSearch.setImage(Asset.icSearchProject.image, for: .normal)
+        self.btSearch.setImage(imgRight, for: .normal)
         self.btSearch.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -16)
         let searchBt = UIBarButtonItem(customView: btSearch)
         navigationItem.rightBarButtonItem = searchBt

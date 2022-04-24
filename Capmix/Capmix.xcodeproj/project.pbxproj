@@ -60,6 +60,9 @@
 		9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399C1F52806D9E9007414FC /* TimeLineView.swift */; };
 		9399C1F82806D9FB007414FC /* TimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9399C1F72806D9FB007414FC /* TimeLineView.xib */; };
 		939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939BADB82805BEBE0054768D /* PropertyWapper.swift */; };
+		93A31F872814FCDC00DAAA1F /* ExportAudioVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A31F842814FCDC00DAAA1F /* ExportAudioVC.xib */; };
+		93A31F882814FCDC00DAAA1F /* ExportAudioVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A31F852814FCDC00DAAA1F /* ExportAudioVM.swift */; };
+		93A31F892814FCDC00DAAA1F /* ExportAudioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A31F862814FCDC00DAAA1F /* ExportAudioVC.swift */; };
 		93B257632803E172000BECA5 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B257612803E172000BECA5 /* HomeCell.swift */; };
 		93B257642803E172000BECA5 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B257622803E172000BECA5 /* HomeCell.xib */; };
 		93B257662803E50D000BECA5 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B257652803E50D000BECA5 /* BaseTableViewCell.swift */; };
@@ -146,6 +149,9 @@
 		9399C1F52806D9E9007414FC /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		9399C1F72806D9FB007414FC /* TimeLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeLineView.xib; sourceTree = "<group>"; };
 		939BADB82805BEBE0054768D /* PropertyWapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWapper.swift; sourceTree = "<group>"; };
+		93A31F842814FCDC00DAAA1F /* ExportAudioVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExportAudioVC.xib; sourceTree = "<group>"; };
+		93A31F852814FCDC00DAAA1F /* ExportAudioVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAudioVM.swift; sourceTree = "<group>"; };
+		93A31F862814FCDC00DAAA1F /* ExportAudioVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAudioVC.swift; sourceTree = "<group>"; };
 		93B257612803E172000BECA5 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		93B257622803E172000BECA5 /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		93B257652803E50D000BECA5 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -390,6 +396,7 @@
 		936EA0132802DF320034E2CC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				93A31F832814FCC900DAAA1F /* Export */,
 				93D5976D280D903700C4C345 /* NewProject */,
 				9317012C2809D35A0005C030 /* ImportPopup */,
 				931CD1FC28056801004EC061 /* Check */,
@@ -481,6 +488,16 @@
 				9399C1F72806D9FB007414FC /* TimeLineView.xib */,
 			);
 			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		93A31F832814FCC900DAAA1F /* Export */ = {
+			isa = PBXGroup;
+			children = (
+				93A31F842814FCDC00DAAA1F /* ExportAudioVC.xib */,
+				93A31F852814FCDC00DAAA1F /* ExportAudioVM.swift */,
+				93A31F862814FCDC00DAAA1F /* ExportAudioVC.swift */,
+			);
+			path = Export;
 			sourceTree = "<group>";
 		};
 		93B257602803E15A000BECA5 /* Cell */ = {
@@ -643,6 +660,7 @@
 				93D59771280D905300C4C345 /* NewProjectVC.xib in Resources */,
 				936E9FE32802CE940034E2CC /* Assets.xcassets in Resources */,
 				93DA6C55280874E40077D3F7 /* ProjectListVC.xib in Resources */,
+				93A31F872814FCDC00DAAA1F /* ExportAudioVC.xib in Resources */,
 				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
 				936E9FE12802CE920034E2CC /* Main.storyboard in Resources */,
 				931701302809D3720005C030 /* ImportPopupVC.xib in Resources */,
@@ -710,6 +728,7 @@
 				9317580E2802F01C007FB3FE /* BaseVC.swift in Sources */,
 				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
 				9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */,
+				93A31F882814FCDC00DAAA1F /* ExportAudioVM.swift in Sources */,
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
 				931701252809A42E0005C030 /* ProjectListCell.swift in Sources */,
@@ -725,6 +744,7 @@
 				93D59772280D905300C4C345 /* NewProjectVM.swift in Sources */,
 				936E9FFD2802D8C10034E2CC /* RealmModel.swift in Sources */,
 				936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */,
+				93A31F892814FCDC00DAAA1F /* ExportAudioVC.swift in Sources */,
 				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,
 				936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */,
 				93DA6C56280874E40077D3F7 /* ProjectListVM.swift in Sources */,

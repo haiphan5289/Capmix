@@ -62,7 +62,7 @@ class ProjectListVC: BaseVC {
         super.viewWillAppear(animated)
         self.removeBorder()
         self.navigationController?.isNavigationBarHidden = false
-        self.setupBtSearch()
+        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icSearchProject.image)
     }
     
 }

@@ -60,6 +60,7 @@ class NewProjectVC: BaseVC {
     private var selectAudio: URL?
     private var selectRange: ABVideoRangeSlider?
     private var selectView: UIView?
+    private var exportAudio: URL?
     private var detectTime: Disposable?
     
     private let disposeBag = DisposeBag()
@@ -72,7 +73,7 @@ class NewProjectVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        self.setupBackButtonSingle()
+        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icExport.image)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -158,7 +159,7 @@ extension NewProjectVC {
             guard let wSelf = self else { return }
             let bt = wSelf.btsAudio[type.rawValue]
             bt.rx.tap.bind { [weak self] _ in
-                guard let wSelf = self, let url = wSelf.selectAudio else { return }
+                guard let wSelf = self, let url = wSelf.exportAudio else { return }
                 switch type {
                 case .play:
                     if wSelf.btsAudio[ActionAudio.play.rawValue].isSelected {
@@ -218,6 +219,15 @@ extension NewProjectVC {
             guard let wSelf = self else { return }
             let l = list.sorted(by: { $0.endSecond > $1.endSecond })
             wSelf.exportURLAudio(list: l)
+        }.disposed(by: self.disposeBag)
+        
+        self.btSearch.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self else { return }
+            let vc = ExportAudioVC.createVC()
+            if let url = wSelf.exportAudio {
+                vc.audioURL = url
+            }
+            wSelf.navigationController?.pushViewController(vc, completion: nil)
         }.disposed(by: self.disposeBag)
         
     }
@@ -319,7 +329,7 @@ extension NewProjectVC {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 AudioManage.shared.covertToAudio(url: outputURL, folder: ConstantApp.shared.folderConvert, type: .m4a) { [weak self] audioURL in
                     guard let wSelf = self else { return }
-//                    wSelf.playAudio(url: audioURL, rate: 1, currentTime: 0)
+                    wSelf.exportAudio = audioURL
                 } failure: { _ in
 
                 }
