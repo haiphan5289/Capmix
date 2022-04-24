@@ -45,7 +45,7 @@ public extension UIViewController {
         return vc
     }
     
-    public static func createVC() -> Self {
+    static func createVC() -> Self {
         let vc = Self.init(nibName: "\(self)", bundle: nil)
         return vc
     }
