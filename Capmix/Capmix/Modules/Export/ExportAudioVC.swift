@@ -77,7 +77,9 @@ extension ExportAudioVC {
             bt.rx.tap.bind { [weak self] _ in
                 guard let wSelf = self else { return }
                 switch type {
-                case .viewLibrary: break
+                case .viewLibrary:
+                    let vc = HomeVC.createVC()
+                    wSelf.navigationController?.pushViewController(vc, completion: nil)
                 case .continueMixing:
                     wSelf.navigationController?.popViewController(animated: true, nil)
                 case .share:

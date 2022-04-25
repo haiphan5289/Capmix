@@ -49,6 +49,8 @@ class ProjectListVC: BaseVC {
     private var viewModel: ProjectListVM = ProjectListVM()
     @VariableReplay private var statusTap: TabAction = .projects
     private var recordings: [URL] = []
+    private var myMusics: [URL] = []
+    private var myProjects: [URL] = []
     var mediaItems = [MPMediaItem]()
     
     private let disposeBag = DisposeBag()
@@ -97,6 +99,12 @@ extension ProjectListVC {
                 wSelf.tableView.reloadData()
             }.disposed(by: wSelf.disposeBag)
         }
+        
+        self.viewModel.mymusic.asObservable().bind(onNext: { [weak self] list in
+            guard let wSelf = self else { return }
+            wSelf.myMusics = list
+            wSelf.myProjects = list
+        }).disposed(by: self.disposeBag)
         
         self.viewModel.recordings.asObservable().bind(onNext: { [weak self] list in
             guard let wSelf = self else { return }
@@ -220,8 +228,12 @@ extension ProjectListVC: UIDocumentPickerDelegate {
 extension ProjectListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.statusTap {
-        case .importFiles, .myMusic, .projects:
+        case .importFiles:
             return 2
+        case .projects:
+            return self.myProjects.count
+        case .myMusic:
+            return self.myMusics.count
         case .recordings:
             return self.recordings.count
         }
@@ -236,7 +248,14 @@ extension ProjectListVC: UITableViewDataSource {
             let item = self.recordings[indexPath.row]
             cell.loadValue(url: item)
             return cell
-        case .myMusic, .importFiles:
+        case .myMusic:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMusicCell.identifier) as? MyMusicCell else {
+                fatalError()
+            }
+            let item = self.myMusics[indexPath.row]
+            cell.loadValue(url: item)
+            return cell
+        case .importFiles:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMusicCell.identifier) as? MyMusicCell else {
                 fatalError()
             }
@@ -246,6 +265,8 @@ extension ProjectListVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectListCell.identifier) as? ProjectListCell else {
                 fatalError()
             }
+            let item = self.myProjects[indexPath.row]
+            cell.loadValue(url: item)
             return cell
         }
         

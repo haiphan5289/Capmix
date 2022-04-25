@@ -9,6 +9,8 @@ import UIKit
 
 class ProjectListCell: UITableViewCell {
 
+    @IBOutlet weak var lbTitle: UILabel!
+    @IBOutlet weak var subTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +23,12 @@ class ProjectListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+extension ProjectListCell {
+    
+    func loadValue(url: URL) {
+        self.lbTitle.text = url.getNameAudio()
+        let date = url.creation?.covertToString(format: .ddMMyyyyHHmmss)
+        self.subTitle.text = "\(Int(url.getDuration()).getTextFromSecond()) \(date ?? "")"
+    }
 }

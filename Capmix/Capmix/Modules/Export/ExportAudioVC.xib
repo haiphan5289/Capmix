@@ -137,7 +137,27 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQx-GO-xTw">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exported" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIp-ed-IAs">
+                                                    <rect key="frame" x="144" y="78" width="94" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rap Song.mp3 has been exported" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCH-pk-fRC">
+                                                    <rect key="frame" x="61.5" y="112.5" width="259" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" name="charcoalGrey60"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="oIp-ed-IAs" firstAttribute="top" secondItem="NQx-GO-xTw" secondAttribute="top" constant="78" id="S6h-xs-79h"/>
+                                                <constraint firstItem="TCH-pk-fRC" firstAttribute="top" secondItem="oIp-ed-IAs" secondAttribute="bottom" constant="8" id="oVt-SJ-Tew"/>
+                                                <constraint firstItem="oIp-ed-IAs" firstAttribute="centerX" secondItem="NQx-GO-xTw" secondAttribute="centerX" id="pHC-fv-xUc"/>
+                                                <constraint firstItem="TCH-pk-fRC" firstAttribute="centerX" secondItem="oIp-ed-IAs" secondAttribute="centerX" id="xKX-76-7lW"/>
+                                            </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WFU-ri-HvB">
                                             <rect key="frame" x="0.0" y="16" width="382" height="48"/>
