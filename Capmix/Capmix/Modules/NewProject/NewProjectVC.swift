@@ -16,6 +16,17 @@ import AVFoundation
 
 class NewProjectVC: BaseVC {
     
+    struct ABRangerModel {
+        let abVideoRange: ABVideoRangeSlider
+        let startTime: Float64
+        let endTime: Float64
+        init(abVideoRange: ABVideoRangeSlider, startTime: Float64, endTime: Float64) {
+            self.abVideoRange = abVideoRange
+            self.startTime = startTime
+            self.endTime = endTime
+        }
+    }
+    
     struct Constant {
         static let withTimeLine: CGFloat = 60
         static let heightAudio: CGFloat = 80
@@ -61,6 +72,7 @@ class NewProjectVC: BaseVC {
     private var selectRange: ABVideoRangeSlider?
     private var selectView: UIView?
     private var exportAudio: URL?
+    private var scaleRange: PublishSubject<ABRangerModel> = PublishSubject.init()
     private var detectTime: Disposable?
     
     private let disposeBag = DisposeBag()
@@ -103,6 +115,7 @@ extension NewProjectVC {
             self.numberOfRecording(addSecond: 600)
         }
         self.startPosition = self.positionCenter()
+        
     }
     
     private func setupRX() {
@@ -114,20 +127,7 @@ extension NewProjectVC {
                 guard let wSelf = self, let url = wSelf.selectAudio, let selectView = wSelf.selectView else { return }
                 switch type {
                 case .delete:
-                    if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }) {
-                        wSelf.sourcesURL.remove(at: index)
-                    }
-                    if let index = wSelf.audios.firstIndex(where: { $0.url == url }) {
-                        wSelf.audios.remove(at: index)
-                    }
-                    if let range = wSelf.selectRange, let index = wSelf.listRange.firstIndex(where: { $0 == range }) {
-                        wSelf.listRange[index].waveForm.removePath()
-                        wSelf.listRange.remove(at: index)
-                    }
-                    let list = wSelf.audioStackView.subviews
-                    if let index = list.firstIndex(where: { $0 == selectView }) {
-                        wSelf.audioStackView.subviews[index].removeFromSuperview()
-                    }
+                    wSelf.deleteAudio(url: url, selectView: selectView)
                 case .volume:
                     wSelf.changeVolume(url: url, valueVolume: 10) { [weak self] outputURL in
                         guard let wSelf = self else { return }
@@ -142,13 +142,6 @@ extension NewProjectVC {
                 case .split:
                     if let range = wSelf.selectRange?.waveForm {
                         print("==== detectPositionView \(wSelf.detectPositionView(view: range))")
-                        let asset: AVAsset = AVAsset(url: url)
-                        AudioManage.shared.trimmSound(inUrl: url, index: 1, start: 0, end: 5, folderSplit: ConstantApp.shared.folderConvert) { outputURL in
-                            print(outputURL)
-                        } failure: { _ in
-                            
-                        }
-
 //                        AudioManage.shared.splitAudio(asset: asset, segment: 2, folderSplit: ConstantApp.shared.folderConvert)
                     }
                 }
@@ -203,7 +196,30 @@ extension NewProjectVC {
                 wSelf.emptyView.isHidden = false
             }
             let max = list.map { $0.getEndTime() }.max()
-            wSelf.modifyAudioFrame(maxLenght: Int(max ?? 0), count: list.count + 1)
+            wSelf.modifyAudioFrame(maxLenght: Double(max ?? 0), count: Double(list.count + 1))
+        }.disposed(by: self.disposeBag)
+        
+        self.scaleRange.debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance).bind { [weak self] abRange in
+            guard let wSelf = self else { return }
+            AudioManage.shared.trimmSound(inUrl: abRange.abVideoRange.videoURL,
+                                          index: 1,
+                                          start: abRange.startTime,
+                                          end: abRange.endTime,
+                                          folderSplit: ConstantApp.shared.folderConvert) { [weak self] outputURL in
+                guard let wSelf = self, let url = wSelf.selectAudio, let selectView = wSelf.selectView else { return }
+                DispatchQueue.main.async {
+                    if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }),
+                       let indexView = wSelf.audioStackView.subviews.firstIndex(where: { $0 == selectView }) {
+                        let mutePointIndex = wSelf.sourcesURL[index]
+                        wSelf.deleteAudio(url: url, selectView: selectView)
+                        wSelf.addURL(detectTimeStart: CGFloat(mutePointIndex.start), url: outputURL, index: indexView)
+                    }
+                    
+                }
+            } failure: { text in
+                print(text)
+            }
+
         }.disposed(by: self.disposeBag)
         
         Observable.merge(self.btAddSound.rx.tap.mapToVoid(), self.addAudioEvent.asObservable().mapToVoid())
@@ -232,12 +248,12 @@ extension NewProjectVC {
         
     }
     
-    private func modifyAudioFrame(maxLenght: Int, count: Int) {
+    private func modifyAudioFrame(maxLenght: Double, count: Double) {
         var f = self.audioStackView.frame
-        let height = count * Int(Constant.heightAudio) + ((count - 1) * Constant.space )
-        f.size = CGSize(width: maxLenght * Int(Constant.withTimeLine), height: height)
+        let height: Double = count * Double(Constant.heightAudio) + ((count - 1) * Double(Constant.space) )
+        f.size = CGSize(width: maxLenght * Double(Constant.withTimeLine), height: height)
         self.audioStackView.frame = f
-        self.widthContentView.constant = CGFloat((maxLenght * Int(Constant.withTimeLine))) + self.startPosition + 100
+        self.widthContentView.constant = CGFloat((maxLenght * Double(Constant.withTimeLine))) + self.startPosition + 100
         
         if self.audioStackView.subviews.firstIndex(where: { $0.tag == Constant.tagAddView }) == nil {
             self.setupAddView()
@@ -252,7 +268,7 @@ extension NewProjectVC {
         }
     }
     
-    private func setupAudioView(url: URL, startTime: CGFloat) {
+    private func setupAudioView(url: URL, startTime: CGFloat, index: Int? = nil) {
         
         self.listRange.forEach { v in
             v.hideViews(hide: true)
@@ -261,7 +277,10 @@ extension NewProjectVC {
         
         let v: UIView = UIView(frame: .zero)
         v.backgroundColor = .clear
-        let contentView1: UIView = UIView(frame: CGRect(x: Int(startTime) * Int(Constant.withTimeLine) , y: 0, width: Int(url.getDuration()) * Int(Constant.withTimeLine), height: 80))
+        let contentView1: UIView = UIView(frame: CGRect(x: Int(startTime) * Int(Constant.withTimeLine) ,
+                                                        y: 0,
+                                                        width: Int(url.getDuration()) * Int(Constant.withTimeLine),
+                                                        height: 80))
         contentView1.backgroundColor = .clear
         let rangeSliderView: ABVideoRangeSlider = ABVideoRangeSlider(frame: CGRect(x: 8,
                                                                                    y: 5,
@@ -270,6 +289,7 @@ extension NewProjectVC {
         rangeSliderView.setVideoURL(videoURL: url, colorShow: Asset.pink.color, colorDisappear: Asset.charcoalGrey60.color)
         rangeSliderView.updateBgColor(colorBg: Asset.pink.color)
         rangeSliderView.hideTimeLine(hide: true)
+        rangeSliderView.delegate = self
         
 //        contentView1.addSubview(waveForm)
         contentView1.addSubview(rangeSliderView)
@@ -277,7 +297,9 @@ extension NewProjectVC {
         let count = self.audioStackView.subviews.count
         if count <= 0 {
             self.audioStackView.insertArrangedSubview(v, at: 0)
-        } else {
+        } else if let index = index {
+            self.audioStackView.insertArrangedSubview(v, at: index - 1)
+        } else  {
             self.audioStackView.insertArrangedSubview(v, at: count - 1)
         }
         
@@ -285,7 +307,8 @@ extension NewProjectVC {
         btSelect.setTitle(nil, for: .normal)
         contentView1.addSubview(btSelect)
         btSelect.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview()
         }
         btSelect.rx.tap.bind { [weak self] _ in
             guard let wSelf = self else { return }
@@ -339,6 +362,25 @@ extension NewProjectVC {
             guard let wSelf = self else { return }
 //            wSelf.delegate?.msgError(text: txt)
         }
+    }
+    
+    private func deleteAudio(url: URL, selectView: UIView) {
+        if let index = self.sourcesURL.firstIndex(where: { $0.url == url }) {
+            self.sourcesURL.remove(at: index)
+        }
+        if let index = self.audios.firstIndex(where: { $0.url == url }) {
+            self.audios.remove(at: index)
+        }
+        if let range = self.selectRange, let index = self.listRange.firstIndex(where: { $0 == range }) {
+            self.listRange[index].waveForm.removePath()
+            self.listRange.remove(at: index)
+        }
+        let list = self.audioStackView.subviews
+        if let index = list.firstIndex(where: { $0 == selectView }) {
+            self.audioStackView.subviews[index].removeFromSuperview()
+        }
+        self.selectAudio = nil
+        self.selectView = nil
     }
     
     private func changeVolume(url: URL, valueVolume: Float, complention: @escaping ((URL) -> Void)) {
@@ -468,6 +510,10 @@ extension NewProjectVC {
         self.lbTime.text = "00:00"
     }
     
+    private func getWidthAudio(duration: Int) -> Int {
+        return duration * Int(Constant.withTimeLine)
+    }
+    
     private func detectPositionView(view: UIView) -> CGFloat {
         return view.convert(self.centerView.frame, from: nil).origin.x
     }
@@ -494,10 +540,10 @@ extension NewProjectVC {
         self.timeLineStackView.addArrangedSubview(v)
     }
     
-    private func addURL(detectTimeStart: CGFloat, url: URL) {
+    private func addURL(detectTimeStart: CGFloat, url: URL, index: Int? = nil) {
         let mutePoint: MutePoint = MutePoint(start: Float(detectTimeStart), end: Float(url.getDuration()), url: url)
         self.sourcesURL.append(mutePoint)
-        self.setupAudioView(url: url, startTime: detectTimeStart)
+        self.setupAudioView(url: url, startTime: detectTimeStart, index: index)
     }
     
     private func clearAction() {
@@ -513,6 +559,21 @@ extension NewProjectVC {
                 wSelf.lbTime.text = "\(Int(wSelf.audioPlayer.currentTime).getTextFromSecond())"
             })
     }
+    
+}
+extension NewProjectVC: ABVideoRangeSliderDelegate {
+    func didChangeValue(videoRangeSlider: ABVideoRangeSlider, startTime: Float64, endTime: Float64) {
+        self.scaleRange.onNext(ABRangerModel(abVideoRange: videoRangeSlider, startTime: startTime, endTime: endTime))
+    }
+    
+    func indicatorDidChangePosition(videoRangeSlider: ABVideoRangeSlider, position: Float64) {
+        
+    }
+    
+    func updateFrameSlide(videoRangeSlider: ABVideoRangeSlider, startIndicator: CGFloat, endIndicator: CGFloat) {
+        
+    }
+    
     
 }
 extension NewProjectVC: ProjectListDelegate {

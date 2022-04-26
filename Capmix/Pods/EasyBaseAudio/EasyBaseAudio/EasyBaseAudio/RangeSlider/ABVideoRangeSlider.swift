@@ -30,7 +30,7 @@ public class ABVideoRangeSlider: UIView {
     
     let thumbnailsManager   = ABThumbnailsManager()
     var duration: Float64   = 0.0
-    var videoURL            = URL(fileURLWithPath: "")
+    public var videoURL            = URL(fileURLWithPath: "")
     
     var progressPercentage: CGFloat = 0         // Represented in percentage
     var startPercentage: CGFloat    = 0         // Represented in percentage
