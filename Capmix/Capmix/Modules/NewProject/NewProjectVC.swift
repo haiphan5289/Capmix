@@ -27,6 +27,17 @@ class NewProjectVC: BaseVC {
         }
     }
     
+    struct SplitAudio {
+        let abVideoRange: ABVideoRangeSlider
+        let startTime: Float64
+        let detectTimeStart: CGFloat
+        init(abVideoRange: ABVideoRangeSlider, startTime: Float64, detectTimeStart: CGFloat) {
+            self.abVideoRange = abVideoRange
+            self.startTime = startTime
+            self.detectTimeStart = detectTimeStart
+        }
+    }
+    
     struct Constant {
         static let withTimeLine: CGFloat = 60
         static let heightAudio: CGFloat = 80
@@ -73,6 +84,8 @@ class NewProjectVC: BaseVC {
     private var selectView: UIView?
     private var exportAudio: URL?
     private var scaleRange: PublishSubject<ABRangerModel> = PublishSubject.init()
+    private var splitAudio: SplitAudio?
+    private var isSplitAudio: Bool = false
     private var detectTime: Disposable?
     
     private let disposeBag = DisposeBag()
@@ -140,9 +153,16 @@ extension NewProjectVC {
                         }
                     }
                 case .split:
-                    if let range = wSelf.selectRange?.waveForm {
+                    if let video = wSelf.selectRange, let range = wSelf.selectRange?.waveForm {
                         print("==== detectPositionView \(wSelf.detectPositionView(view: range))")
-//                        AudioManage.shared.splitAudio(asset: asset, segment: 2, folderSplit: ConstantApp.shared.folderConvert)
+                        let endTime = wSelf.detectPositionView(view: range) / Constant.withTimeLine
+                        if endTime > 1 {
+                            wSelf.isSplitAudio = true
+                            let position = wSelf.startPosition - wSelf.positionCenter()
+                            let detectTimeStart = position / Constant.withTimeLine
+                            wSelf.splitAudio = SplitAudio(abVideoRange: video, startTime: endTime, detectTimeStart: detectTimeStart)
+                            wSelf.scaleRange.onNext(ABRangerModel(abVideoRange: video, startTime: 0, endTime: endTime))
+                        }
                     }
                 }
             }.disposed(by: wSelf.disposeBag)
@@ -201,25 +221,7 @@ extension NewProjectVC {
         
         self.scaleRange.debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance).bind { [weak self] abRange in
             guard let wSelf = self else { return }
-            AudioManage.shared.trimmSound(inUrl: abRange.abVideoRange.videoURL,
-                                          index: 1,
-                                          start: abRange.startTime,
-                                          end: abRange.endTime,
-                                          folderSplit: ConstantApp.shared.folderConvert) { [weak self] outputURL in
-                guard let wSelf = self, let url = wSelf.selectAudio, let selectView = wSelf.selectView else { return }
-                DispatchQueue.main.async {
-                    if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }),
-                       let indexView = wSelf.audioStackView.subviews.firstIndex(where: { $0 == selectView }) {
-                        let mutePointIndex = wSelf.sourcesURL[index]
-                        wSelf.deleteAudio(url: url, selectView: selectView)
-                        wSelf.addURL(detectTimeStart: CGFloat(mutePointIndex.start), url: outputURL, index: indexView)
-                    }
-                    
-                }
-            } failure: { text in
-                print(text)
-            }
-
+            wSelf.scaleRangeVideo(abRange: abRange)
         }.disposed(by: self.disposeBag)
         
         Observable.merge(self.btAddSound.rx.tap.mapToVoid(), self.addAudioEvent.asObservable().mapToVoid())
@@ -361,6 +363,49 @@ extension NewProjectVC {
         } failure: { [weak self] (err, txt) in
             guard let wSelf = self else { return }
 //            wSelf.delegate?.msgError(text: txt)
+        }
+    }
+    
+    private func addURLAfterSplit(url: URL, startTime: CGFloat, detectTimeStart: CGFloat) {
+        AudioManage.shared.trimmSound(inUrl: url,
+                                      index: 1, start: startTime,
+                                      end: url.getDuration(),
+                                      folderSplit: ConstantApp.shared.folderConvert) { [weak self] outputURL in
+            guard let wSelf = self else { return }
+            DispatchQueue.main.async {
+                if let selectView = wSelf.selectView, let index = wSelf.audioStackView.subviews.firstIndex(where: { $0 == selectView }) {
+                    wSelf.addURL(detectTimeStart: detectTimeStart, url: outputURL, index: index + 1)
+                }
+            }
+        } failure: { text in
+            print(text)
+        }
+
+    }
+    
+    private func scaleRangeVideo(abRange: ABRangerModel) {
+        AudioManage.shared.trimmSound(inUrl: abRange.abVideoRange.videoURL,
+                                      index: 1,
+                                      start: abRange.startTime,
+                                      end: abRange.endTime,
+                                      folderSplit: ConstantApp.shared.folderConvert) { [weak self] outputURL in
+            guard let wSelf = self, let url = wSelf.selectAudio, let selectView = wSelf.selectView else { return }
+            DispatchQueue.main.async {
+                if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }),
+                   let indexView = wSelf.audioStackView.subviews.firstIndex(where: { $0 == selectView }) {
+                    let mutePointIndex = wSelf.sourcesURL[index]
+                    wSelf.deleteAudio(url: url, selectView: selectView)
+                    wSelf.addURL(detectTimeStart: CGFloat(mutePointIndex.start), url: outputURL, index: indexView)
+                }
+                
+                if let spliAudio = wSelf.splitAudio, wSelf.isSplitAudio {
+                    wSelf.isSplitAudio = false
+                    wSelf.addURLAfterSplit(url: spliAudio.abVideoRange.videoURL, startTime: spliAudio.startTime, detectTimeStart: spliAudio.detectTimeStart)
+                }
+                
+            }
+        } failure: { text in
+            print(text)
         }
     }
     
