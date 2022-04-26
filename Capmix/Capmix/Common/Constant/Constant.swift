@@ -18,6 +18,7 @@ final class ConstantApp {
     let folderApple: String = "Apple"
     let folderConvert: String = "Covert"
     let folderProject: String = "Projects"
+    let folderImport: String = "Imports"
 //    let SHARE_APPLICATION_DELEGATE = UIApplication.shared.delegate as! AppDelegate
 //    let linkTerm: String = "https://sites.google.com/view/filza-file-manager-document/terms-and-condition?authuser=0"
 //    let linkSUpport: String = "https://sites.google.com/view/filza-file-manager-document/support?authuser=0"

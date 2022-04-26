@@ -40,6 +40,7 @@ class RecordingVC: BaseVC {
     @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var vContentView: UIView!
     @IBOutlet weak var timeLineStackView: UIStackView!
+    @IBOutlet weak var lbTime: UILabel!
     
     // Add here your view model
     private var viewModel: RecordingVM = RecordingVM()
@@ -140,6 +141,7 @@ extension RecordingVC {
             let valueMeter = value + Constant.miniMeter
             wSelf.autoScrollView()
             wSelf.drawWaveView(height: valueMeter)
+            wSelf.lbTime.text = "\(Int(wSelf.recording.recorder?.currentTime ?? 0).getTextFromSecond())"
         }.disposed(by: self.disposeBag)
         
         self.buttonLeft.rx.tap.bind { [weak self] _ in
@@ -157,7 +159,7 @@ extension RecordingVC {
         v.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(position)
-            make.height.equalTo(100)
+            make.height.equalTo(height * 8)
             make.width.equalTo(Constant.pixelWidth)
         }
     }

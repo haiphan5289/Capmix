@@ -28,7 +28,9 @@ class BaseVC: UIViewController {
         AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderApple)", success: nil, failure: nil)
         AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderConvert)", success: nil, failure: nil)
         AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderProject)", success: nil, failure: nil)
+        AudioManage.shared.createFolder(path:  "\(ConstantApp.shared.folderImport)", success: nil, failure: nil)
         
+        AudioManage.shared.removeFilesFolder(name: ConstantApp.shared.folderConvert)
     }
     
     override func viewWillAppear(_ animated: Bool) {

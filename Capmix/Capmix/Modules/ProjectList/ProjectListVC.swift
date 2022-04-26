@@ -14,6 +14,7 @@ import MobileCoreServices
 import MediaPlayer
 import StoreKit
 import EasyBaseAudio
+import SVProgressHUD
 
 protocol ProjectListDelegate {
     func addMusic(url: URL)
@@ -51,6 +52,7 @@ class ProjectListVC: BaseVC {
     private var recordings: [URL] = []
     private var myMusics: [URL] = []
     private var myProjects: [URL] = []
+    private var imports: [URL] = []
     var mediaItems = [MPMediaItem]()
     
     private let disposeBag = DisposeBag()
@@ -99,6 +101,11 @@ extension ProjectListVC {
                 wSelf.tableView.reloadData()
             }.disposed(by: wSelf.disposeBag)
         }
+        
+        self.viewModel.imports.asObservable().bind(onNext: { [weak self] list in
+            guard let wSelf = self else { return }
+            wSelf.imports = list
+        }).disposed(by: self.disposeBag)
         
         self.viewModel.mymusic.asObservable().bind(onNext: { [weak self] list in
             guard let wSelf = self else { return }
@@ -223,13 +230,31 @@ extension ProjectListVC: UIDocumentPickerDelegate {
         guard let first = urls.first else {
             return
         }
+        SVProgressHUD.show()
+        AudioManage.shared.covertToCAF(folderConvert: ConstantApp.shared.folderConvert, url: first, type: .caf) { outputURLBrowser in
+            AudioManage.shared.covertToAudio(url: outputURLBrowser,
+                                             folder: ConstantApp.shared.folderImport,
+                                             type: .m4a) { [weak self] outputURL in
+                guard let wSelf = self else { return }
+                wSelf.imports.append(outputURL)
+                wSelf.tableView.reloadData()
+                SVProgressHUD.dismiss()
+            } failure: { text in
+                SVProgressHUD.dismiss()
+                print(text)
+            }
+        } failure: { [weak self] text in
+            SVProgressHUD.dismiss()
+            guard let wSelf = self else { return }
+            wSelf.showAlert(title: nil, message: text)
+        }
     }
 }
 extension ProjectListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.statusTap {
         case .importFiles:
-            return 2
+            return self.imports.count
         case .projects:
             return self.myProjects.count
         case .myMusic:
@@ -259,7 +284,8 @@ extension ProjectListVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMusicCell.identifier) as? MyMusicCell else {
                 fatalError()
             }
-            
+            let item = self.imports[indexPath.row]
+            cell.loadValue(url: item)
             return cell
         case .projects:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectListCell.identifier) as? ProjectListCell else {
@@ -279,9 +305,21 @@ extension ProjectListVC: UITableViewDataSource {
             self.navigationController?.popViewController(animated: true, {
                 self.delegate?.addMusic(url: item)
             })
-        case .myMusic, .importFiles: break
-            
-        case .projects: break
+        case .myMusic:
+            let item = self.myMusics[indexPath.row]
+            self.navigationController?.popViewController(animated: true, {
+                self.delegate?.addMusic(url: item)
+            })
+        case .importFiles:
+            let item = self.imports[indexPath.row]
+            self.navigationController?.popViewController(animated: true, {
+                self.delegate?.addMusic(url: item)
+            })
+        case .projects:
+            let item = self.myProjects[indexPath.row]
+            self.navigationController?.popViewController(animated: true, {
+                self.delegate?.addMusic(url: item)
+            })
         }
     }
     
@@ -327,7 +365,10 @@ extension ProjectListVC: UITableViewDelegate {
                 let vc = RecordingVC.createVC()
                 vc.delegate = wSelf
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
-            case .projects, .myMusic, .importFiles: break
+            case .projects:
+                let vc = NewProjectVC.createVC()
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
+            case .myMusic, .importFiles: break
             }
         }.disposed(by: self.disposeBag)
         

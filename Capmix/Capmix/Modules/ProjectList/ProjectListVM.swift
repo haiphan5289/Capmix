@@ -12,11 +12,13 @@ class ProjectListVM {
     var recordings: BehaviorRelay<[URL]> = BehaviorRelay.init(value: [])
     var mymusic: BehaviorRelay<[URL]> = BehaviorRelay.init(value: [])
     var myProjects: BehaviorRelay<[URL]> = BehaviorRelay.init(value: [])
+    var imports: BehaviorRelay<[URL]> = BehaviorRelay.init(value: [])
     
     private let disposeBag = DisposeBag()
     init() {
         self.getItemRecords()
         self.getItemMyMusic()
+        self.getItemImports()
     }
     
     func getItemRecords() {
@@ -25,5 +27,9 @@ class ProjectListVM {
     
     func getItemMyMusic() {
         self.mymusic.accept(AudioManage.shared.getItemsFolder(folder: ConstantApp.shared.folderProject))
+    }
+    
+    func getItemImports() {
+        self.imports.accept(AudioManage.shared.getItemsFolder(folder: ConstantApp.shared.folderImport))
     }
 }

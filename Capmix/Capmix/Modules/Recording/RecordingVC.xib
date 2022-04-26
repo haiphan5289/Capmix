@@ -14,6 +14,7 @@
                 <outlet property="btPlay" destination="J0Z-Rl-x9h" id="Q9N-rB-jNK"/>
                 <outlet property="btStop" destination="wSo-lv-kUR" id="BEb-9Q-kIV"/>
                 <outlet property="centerView" destination="DDA-cu-Ewt" id="jwz-sK-OiX"/>
+                <outlet property="lbTime" destination="r1u-Kg-YoG" id="6lV-wT-FFM"/>
                 <outlet property="scrollView" destination="liG-wo-XEY" id="Fx0-1v-7QG"/>
                 <outlet property="timeLineStackView" destination="Tcr-oP-gfS" id="NJn-pd-eK7"/>
                 <outlet property="vContentView" destination="yKS-WT-eeo" id="g9E-AH-y9v"/>
