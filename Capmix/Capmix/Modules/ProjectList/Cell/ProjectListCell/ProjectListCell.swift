@@ -30,8 +30,8 @@ extension ProjectListCell {
         self.lbTitle.text = url.getNameAudio()
         let date = url.creation?.covertToString(format: .ddMMyyyyHHmmss)
         var count: Int = 0
-        if let index = RealmManager.shared.getProjectRealm().firstIndex(where: { $0.url == url }) {
-            count = RealmManager.shared.getProjectRealm()[index].count
+        if let index = RealmManager.shared.getProjects().firstIndex(where: { $0.url == url }) {
+            count = Int(RealmManager.shared.getProjects()[index].count)
         }
         self.subTitle.text = "\(Int(url.getDuration()).getTextFromSecond()) \(count) tracks \(date ?? "")"
     }

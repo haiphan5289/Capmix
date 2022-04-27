@@ -46,16 +46,17 @@ class RealmManager {
         return arr
     }
 
-    func updateOrInsertProject(url: URL, count: Int) {
+    func updateOrInsertProject(model: ProjectModel) {
         let list = self.getProjectRealm()
 
-        if let index = list.firstIndex(where: { $0.url == url  }) {
+        if let index = list.firstIndex(where: { $0.url == model.url  }) {
             try! realm.write {
-                list[index].url = url
+                list[index].data = try? model.toData()
+                list[index].url = model.url
                 NotificationCenter.default.post(name: NSNotification.Name(PushNotificationKeys.addedProject.rawValue), object: nil, userInfo: nil)
             }
         } else {
-            let itemAdd = ProjectRealm.init(url: url, count: count)
+            let itemAdd = ProjectRealm.init(model: model)
             try! realm.write {
                 realm.add(itemAdd)
                 NotificationCenter.default.post(name: NSNotification.Name(PushNotificationKeys.addedProject.rawValue), object: nil, userInfo: nil)
@@ -99,19 +100,19 @@ class RealmManager {
 //        }
 //    }
 //
-//    func getListRecodingHome() -> [RecordingHomeModel] {
-//        let listRealm = self.getAllRecodingHomeRealm()
-//        var list: [RecordingHomeModel] = []
-//        
-//        listRealm.forEach { model in
-//            guard let model = model.data?.toCodableObject() as RecordingHomeModel? else {
-//                return
-//            }
-//            list.append(model)
-//        }
-//        
-//        return list
-//    }
+    func getProjects() -> [ProjectModel] {
+        let listRealm = self.getProjectRealm()
+        var list: [ProjectModel] = []
+        
+        listRealm.forEach { model in
+            guard let model = model.data?.toCodableObject() as ProjectModel? else {
+                return
+            }
+            list.append(model)
+        }
+        
+        return list
+    }
 //    
 //    private func getAllRecordAudioRealm() -> [RecordAudioRealm]  {
 //        let arr = realm.objects(RecordAudioRealm.self).toArray(ofType: RecordAudioRealm.self)

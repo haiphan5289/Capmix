@@ -11,12 +11,16 @@ import RealmSwift
 
 class ProjectRealm: Object {
     @objc dynamic var data: Data?
-    @objc dynamic var url: URL?
+    dynamic var url: URL = URL(fileURLWithPath: "")
 
-    init(url: URL, model: Int) {
+    init(model: ProjectModel) {
         super.init()
-        self.url = url
-        self.count = count
+        do {
+            self.data = try model.toData()
+            self.url = model.url
+        } catch {
+            print("\(error.localizedDescription)")
+        }
     }
     required init() {
         super.init()

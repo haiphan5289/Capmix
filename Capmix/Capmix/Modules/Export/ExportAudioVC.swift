@@ -61,12 +61,15 @@ extension ExportAudioVC {
             guard let wSelf = self, let url = wSelf.audioURL, let nameAudio = wSelf.tfName.text, nameAudio.count > 0 else { return }
             AudioManage.shared.changeNameFile(folderName: ConstantApp.shared.folderProject, oldURL: url, newName: nameAudio) { [weak self] outputURL in
                 guard let wSelf = self else { return }
-                wSelf.exportView.isHidden = true
-                wSelf.navigationController?.isNavigationBarHidden = true
-                wSelf.tfName.resignFirstResponder()
-                wSelf.audioSuccess = outputURL
-                wSelf.successView.isHidden = false
-                RealmManager.shared.updateOrInsertProject(url: outputURL, count: wSelf.count)
+                DispatchQueue.main.async {
+                    wSelf.exportView.isHidden = true
+                    wSelf.navigationController?.isNavigationBarHidden = true
+                    wSelf.tfName.resignFirstResponder()
+                    wSelf.audioSuccess = outputURL
+                    wSelf.successView.isHidden = false
+                    RealmManager.shared.updateOrInsertProject(model: ProjectModel(url: outputURL, count: Double(wSelf.count)))
+                }
+                
             } failure: { text in
                 print(text)
             }
