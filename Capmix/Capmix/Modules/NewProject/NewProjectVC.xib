@@ -39,20 +39,20 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="uif-S9-h5n">
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <subviews>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crW-9b-KPo">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crW-9b-KPo">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="306"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XQa-tG-0dN">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="306"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgl-ou-eXg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82I-1W-ixk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="622"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOv-7S-fK9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="1622"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="1076"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vGJ-c8-yYQ">
                                                                     <rect key="frame" x="87" y="247" width="240" height="80"/>
@@ -81,7 +81,7 @@
                                                     <viewLayoutGuide key="frameLayoutGuide" id="CAE-nr-LSC"/>
                                                 </scrollView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qas-aY-Okb">
-                                                    <rect key="frame" x="206.5" y="42" width="1" height="546"/>
+                                                    <rect key="frame" x="206.5" y="42" width="1" height="0.0"/>
                                                     <color key="backgroundColor" red="0.17254901959999999" green="0.16078431369999999" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="haS-ez-dCX"/>
@@ -100,7 +100,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcv-HI-PBG">
-                                            <rect key="frame" x="0.0" y="622" width="414" height="80"/>
+                                            <rect key="frame" x="0.0" y="76" width="414" height="80"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rc5-qL-TlZ">
                                                     <rect key="frame" x="0.0" y="79" width="414" height="1"/>
@@ -179,7 +179,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpZ-4f-0wR">
-                                            <rect key="frame" x="0.0" y="702" width="414" height="116"/>
+                                            <rect key="frame" x="0.0" y="156" width="414" height="116"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="ePn-7l-5Sz">
                                                     <rect key="frame" x="40" y="8" width="334" height="96"/>
@@ -289,7 +289,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHq-oq-Iix">
-                                            <rect key="frame" x="0.0" y="818" width="414" height="34"/>
+                                            <rect key="frame" x="0.0" y="272" width="414" height="34"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="7io-3q-jfs"/>
@@ -306,11 +306,11 @@
                                 <constraint firstAttribute="trailing" secondItem="XQa-tG-0dN" secondAttribute="trailing" id="beO-eY-V7T"/>
                             </constraints>
                         </view>
-                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxJ-0y-fEs">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxJ-0y-fEs">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="FD2-jc-Np8">
-                                    <rect key="frame" x="126.5" y="-153" width="161" height="206"/>
+                                    <rect key="frame" x="126.5" y="273" width="161" height="206"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="n5w-oU-fES">
                                             <rect key="frame" x="0.0" y="0.0" width="161" height="152"/>

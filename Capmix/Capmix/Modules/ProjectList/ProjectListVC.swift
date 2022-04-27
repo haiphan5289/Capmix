@@ -54,6 +54,7 @@ class ProjectListVC: BaseVC {
     private var myProjects: [URL] = []
     private var imports: [URL] = []
     var mediaItems = [MPMediaItem]()
+    private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -216,7 +217,7 @@ extension ProjectListVC: ImportPopupDelegate {
             vc.mediaTypes = [kUTTypeMovie as String]
             self.present(vc, animated: true, completion: nil)
         case .files:
-            let types = [kUTTypeMovie, kUTTypeVideo, kUTTypeAudio, kUTTypeQuickTimeMovie]
+            let types = [kUTTypeMovie, kUTTypeVideo, kUTTypeAudio, kUTTypeQuickTimeMovie, kUTTypeMPEG, kUTTypeMPEG2Video]
             let documentPicker = UIDocumentPickerViewController(documentTypes: types as [String], in: .import)
             documentPicker.delegate = self
             documentPicker.allowsMultipleSelection = false
@@ -231,22 +232,35 @@ extension ProjectListVC: UIDocumentPickerDelegate {
             return
         }
         SVProgressHUD.show()
-        AudioManage.shared.covertToCAF(folderConvert: ConstantApp.shared.folderConvert, url: first, type: .caf) { outputURLBrowser in
-            AudioManage.shared.covertToAudio(url: outputURLBrowser,
-                                             folder: ConstantApp.shared.folderImport,
-                                             type: .m4a) { [weak self] outputURL in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            AudioManage.shared.covertToCAF(folderConvert: ConstantApp.shared.folderConvert, url: first, type: .caf) { [weak self] outputURLBrowser in
                 guard let wSelf = self else { return }
-                wSelf.imports.append(outputURL)
-                wSelf.tableView.reloadData()
+                DispatchQueue.main.async {
+                    wSelf.imports.append(outputURLBrowser)
+                    wSelf.tableView.reloadData()
+                    SVProgressHUD.dismiss()
+                    wSelf.playAudio(url: outputURLBrowser, rate: 1, currentTime: 0)
+                }
+                
+            } failure: { [weak self] text in
                 SVProgressHUD.dismiss()
-            } failure: { text in
-                SVProgressHUD.dismiss()
-                print(text)
+                guard let wSelf = self else { return }
+                wSelf.showAlert(title: nil, message: text)
             }
-        } failure: { [weak self] text in
-            SVProgressHUD.dismiss()
-            guard let wSelf = self else { return }
-            wSelf.showAlert(title: nil, message: text)
+        }
+
+    }
+    
+    private func playAudio(url: URL, rate: Float, currentTime: CGFloat) {
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+//            self.audioPlayer.delegate = self
+            self.audioPlayer.enableRate = true
+            self.audioPlayer.prepareToPlay()
+            self.audioPlayer.volume = rate
+            self.audioPlayer.play()
+            self.audioPlayer.currentTime = TimeInterval(currentTime)
+        } catch {
         }
     }
 }
@@ -299,27 +313,33 @@ extension ProjectListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var selectURL: URL?
         switch self.statusTap {
         case .recordings:
-            let item = self.recordings[indexPath.row]
-            self.navigationController?.popViewController(animated: true, {
-                self.delegate?.addMusic(url: item)
-            })
+            selectURL = self.recordings[indexPath.row]
         case .myMusic:
-            let item = self.myMusics[indexPath.row]
-            self.navigationController?.popViewController(animated: true, {
-                self.delegate?.addMusic(url: item)
-            })
+            selectURL = self.myMusics[indexPath.row]
         case .importFiles:
-            let item = self.imports[indexPath.row]
-            self.navigationController?.popViewController(animated: true, {
-                self.delegate?.addMusic(url: item)
-            })
+            selectURL = self.imports[indexPath.row]
+
         case .projects:
-            let item = self.myProjects[indexPath.row]
-            self.navigationController?.popViewController(animated: true, {
-                self.delegate?.addMusic(url: item)
-            })
+            selectURL = self.myProjects[indexPath.row]
+        }
+        
+        switch self.openfrom {
+        case .newProject:
+            if let item = selectURL {
+                self.navigationController?.popViewController(animated: true, {
+                    self.delegate?.addMusic(url: item)
+                })
+            }
+        case .other:
+            if let item = selectURL {
+                var documentInteractionController: UIDocumentInteractionController!
+                documentInteractionController = UIDocumentInteractionController.init(url: item)
+                documentInteractionController?.delegate = self
+                documentInteractionController?.presentPreview(animated: true)
+            }
         }
     }
     
@@ -391,5 +411,10 @@ extension ProjectListVC: RecordingDelegate {
     func updateRecordings() {
         self.viewModel.getItemRecords()
         self.tableView.reloadData()
+    }
+}
+extension ProjectListVC: UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        return self
     }
 }

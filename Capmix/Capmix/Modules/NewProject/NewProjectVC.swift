@@ -105,6 +105,11 @@ class NewProjectVC: BaseVC {
         super.viewDidAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.audioPlayer.pause()
+    }
+    
 }
 extension NewProjectVC {
     
@@ -181,17 +186,12 @@ extension NewProjectVC {
                         wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = false
                         wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPlayProject.image, for: .normal)
                     } else {
-                        if wSelf.audioPlayer.rate > 0 {
-                            wSelf.playAudio()
-                            wSelf.autoRunTime()
-                            wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
-                            wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
-                        } else {
-                            wSelf.playAudio(url: url, rate: 1, currentTime: 0)
-                            wSelf.autoRunTime()
-                            wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
-                            wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
-                        }
+                        let position = wSelf.startPosition - wSelf.positionCenter()
+                        let detectTimeStart = position / Constant.withTimeLine
+                        wSelf.playAudio(url: url, rate: 1, currentTime: detectTimeStart)
+                        wSelf.autoRunTime()
+                        wSelf.btsAudio[ActionAudio.play.rawValue].isSelected = true
+                        wSelf.btsAudio[ActionAudio.play.rawValue].setImage(Asset.icPauseProject.image, for: .normal)
                     }
                     
                 case .next, .previous:
@@ -350,8 +350,7 @@ extension NewProjectVC {
                                       index: 1, listAudioProtocol: l,
                                       deplayTime: first.startAudio(), nameMusic: "self.nameMusic",
                                       folderName: ConstantApp.shared.folderConvert,
-                                      nameId: "String") { [weak self] (outputURL, _) in
-            guard let wSelf = self else { return }
+                                      nameId: "String") { (outputURL, _) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 AudioManage.shared.covertToAudio(url: outputURL, folder: ConstantApp.shared.folderConvert, type: .m4a) { [weak self] audioURL in
                     guard let wSelf = self else { return }
@@ -360,10 +359,7 @@ extension NewProjectVC {
 
                 }
             }
-//            wSelf.delegate?.mergeAudio(url: outputURL)
-        } failure: { [weak self] (err, txt) in
-            guard let wSelf = self else { return }
-//            wSelf.delegate?.msgError(text: txt)
+        } failure: { (err, txt) in
         }
     }
     
