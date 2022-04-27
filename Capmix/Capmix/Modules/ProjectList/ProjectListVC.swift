@@ -53,7 +53,6 @@ class ProjectListVC: BaseVC {
     private var myMusics: [URL] = []
     private var myProjects: [URL] = []
     private var imports: [URL] = []
-    var mediaItems = [MPMediaItem]()
     private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
     private let disposeBag = DisposeBag()
@@ -80,8 +79,6 @@ extension ProjectListVC {
         self.tableView.register(MyMusicCell.nib, forCellReuseIdentifier: MyMusicCell.identifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        self.checkAppleMusicPermission()
         
         if self.openfrom == .newProject {
             self.statusTap = .myMusic
@@ -130,7 +127,11 @@ extension ProjectListVC {
                 vc.modalPresentationStyle = .overFullScreen
                 vc.delegate = self
                 wSelf.present(vc, animated: true, completion: nil)
-            case .musicApp: break
+            case .musicApp:
+                let vc = MyMusicVC.createVC()
+                vc.delegate = self
+                vc.openfrom = .importsProjects
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
             }
         }.disposed(by: self.disposeBag)
         
@@ -181,31 +182,6 @@ extension ProjectListVC {
         }.disposed(by: self.disposeBag)
         
     }
-    
-    func fetchApple() {
-        mediaItems = MPMediaQuery.songs().items ?? []
-        mediaItems.enumerated().forEach { (item) in
-            AudioManage.shared.saveAppleMusic(folder: ConstantApp.shared.folderApple, mediaItem: item.element) { outputURL in
-                
-            } failure: { _ in
-                
-            }
-
-        }
-    }
-    
-    func checkAppleMusicPermission() {
-        guard SKCloudServiceController.authorizationStatus() == .notDetermined else { return }
-        SKCloudServiceController.requestAuthorization {(status: SKCloudServiceAuthorizationStatus) in
-            switch status {
-            case .denied, .restricted: break
-            case .authorized:
-                self.fetchApple()
-            default: break
-            }
-        }
-    }
-    
 }
 extension ProjectListVC: ImportPopupDelegate {
     func action(action: ImportPopupVC.Action) {
@@ -233,13 +209,12 @@ extension ProjectListVC: UIDocumentPickerDelegate {
         }
         SVProgressHUD.show()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            AudioManage.shared.covertToCAF(folderConvert: ConstantApp.shared.folderConvert, url: first, type: .caf) { [weak self] outputURLBrowser in
+            AudioManage.shared.covertToCAF(folderConvert: ConstantApp.shared.folderImport, url: first, type: .caf) { [weak self] outputURLBrowser in
                 guard let wSelf = self else { return }
                 DispatchQueue.main.async {
                     wSelf.imports.append(outputURLBrowser)
                     wSelf.tableView.reloadData()
                     SVProgressHUD.dismiss()
-                    wSelf.playAudio(url: outputURLBrowser, rate: 1, currentTime: 0)
                 }
                 
             } failure: { [weak self] text in
@@ -251,18 +226,18 @@ extension ProjectListVC: UIDocumentPickerDelegate {
 
     }
     
-    private func playAudio(url: URL, rate: Float, currentTime: CGFloat) {
-        do {
-            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-//            self.audioPlayer.delegate = self
-            self.audioPlayer.enableRate = true
-            self.audioPlayer.prepareToPlay()
-            self.audioPlayer.volume = rate
-            self.audioPlayer.play()
-            self.audioPlayer.currentTime = TimeInterval(currentTime)
-        } catch {
-        }
-    }
+//    private func playAudio(url: URL, rate: Float, currentTime: CGFloat) {
+//        do {
+//            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+////            self.audioPlayer.delegate = self
+//            self.audioPlayer.enableRate = true
+//            self.audioPlayer.prepareToPlay()
+//            self.audioPlayer.volume = rate
+//            self.audioPlayer.play()
+//            self.audioPlayer.currentTime = TimeInterval(currentTime)
+//        } catch {
+//        }
+//    }
 }
 extension ProjectListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -416,5 +391,11 @@ extension ProjectListVC: RecordingDelegate {
 extension ProjectListVC: UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
+    }
+}
+extension ProjectListVC: MyMusicDelegate {
+    func addUrl(url: URL) {
+        self.imports.append(url)
+        self.tableView.reloadData()
     }
 }

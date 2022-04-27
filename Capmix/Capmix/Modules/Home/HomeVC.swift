@@ -111,7 +111,9 @@ extension HomeVC {
             case .newMix:
                 let vc = NewProjectVC.createVC()
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
-            case .myMusic: break
+            case .myMusic:
+                let vc = MyMusicVC.createVC()
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
             }
         }.disposed(by: disposeBag)
     }

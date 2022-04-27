@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		52561BFB5BAEB3D46C369B17 /* Pods_Capmix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A79D60AF815412A0681B9D9 /* Pods_Capmix.framework */; };
 		930F256E28191A78001E56BF /* Encode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930F256D28191A78001E56BF /* Encode+Extension.swift */; };
+		930F257428198307001E56BF /* MyMusicVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930F257128198306001E56BF /* MyMusicVC.xib */; };
+		930F257528198307001E56BF /* MyMusicVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930F257228198307001E56BF /* MyMusicVM.swift */; };
+		930F257628198307001E56BF /* MyMusicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930F257328198307001E56BF /* MyMusicVC.swift */; };
 		931701252809A42E0005C030 /* ProjectListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931701232809A42E0005C030 /* ProjectListCell.swift */; };
 		931701262809A42E0005C030 /* ProjectListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931701242809A42E0005C030 /* ProjectListCell.xib */; };
 		9317012A2809A63A0005C030 /* MyMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931701282809A63A0005C030 /* MyMusicCell.swift */; };
@@ -98,6 +101,9 @@
 		1A79D60AF815412A0681B9D9 /* Pods_Capmix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Capmix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D4E4D20EEDDB4E3399CC79 /* Pods-Capmix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Capmix.debug.xcconfig"; path = "Target Support Files/Pods-Capmix/Pods-Capmix.debug.xcconfig"; sourceTree = "<group>"; };
 		930F256D28191A78001E56BF /* Encode+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encode+Extension.swift"; sourceTree = "<group>"; };
+		930F257128198306001E56BF /* MyMusicVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMusicVC.xib; sourceTree = "<group>"; };
+		930F257228198307001E56BF /* MyMusicVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicVM.swift; sourceTree = "<group>"; };
+		930F257328198307001E56BF /* MyMusicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicVC.swift; sourceTree = "<group>"; };
 		931701232809A42E0005C030 /* ProjectListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListCell.swift; sourceTree = "<group>"; };
 		931701242809A42E0005C030 /* ProjectListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectListCell.xib; sourceTree = "<group>"; };
 		931701282809A63A0005C030 /* MyMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicCell.swift; sourceTree = "<group>"; };
@@ -186,6 +192,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		930F256F281982E9001E56BF /* MyMusic */ = {
+			isa = PBXGroup;
+			children = (
+				930F257128198306001E56BF /* MyMusicVC.xib */,
+				930F257228198307001E56BF /* MyMusicVM.swift */,
+				930F257328198307001E56BF /* MyMusicVC.swift */,
+			);
+			path = MyMusic;
+			sourceTree = "<group>";
+		};
 		9317011D2809A3B50005C030 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +418,7 @@
 		936EA0132802DF320034E2CC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				930F256F281982E9001E56BF /* MyMusic */,
 				93A31F832814FCC900DAAA1F /* Export */,
 				93D5976D280D903700C4C345 /* NewProject */,
 				9317012C2809D35A0005C030 /* ImportPopup */,
@@ -672,6 +689,7 @@
 				931701302809D3720005C030 /* ImportPopupVC.xib in Resources */,
 				931701262809A42E0005C030 /* ProjectListCell.xib in Resources */,
 				936EA03F2802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf in Resources */,
+				930F257428198307001E56BF /* MyMusicVC.xib in Resources */,
 				9317012B2809A63A0005C030 /* MyMusicCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -739,6 +757,7 @@
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
 				931701252809A42E0005C030 /* ProjectListCell.swift in Sources */,
+				930F257628198307001E56BF /* MyMusicVC.swift in Sources */,
 				931701322809D3720005C030 /* ImportPopupVC.swift in Sources */,
 				931CD2012805680F004EC061 /* CheckVM.swift in Sources */,
 				93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */,
@@ -764,6 +783,7 @@
 				936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */,
 				936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */,
 				939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */,
+				930F257528198307001E56BF /* MyMusicVM.swift in Sources */,
 				936EA00F2802DBE70034E2CC /* ResultURLModel.swift in Sources */,
 				936E9FF82802D8C10034E2CC /* OptionalMessageDTO.swift in Sources */,
 				931CD2062805690A004EC061 /* CheclCLCell.swift in Sources */,

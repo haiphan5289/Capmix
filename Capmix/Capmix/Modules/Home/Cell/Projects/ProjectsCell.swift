@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import EasyBaseAudio
 
 class ProjectsCell: BaseTableViewCell {
     
@@ -48,8 +49,9 @@ extension ProjectsCell {
     }
     
     private func setupRX() {
-        Observable.just([1,2])
+        Observable.just(AudioManage.shared.getItemsFolder(folder: ConstantApp.shared.folderProject))
             .bind(to: self.collectionView.rx.items(cellIdentifier: NearsCell.identifier, cellType: NearsCell.self)) { row, data, cell in
+                cell.loadValue(url: data)
             }.disposed(by: disposeBag)
     }
     

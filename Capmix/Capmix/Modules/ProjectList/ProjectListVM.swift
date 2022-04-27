@@ -26,7 +26,7 @@ class ProjectListVM {
     }
     
     func getItemMyMusic() {
-        self.mymusic.accept(AudioManage.shared.getItemsFolder(folder: ConstantApp.shared.folderProject))
+        self.myProjects.accept(AudioManage.shared.getItemsFolder(folder: ConstantApp.shared.folderProject))
     }
     
     func getItemImports() {
