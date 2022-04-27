@@ -21,6 +21,7 @@ class ExportAudioVC: BaseVC {
     
     // Add here outlets
     var audioURL: URL?
+    var count: Int = 0
     
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var btNext: UIButton!
@@ -65,6 +66,7 @@ extension ExportAudioVC {
                 wSelf.tfName.resignFirstResponder()
                 wSelf.audioSuccess = outputURL
                 wSelf.successView.isHidden = false
+                RealmManager.shared.updateOrInsertProject(url: outputURL, count: wSelf.count)
             } failure: { text in
                 print(text)
             }

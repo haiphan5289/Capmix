@@ -9,22 +9,21 @@
 import Foundation
 import RealmSwift
 
-//class RecordingHomeModelRealm: Object {
-//    @objc dynamic var data: Data?
-//    @objc dynamic var id: Double = 0
-//
-//    init(_ model: RecordingHomeModel) {
-//        super.init()
-//        do {
-//            self.data = try model.toData()
-//            self.id = model.id
-//        } catch {
-//            print("\(error.localizedDescription)")
-//        }
-//        
-//
-//    }
-//    required init() {
-//        super.init()
-//    }
-//}
+class ProjectRealm: Object {
+    @objc dynamic var data: Data?
+    @objc dynamic var url: URL?
+
+    init(url: URL, model: Int) {
+        super.init()
+        self.url = url
+        self.count = count
+    }
+    required init() {
+        super.init()
+    }
+}
+
+struct ProjectModel: Codable {
+    let url: URL
+    let count: Double
+}

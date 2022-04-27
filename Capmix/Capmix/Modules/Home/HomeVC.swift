@@ -10,6 +10,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import EasyBaseAudio
 
 class HomeVC: BaseVC {
     
@@ -71,6 +72,7 @@ extension HomeVC {
         self.tableView.register(HomeCell.nib, forCellReuseIdentifier: HomeCell.identifier)
         self.tableView.register(ProjectsCell.nib, forCellReuseIdentifier: ProjectsCell.identifier)
         self.tableView.delegate = self
+        AudioManage.shared.removeFilesFolder(name: ConstantApp.shared.folderConvert)
     }
     
     private func setupRX() {

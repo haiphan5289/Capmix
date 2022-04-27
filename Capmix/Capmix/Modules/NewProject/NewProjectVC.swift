@@ -244,6 +244,7 @@ extension NewProjectVC {
             let vc = ExportAudioVC.createVC()
             if let url = wSelf.exportAudio {
                 vc.audioURL = url
+                vc.count = wSelf.sourcesURL.count
             }
             wSelf.navigationController?.pushViewController(vc, completion: nil)
         }.disposed(by: self.disposeBag)

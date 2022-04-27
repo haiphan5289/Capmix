@@ -29,6 +29,10 @@ extension ProjectListCell {
     func loadValue(url: URL) {
         self.lbTitle.text = url.getNameAudio()
         let date = url.creation?.covertToString(format: .ddMMyyyyHHmmss)
-        self.subTitle.text = "\(Int(url.getDuration()).getTextFromSecond()) \(date ?? "")"
+        var count: Int = 0
+        if let index = RealmManager.shared.getProjectRealm().firstIndex(where: { $0.url == url }) {
+            count = RealmManager.shared.getProjectRealm()[index].count
+        }
+        self.subTitle.text = "\(Int(url.getDuration()).getTextFromSecond()) \(count) tracks \(date ?? "")"
     }
 }

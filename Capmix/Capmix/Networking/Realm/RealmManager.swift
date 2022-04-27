@@ -41,27 +41,27 @@ class RealmManager {
         RLMRealm.default()
     }
     
-//    private func getAllRecodingHomeRealm() -> [RecordingHomeModelRealm]  {
-//        let arr = realm.objects(RecordingHomeModelRealm.self).toArray(ofType: RecordingHomeModelRealm.self)
-//        return arr
-//    }
-//
-//    func updateOrInsertConfig(model: RecordingHomeModel) {
-//        let list = self.getAllRecodingHomeRealm()
-//
-//        if let index = list.firstIndex(where: { $0.id == model.id  }) {
-//            try! realm.write {
-//                list[index].data = try? model.toData()
-//                NotificationCenter.default.post(name: NSNotification.Name(PushNotificationKeys.didRecording.rawValue), object: model, userInfo: nil)
-//            }
-//        } else {
-//            let itemAdd = RecordingHomeModelRealm.init(model)
-//            try! realm.write {
-//                realm.add(itemAdd)
-//                NotificationCenter.default.post(name: NSNotification.Name(PushNotificationKeys.didRecording.rawValue), object: model, userInfo: nil)
-//            }
-//        }
-//    }
+    func getProjectRealm() -> [ProjectRealm]  {
+        let arr = realm.objects(ProjectRealm.self).toArray(ofType: ProjectRealm.self)
+        return arr
+    }
+
+    func updateOrInsertProject(url: URL, count: Int) {
+        let list = self.getProjectRealm()
+
+        if let index = list.firstIndex(where: { $0.url == url  }) {
+            try! realm.write {
+                list[index].url = url
+                NotificationCenter.default.post(name: NSNotification.Name(PushNotificationKeys.addedProject.rawValue), object: nil, userInfo: nil)
+            }
+        } else {
+            let itemAdd = ProjectRealm.init(url: url, count: count)
+            try! realm.write {
+                realm.add(itemAdd)
+                NotificationCenter.default.post(name: NSNotification.Name(PushNotificationKeys.addedProject.rawValue), object: nil, userInfo: nil)
+            }
+        }
+    }
 //    
 //    func deleteLastRecording() {
 //        let items = self.getAllRecodingHomeRealm()
