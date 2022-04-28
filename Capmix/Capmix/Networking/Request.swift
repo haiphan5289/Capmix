@@ -259,7 +259,7 @@ struct RequestService {
 //            }else {
 //                headers = []
 //            }
-            let request =  AF.request("SERVER + url",
+            let request =  AF.request(ConstantApp.shared.SERVER + url,
                                       method: method,
                                       parameters: parameters,
                                       encoding: JSONEncoding.default,

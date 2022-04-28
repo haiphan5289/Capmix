@@ -31,6 +31,8 @@
 		931CD20D28056D0F004EC061 /* RecordingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD20A28056D0F004EC061 /* RecordingVM.swift */; };
 		931CD20E28056D0F004EC061 /* RecordingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931CD20B28056D0F004EC061 /* RecordingVC.swift */; };
 		93516E2228184F3800961144 /* PushNotificationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93516E2128184F3800961144 /* PushNotificationKeys.swift */; };
+		9352B992281ACCD300545E10 /* SoundAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352B991281ACCD300545E10 /* SoundAPI.swift */; };
+		9352B994281ACD3100545E10 /* APILink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9352B993281ACD3100545E10 /* APILink.swift */; };
 		936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FD92802CE920034E2CC /* AppDelegate.swift */; };
 		936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDB2802CE920034E2CC /* SceneDelegate.swift */; };
 		936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E9FDD2802CE920034E2CC /* ViewController.swift */; };
@@ -123,6 +125,8 @@
 		931CD20A28056D0F004EC061 /* RecordingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingVM.swift; sourceTree = "<group>"; };
 		931CD20B28056D0F004EC061 /* RecordingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingVC.swift; sourceTree = "<group>"; };
 		93516E2128184F3800961144 /* PushNotificationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationKeys.swift; sourceTree = "<group>"; };
+		9352B991281ACCD300545E10 /* SoundAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundAPI.swift; sourceTree = "<group>"; };
+		9352B993281ACD3100545E10 /* APILink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILink.swift; sourceTree = "<group>"; };
 		936E9FD62802CE920034E2CC /* Capmix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capmix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936E9FD92802CE920034E2CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		936E9FDB2802CE920034E2CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -287,6 +291,14 @@
 			path = Recording;
 			sourceTree = "<group>";
 		};
+		9352B990281ACCC300545E10 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9352B991281ACCD300545E10 /* SoundAPI.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		936E9FCD2802CE920034E2CC = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +350,7 @@
 				936E9FF12802D8C10034E2CC /* ReadJson.swift */,
 				936E9FF22802D8C10034E2CC /* Request.swift */,
 				936E9FF32802D8C10034E2CC /* Realm */,
+				9352B993281ACD3100545E10 /* APILink.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -581,6 +594,7 @@
 		93DA6C51280874D20077D3F7 /* ProjectList */ = {
 			isa = PBXGroup;
 			children = (
+				9352B990281ACCC300545E10 /* Model */,
 				9317011D2809A3B50005C030 /* Cell */,
 				93DA6C52280874E40077D3F7 /* ProjectListVC.xib */,
 				93DA6C53280874E40077D3F7 /* ProjectListVM.swift */,
@@ -763,6 +777,7 @@
 				93B2576F2803E762000BECA5 /* Strings-Gen.swift in Sources */,
 				93D59773280D905300C4C345 /* NewProjectVC.swift in Sources */,
 				936EA0002802D9090034E2CC /* Obserable+Extension.swift in Sources */,
+				9352B994281ACD3100545E10 /* APILink.swift in Sources */,
 				936EA0232802E0C90034E2CC /* Constant.swift in Sources */,
 				93B37A5628050CE800058E10 /* ProjectsCell.swift in Sources */,
 				936EA01B2802DFCC0034E2CC /* HomeVM.swift in Sources */,
@@ -780,6 +795,7 @@
 				93516E2228184F3800961144 /* PushNotificationKeys.swift in Sources */,
 				93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */,
 				93DA6C57280874E40077D3F7 /* ProjectListVC.swift in Sources */,
+				9352B992281ACCD300545E10 /* SoundAPI.swift in Sources */,
 				936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */,
 				936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */,
 				939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */,

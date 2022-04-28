@@ -13,7 +13,7 @@ final class ConstantApp {
     
     private init() {}
     
-    let server: String = ""
+    let SERVER = "http://143.198.145.124"
     let folderRecording: String = "Recording"
     let folderApple: String = "Apple"
     let folderConvert: String = "Covert"
