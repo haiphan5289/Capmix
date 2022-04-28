@@ -47,7 +47,7 @@ public final class AudioEffect {
         
     }
     
-    func initation(musicUrl: URL,
+    public func initation(musicUrl: URL,
                    timeStart: Float,
                    timeEnd: Float,
                    setting: SettingEditAudioModel,
@@ -1428,21 +1428,23 @@ struct EditAudioModel: EditAudioProtocol {
     var timeWait: Int?
     var totalTime: Int?
 }
-struct SettingEditAudioModel: Codable {
-    var rate: Float = 1
+public struct SettingEditAudioModel  {
+    public var rate: Float = 1
+    public init () {}
 }
-struct ManageEffectModel: Codable {
-    var scenes: Int = 0
-    var reverb: CGFloat = 0
-    var setStart: CGFloat = 0
-    var setEnd: CGFloat = 0
-    var pitch: CGFloat = 0
-    var deplay: CGFloat = 0
-    var distortion: CGFloat = 0
-    var highShelf: CGFloat = 0
-    var lowShelf: CGFloat = 0
-    var equalizer: Int = 0
-    var preSets: [Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+public struct ManageEffectModel {
+    public var scenes: Int = 0
+    public var reverb: CGFloat = 0
+    public var setStart: CGFloat = 0
+    public var setEnd: CGFloat = 0
+    public var pitch: CGFloat = 0
+    public var deplay: CGFloat = 0
+    public var distortion: CGFloat = 0
+    public var highShelf: CGFloat = 0
+    public var lowShelf: CGFloat = 0
+    public var equalizer: Int = 0
+    public var preSets: [Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    public init () {}
 }
 public struct RecordAudioModel: Codable {
     let id: Double?

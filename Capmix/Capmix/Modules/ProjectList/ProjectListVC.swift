@@ -15,6 +15,7 @@ import MediaPlayer
 import StoreKit
 import EasyBaseAudio
 import SVProgressHUD
+import AVKit
 
 protocol ProjectListDelegate {
     func addMusic(url: URL)
@@ -190,7 +191,8 @@ extension ProjectListVC: ImportPopupDelegate {
         case .photoLibrary:
             let vc = UIImagePickerController()
             vc.sourceType = .photoLibrary
-            vc.mediaTypes = [kUTTypeMovie as String]
+            vc.mediaTypes = ["public.movie"]
+            vc.delegate = self
             self.present(vc, animated: true, completion: nil)
         case .files:
             let types = [kUTTypeMovie, kUTTypeVideo, kUTTypeAudio, kUTTypeQuickTimeMovie, kUTTypeMPEG, kUTTypeMPEG2Video]
@@ -199,6 +201,25 @@ extension ProjectListVC: ImportPopupDelegate {
             documentPicker.allowsMultipleSelection = false
             //                        documentPicker.shouldShowFileExtensions = true
             self.present(documentPicker, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+}
+extension ProjectListVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Save video to device
+        let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as! URL
+        AudioManage.shared.converVideofromPhotoLibraryToMP4(videoURL: videoURL, folderName: ConstantApp.shared.folderImport) { [weak self] outputURL in
+            guard let wSelf = self else { return }
+            DispatchQueue.main.async {
+                picker.dismiss(animated: true) {
+                    wSelf.imports.append(outputURL)
+                    wSelf.tableView.reloadData()
+                }
+            }
+            
         }
     }
 }
@@ -215,6 +236,7 @@ extension ProjectListVC: UIDocumentPickerDelegate {
                     wSelf.imports.append(outputURLBrowser)
                     wSelf.tableView.reloadData()
                     SVProgressHUD.dismiss()
+                    wSelf.playAudio(url: outputURLBrowser, rate: 1, currentTime: 0)
                 }
                 
             } failure: { [weak self] text in
@@ -226,18 +248,18 @@ extension ProjectListVC: UIDocumentPickerDelegate {
 
     }
     
-//    private func playAudio(url: URL, rate: Float, currentTime: CGFloat) {
-//        do {
-//            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-////            self.audioPlayer.delegate = self
-//            self.audioPlayer.enableRate = true
-//            self.audioPlayer.prepareToPlay()
-//            self.audioPlayer.volume = rate
-//            self.audioPlayer.play()
-//            self.audioPlayer.currentTime = TimeInterval(currentTime)
-//        } catch {
-//        }
-//    }
+    private func playAudio(url: URL, rate: Float, currentTime: CGFloat) {
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: url)
+//            self.audioPlayer.delegate = self
+            self.audioPlayer.enableRate = true
+            self.audioPlayer.prepareToPlay()
+            self.audioPlayer.volume = rate
+            self.audioPlayer.play()
+            self.audioPlayer.currentTime = TimeInterval(currentTime)
+        } catch {
+        }
+    }
 }
 extension ProjectListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
