@@ -130,7 +130,6 @@ extension NewProjectVC {
             fAudio.size = CGSize(width: 50, height: 100)
             self.audioStackView.frame = fAudio
             
-            self.numberOfRecording(addSecond: 600)
         }
         self.startPosition = self.positionCenter()
         
@@ -217,6 +216,9 @@ extension NewProjectVC {
             }
             let max = list.map { $0.getEndTime() }.max()
             wSelf.modifyAudioFrame(maxLenght: Double(max ?? 0), count: Double(list.count + 1))
+            if list.count == 1 {
+                wSelf.numberOfRecording(addSecond: 600)
+            }
         }.disposed(by: self.disposeBag)
         
         self.scaleRange.debounce(.milliseconds(200), scheduler: MainScheduler.asyncInstance).bind { [weak self] abRange in
