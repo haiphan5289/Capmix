@@ -139,7 +139,7 @@ public class ABVideoRangeSlider: UIView {
         
 //        let viewDrag = UIPanGestureRecognizer(target:self,
 //                                              action: #selector(viewDragged(recognizer:)))
-//        
+//
 //        draggableView.addGestureRecognizer(viewDrag)
         self.draggableView.backgroundColor = .clear
         self.addSubview(draggableView)
