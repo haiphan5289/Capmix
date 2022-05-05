@@ -15,12 +15,12 @@ import EasyBaseAudio
 class HomeVC: BaseVC {
     
     enum ElementHomeCell: Int, CaseIterable {
-        case newMix, myMusic, projects, recording
+        case newMix, projects, recording
         
         var title: String {
             switch self {
             case .newMix: return "Create New Mix"
-            case .myMusic: return "My Music"
+//            case .myMusic: return "My Music"
             case .projects: return "Projects"
             case .recording: return "Recording"
             }
@@ -29,7 +29,7 @@ class HomeVC: BaseVC {
         var subTitle: String {
             switch self {
             case .newMix: return "Make the music or podcast easy than you think"
-            case .myMusic: return "Browe your music that you’ve mixed"
+//            case .myMusic: return "Browe your music that you’ve mixed"
             case .projects: return "Your nearly projects"
             case .recording: return "Record audio with high quality"
             }
@@ -38,7 +38,7 @@ class HomeVC: BaseVC {
         var img: UIImage {
             switch self {
             case .newMix: return Asset.imgCreate.image
-            case .myMusic: return Asset.imgMusic.image
+//            case .myMusic: return Asset.imgMusic.image
             case .projects: return Asset.imgCreate.image
             case .recording: return Asset.imgRecording.image
             }
@@ -48,6 +48,7 @@ class HomeVC: BaseVC {
     
     // Add here outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btPremium: UIButton!
     
     // Add here your view model
     private var viewModel: HomeVM = HomeVM()
@@ -77,6 +78,12 @@ extension HomeVC {
     
     private func setupRX() {
         // Add here the setup for the RX
+        self.btPremium.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self else { return }
+            let vc = INAPPVC.createVC()
+            vc.modalPresentationStyle = .overFullScreen
+            wSelf.present(vc, animated: true, completion: nil)
+        }.disposed(by: self.disposeBag)
         
         Observable.just(ElementHomeCell.allCases).bind(to: tableView.rx.items){(tv, row, item) -> UITableViewCell in
             guard let type = ElementHomeCell(rawValue: row) else {
@@ -111,9 +118,9 @@ extension HomeVC {
             case .newMix:
                 let vc = NewProjectVC.createVC()
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
-            case .myMusic:
-                let vc = MyMusicVC.createVC()
-                wSelf.navigationController?.pushViewController(vc, completion: nil)
+//            case .myMusic:
+//                let vc = MyMusicVC.createVC()
+//                wSelf.navigationController?.pushViewController(vc, completion: nil)
             }
         }.disposed(by: disposeBag)
     }

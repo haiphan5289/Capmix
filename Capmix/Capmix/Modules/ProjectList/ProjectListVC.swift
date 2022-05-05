@@ -81,11 +81,11 @@ extension ProjectListVC {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        if self.openfrom == .newProject {
-            self.statusTap = .myMusic
-            self.projectView.isHidden = true
-            self.tableView.reloadData()
-        }
+//        if self.openfrom == .newProject {
+//            self.statusTap = .myMusic
+//            self.projectView.isHidden = true
+//            self.tableView.reloadData()
+//        }
     }
     
     private func setupRX() {
@@ -396,7 +396,12 @@ extension ProjectListVC: UITableViewDelegate {
         switch self.statusTap {
         case .myMusic:
             return 0.1
-        case .projects, .recordings, .importFiles: return 56
+        case .projects:
+            if self.openfrom == .newProject {
+                return 0.1
+            }
+            return 56
+        case .recordings, .importFiles: return 56
             
         }
     }

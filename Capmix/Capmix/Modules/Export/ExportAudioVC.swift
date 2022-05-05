@@ -29,6 +29,7 @@ class ExportAudioVC: BaseVC {
     @IBOutlet weak var exportView: UIView!
     @IBOutlet weak var successView: UIView!
     @IBOutlet var btsSuccess: [UIButton]!
+    @IBOutlet weak var lbNameAudio: UILabel!
     // Add here your view model
     private var viewModel: ExportAudioVM = ExportAudioVM()
     private var audioSuccess: URL?
@@ -67,6 +68,7 @@ extension ExportAudioVC {
                     wSelf.tfName.resignFirstResponder()
                     wSelf.audioSuccess = outputURL
                     wSelf.successView.isHidden = false
+                    wSelf.lbNameAudio.text = nameAudio
                     RealmManager.shared.updateOrInsertProject(model: ProjectModel(url: outputURL, count: Double(wSelf.count)))
                 }
                 

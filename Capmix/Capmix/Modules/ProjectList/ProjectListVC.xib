@@ -79,8 +79,8 @@
                                                 <constraint firstItem="cKi-iw-mFI" firstAttribute="centerX" secondItem="jk8-Mq-5y8" secondAttribute="centerX" id="vdS-4p-sMa"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjb-FC-cwj">
-                                            <rect key="frame" x="101.5" y="0.0" width="50" height="52"/>
+                                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjb-FC-cwj">
+                                            <rect key="frame" x="50" y="0.0" width="50" height="52"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="V2u-uD-dyz">
                                                     <rect key="frame" x="-2.5" y="5" width="55" height="42.5"/>
@@ -113,7 +113,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="243-sc-Yh6">
-                                            <rect key="frame" x="202.5" y="0.0" width="50" height="52"/>
+                                            <rect key="frame" x="152" y="0.0" width="50" height="52"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="F4f-Yj-kYW">
                                                     <rect key="frame" x="-7.5" y="5" width="65.5" height="42.5"/>

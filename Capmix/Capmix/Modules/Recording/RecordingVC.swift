@@ -128,6 +128,7 @@ extension RecordingVC {
             case .stop:
                 wSelf.btPlay.layer.borderWidth = 17
                 wSelf.recording.stop()
+                wSelf.delegate?.updateRecordings()
                 wSelf.navigationController?.popViewController(animated: true, nil)
                 print("====== Recording Finish =====")
                 print(wSelf.recording.url)
@@ -154,7 +155,7 @@ extension RecordingVC {
     private func drawWaveView(height: Float) {
         let position = self.startPosition - self.positionCenter() + self.startPosition
         let v: UIView = UIView(frame: .zero)
-        v.backgroundColor = .red
+        v.backgroundColor = Asset.pink.color
         self.vContentView.addSubview(v)
         v.snp.makeConstraints { make in
             make.centerY.equalToSuperview()

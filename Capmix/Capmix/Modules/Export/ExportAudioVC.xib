@@ -15,6 +15,7 @@
                 <outlet property="bottomStackView" destination="2lL-UN-Ndq" id="eTb-zp-b8g"/>
                 <outlet property="btNext" destination="Tvo-Gh-mnr" id="8KE-gx-hon"/>
                 <outlet property="exportView" destination="l0X-gf-OE1" id="InA-wi-a6f"/>
+                <outlet property="lbNameAudio" destination="TCH-pk-fRC" id="KGL-GP-AFS"/>
                 <outlet property="successView" destination="qHu-5p-iTP" id="UMa-NC-4FN"/>
                 <outlet property="tfName" destination="Oie-cD-L9u" id="FHA-v8-pjS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

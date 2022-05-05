@@ -13,6 +13,7 @@ import RxSwift
 import SnapKit
 import EasyBaseAudio
 import AVFoundation
+import SVProgressHUD
 
 class NewProjectVC: BaseVC {
     
@@ -69,6 +70,10 @@ class NewProjectVC: BaseVC {
     @IBOutlet var btsAudio: [UIButton]!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lbTime: UILabel!
+    @IBOutlet weak var viewVolume: UIView!
+    @IBOutlet weak var btClose: UIButton!
+    @IBOutlet weak var btDoneVolume: UIButton!
+    @IBOutlet weak var volumeSlider: UISlider!
     private var audioWidthConstraint: Constraint!
     private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
@@ -98,7 +103,8 @@ class NewProjectVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icExport.image)
+//        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icExport.image)
+        self.setupBackButtonSingle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,6 +113,7 @@ class NewProjectVC: BaseVC {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        SVProgressHUD.dismiss()
         self.audioPlayer.pause()
     }
     
@@ -146,16 +153,7 @@ extension NewProjectVC {
                 case .delete:
                     wSelf.deleteAudio(url: url, selectView: selectView)
                 case .volume:
-                    wSelf.changeVolume(url: url, valueVolume: 10) { [weak self] outputURL in
-                        guard let wSelf = self else { return }
-                        if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }) {
-                            wSelf.sourcesURL[index].url = outputURL
-                            
-                        }
-                        if let index = wSelf.audios.firstIndex(where: { $0.url == url }) {
-                            wSelf.audios[index].url = outputURL
-                        }
-                    }
+                    wSelf.viewVolume.isHidden = false
                 case .split:
                     if let video = wSelf.selectRange, let range = wSelf.selectRange?.waveForm {
                         print("==== detectPositionView \(wSelf.detectPositionView(view: range))")
@@ -204,6 +202,28 @@ extension NewProjectVC {
                 }
             }.disposed(by: wSelf.disposeBag)
         }
+        
+        self.btClose.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self else { return }
+            wSelf.viewVolume.isHidden = true
+        }.disposed(by: self.disposeBag)
+        
+        self.btDoneVolume.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self, let url = wSelf.selectAudio else { return }
+            let value = wSelf.volumeSlider.value
+            wSelf.viewVolume.isHidden = true
+            wSelf.changeVolume(url: url, valueVolume: value) { [weak self] outputURL in
+                guard let wSelf = self else { return }
+                if let index = wSelf.sourcesURL.firstIndex(where: { $0.url == url }) {
+                    wSelf.sourcesURL[index].url = outputURL
+                    wSelf.selectAudio = outputURL
+                    
+                }
+                if let index = wSelf.audios.firstIndex(where: { $0.url == url }) {
+                    wSelf.audios[index].url = outputURL
+                }
+            }
+        }.disposed(by: self.disposeBag)
         
         self.$sourcesURL.asObservable().bind { [weak self] list in
             guard let wSelf = self else { return }
@@ -346,22 +366,28 @@ extension NewProjectVC {
         l.removeFirst()
         
         let audioEffect = AudioEffect()
-        audioEffect.mergeAudiosSplits(musicUrl: url,
-                                      timeStart: 0,
-                                      timeEnd: first.endSecond,
-                                      index: 1, listAudioProtocol: l,
-                                      deplayTime: first.startAudio(), nameMusic: "self.nameMusic",
-                                      folderName: ConstantApp.shared.folderConvert,
-                                      nameId: "String") { (outputURL, _) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                AudioManage.shared.covertToAudio(url: outputURL, folder: ConstantApp.shared.folderConvert, type: .m4a) { [weak self] audioURL in
-                    guard let wSelf = self else { return }
-                    wSelf.exportAudio = audioURL
-                } failure: { _ in
-
+        SVProgressHUD.show()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            audioEffect.mergeAudiosSplits(musicUrl: url,
+                                          timeStart: 0,
+                                          timeEnd: first.endSecond,
+                                          index: 1, listAudioProtocol: l,
+                                          deplayTime: first.startAudio(),
+                                          nameMusic: "self.nameMusic",
+                                          folderName: ConstantApp.shared.folderConvert,
+                                          nameId: AudioManage.shared.parseDatetoString()) { (outputURL, _) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    AudioManage.shared.covertToAudio(url: outputURL, folder: ConstantApp.shared.folderConvert, type: .m4a) { [weak self] audioURL in
+                        guard let wSelf = self else { return }
+                        SVProgressHUD.dismiss()
+                        wSelf.exportAudio = audioURL
+                    } failure: { _ in
+                        SVProgressHUD.dismiss()
+                    }
                 }
+            } failure: { (err, txt) in
+                SVProgressHUD.dismiss()
             }
-        } failure: { (err, txt) in
         }
     }
     
