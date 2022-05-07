@@ -261,13 +261,11 @@ extension NewProjectVC {
         }.disposed(by: self.disposeBag)
         
         self.btSearch.rx.tap.bind { [weak self] _ in
-            guard let wSelf = self else { return }
+            guard let wSelf = self, let url = wSelf.exportAudio  else { return }
             if Configuration.inPremiumUser() {
                 let vc = ExportAudioVC.createVC()
-                if let url = wSelf.exportAudio {
-                    vc.audioURL = url
-                    vc.count = wSelf.sourcesURL.count
-                }
+                vc.audioURL = url
+                vc.count = wSelf.sourcesURL.count
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
             } else {
                 let vc = INAPPVC.createVC()
