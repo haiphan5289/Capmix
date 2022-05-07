@@ -20,9 +20,9 @@ final class ConstantApp {
     let folderProject: String = "Projects"
     let folderImport: String = "Imports"
 //    let SHARE_APPLICATION_DELEGATE = UIApplication.shared.delegate as! AppDelegate
-//    let linkTerm: String = "https://sites.google.com/view/filza-file-manager-document/terms-and-condition?authuser=0"
+    let linkTerm: String = "https://sites.google.com/view/clearcompsite/terms-and-condition?authuser=0"
 //    let linkSUpport: String = "https://sites.google.com/view/filza-file-manager-document/support?authuser=0"
-//    let linkPrivacy: String = "https://sites.google.com/view/filza-file-manager-document/privacy-policy?authuser=0"
+    let linkPrivacy: String = "https://sites.google.com/view/clearcompsite/privacy-policy?authuser=0"
 
     func getHeightSafeArea(type: GetHeightSafeArea.SafeAreaType) -> CGFloat {
         return GetHeightSafeArea.shared.getHeight(type: type)

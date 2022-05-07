@@ -103,8 +103,7 @@ class NewProjectVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-//        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icExport.image)
-        self.setupBackButtonSingle()
+        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icExport.image)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -263,12 +262,19 @@ extension NewProjectVC {
         
         self.btSearch.rx.tap.bind { [weak self] _ in
             guard let wSelf = self else { return }
-            let vc = ExportAudioVC.createVC()
-            if let url = wSelf.exportAudio {
-                vc.audioURL = url
-                vc.count = wSelf.sourcesURL.count
+            if Configuration.inPremiumUser() {
+                let vc = ExportAudioVC.createVC()
+                if let url = wSelf.exportAudio {
+                    vc.audioURL = url
+                    vc.count = wSelf.sourcesURL.count
+                }
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
+            } else {
+                let vc = INAPPVC.createVC()
+                vc.modalPresentationStyle = .overFullScreen
+                wSelf.present(vc, animated: true, completion: nil)
             }
-            wSelf.navigationController?.pushViewController(vc, completion: nil)
+            
         }.disposed(by: self.disposeBag)
         
     }

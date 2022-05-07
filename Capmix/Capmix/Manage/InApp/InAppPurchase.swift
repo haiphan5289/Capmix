@@ -14,6 +14,17 @@ enum PaymentInApp: Int, CaseIterable {
     case week
     case month
     case year
+    
+    var text: String {
+        switch self {
+        case .week:
+            return "Weekly"
+        case .month:
+            return "Monthly"
+        case .year:
+            return "Yearly"
+        }
+    }
 }
 
 enum ProductID: String, CaseIterable {

@@ -16,6 +16,11 @@
                 <outlet property="lbWeek" destination="5Qr-K8-AUr" id="lO4-ao-VbW"/>
                 <outlet property="segmentControl" destination="N2y-Ug-2gx" id="K8A-xL-nIB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="bts" destination="pai-uL-IbZ" collectionClass="NSMutableArray" id="Foq-jW-fxQ"/>
+                <outletCollection property="bts" destination="beW-jV-lNZ" collectionClass="NSMutableArray" id="Kqa-ki-VtP"/>
+                <outletCollection property="bts" destination="xfj-bP-PgL" collectionClass="NSMutableArray" id="XhU-Ep-h8O"/>
+                <outletCollection property="bts" destination="AqO-ed-R38" collectionClass="NSMutableArray" id="OPD-aO-hjB"/>
+                <outletCollection property="bts" destination="6us-Lk-Aa0" collectionClass="NSMutableArray" id="cpB-2c-lWc"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
