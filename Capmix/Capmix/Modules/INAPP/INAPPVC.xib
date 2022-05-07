@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="INAPPVC" customModule="Capmix" customModuleProvider="target">
             <connections>
+                <outlet property="lbSelect" destination="RZ4-1k-VfE" id="s9M-pA-z97"/>
+                <outlet property="lbWeek" destination="5Qr-K8-AUr" id="lO4-ao-VbW"/>
                 <outlet property="segmentControl" destination="N2y-Ug-2gx" id="K8A-xL-nIB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -284,7 +286,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m43-MF-ajE">
                                                     <rect key="frame" x="24" y="16" width="334" height="140"/>
-                                                    <mutableString key="text">Payment will be charged to iTunes Account at confirmation of purchase. To ensure uninterrupted service, all subscriptions are renewed automaticallv unless auto-renew is turned off at least 24-hours before the end of the current period. The account is charged for renewal within 24-hours before the end of the current period. Users can manage and cancel subscriptions in their account settings on the App Store. Please note that when vour purchase a subscription, the sale is final, and we will not provide a refund. Your purchase will be subject to Apple's applicable payment policy, which also may not provide for refunds.</mutableString>
+                                                    <string key="text">Payment will be charged to iTunes Account at confirmation of purchase. To ensure uninterrupted service, all subscriptions are renewed automaticallv unless auto-renew is turned off at least 24-hours before the end of the current period. The account is charged for renewal within 24-hours before the end of the current period. Users can manage and cancel subscriptions in their account settings on the App Store. Please note that when vour purchase a subscription, the sale is final, and we will not provide a refund. Your purchase will be subject to Apple's applicable payment policy, which also may not provide for refunds.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" name="charcoalGrey60"/>
                                                     <nil key="highlightedColor"/>
