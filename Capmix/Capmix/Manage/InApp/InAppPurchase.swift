@@ -188,6 +188,7 @@ open class InAppPerchaseManager: NSObject, SKProductsRequestDelegate, SKPaymentT
      Request products from Apple
      */
     open func requestProducts(_ completionHandler: @escaping (_ success:Bool, _ products:[SKProduct]?) -> Void) {
+        productsRequest?.cancel()
         self.completionHandler = completionHandler
         
         print("Requesting Products")
