@@ -74,6 +74,7 @@ extension HomeVC {
         self.tableView.register(ProjectsCell.nib, forCellReuseIdentifier: ProjectsCell.identifier)
         self.tableView.delegate = self
         AudioManage.shared.removeFilesFolder(name: ConstantApp.shared.folderConvert)
+        self.createRecorder()
     }
     
     private func setupRX() {
@@ -124,6 +125,25 @@ extension HomeVC {
             }
         }.disposed(by: disposeBag)
     }
+    
+    //create a record to be not error when start record
+    func createRecorder() {
+        let recording = Recording(folderName: "\(ConstantApp.shared.folderRecording)")
+        // Optionally, you can prepare the recording in the background to
+        // make it start recording faster when you hit `record()`.
+
+        DispatchQueue.global().async {
+            // Background thread
+            do {
+                try recording.prepare()
+                try recording.record()
+            } catch {
+                print(error)
+            }
+        }
+        recording.stop()
+    }
+    
 }
 extension HomeVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
