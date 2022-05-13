@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>874924264774-ap8on3vfh4f6jq3lbgf2ro9ho2rgrh93.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.874924264774-ap8on3vfh4f6jq3lbgf2ro9ho2rgrh93</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDEO_FR6C2b0hsmCyQ0E6pOwnbpxZWL4Bo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>874924264774</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.audiorecorder1</string>
+	<key>PROJECT_ID</key>
+	<string>campix-b6341</string>
+	<key>STORAGE_BUCKET</key>
+	<string>campix-b6341.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:874924264774:ios:b96203daf24875970da947</string>
+</dict>
+</plist>
