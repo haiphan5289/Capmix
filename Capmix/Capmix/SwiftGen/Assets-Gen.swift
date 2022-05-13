@@ -23,6 +23,7 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal static let back37 = ColorAsset(name: "back37")
+  internal static let backOpacity04 = ColorAsset(name: "backOpacity04")
   internal static let backOpacity60 = ColorAsset(name: "backOpacity60")
   internal static let backOpacity80 = ColorAsset(name: "backOpacity80")
   internal static let backOpcacity20 = ColorAsset(name: "backOpcacity20")
@@ -39,6 +40,9 @@ internal enum Asset {
   internal static let imgCreate = ImageAsset(name: "img_create")
   internal static let imgMusic = ImageAsset(name: "img_music")
   internal static let imgRecording = ImageAsset(name: "img_recording")
+  internal static let icAllowed = ImageAsset(name: "ic_Allowed")
+  internal static let icInappBg = ImageAsset(name: "ic_inapp_bg")
+  internal static let icUnAllow = ImageAsset(name: "ic_unAllow")
   internal static let icDeleteProject = ImageAsset(name: "ic_delete_project")
   internal static let icEmptyview = ImageAsset(name: "ic_emptyview")
   internal static let icExport = ImageAsset(name: "ic_export")
@@ -67,6 +71,9 @@ internal enum Asset {
   internal static let icRecordingInactive = ImageAsset(name: "ic_recording_inactive")
   internal static let icSearchProject = ImageAsset(name: "ic_search_project")
   internal static let icCloseRecording = ImageAsset(name: "ic_close_recording")
+  internal static let icVolumeDone = ImageAsset(name: "ic_volume_done")
+  internal static let icVolumeMax = ImageAsset(name: "ic_volume_max")
+  internal static let icVolumeMin = ImageAsset(name: "ic_volume_min")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import EasyBaseCodes
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,12 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UIFont.overrideInitialize()
         self.moveToHome()
+        FirebaseApp.configure()
         return true
     }
     
     private func moveToHome() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = HomeVC.createVC()
+        let vc = LoadFirebaseVC.createVC()
         let navi = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = navi
         self.window?.makeKeyAndVisible()

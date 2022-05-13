@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func moveToHome(scense: UIWindowScene) {
         self.window = UIWindow(windowScene: scense)
-        let vc = HomeVC.createVC()
+        let vc = LoadFirebaseVC.createVC()
         let navi = UINavigationController(rootViewController: vc)
         self.window?.rootViewController = navi
         self.window?.makeKeyAndVisible()

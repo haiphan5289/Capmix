@@ -15,11 +15,17 @@ import EasyBaseAudio
 import SVProgressHUD
 import SwiftyStoreKit
 
+protocol INAPPDelegate {
+    func dismiss()
+}
+
 class INAPPVC: UIViewController {
     
     enum Action: Int, CaseIterable {
         case restore, close, term, privacy, sub
     }
+     
+    var delegate: INAPPDelegate?
     
     // Add here outlets
     @IBOutlet weak var segmentControl: UISegmentedControl!
@@ -138,8 +144,8 @@ extension INAPPVC {
                 self.showAlert(title: "Successful", message: "Successful") { [weak self] in
                     guard let wSelf = self else { return }
                     wSelf.dismiss(animated: true, completion: { [weak self] in
-//                        guard let wSelf = self else { return }
-//                        wSelf.delegate?.dismiss()
+                        guard let wSelf = self else { return }
+                        wSelf.delegate?.dismiss()
                     })
                     SVProgressHUD.dismiss()
                 }

@@ -69,6 +69,17 @@
 		93878099282256B700AE4B6B /* INAPPVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93878096282256B700AE4B6B /* INAPPVC.xib */; };
 		9387809A282256B700AE4B6B /* INAPPVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93878097282256B700AE4B6B /* INAPPVM.swift */; };
 		9387809B282256B700AE4B6B /* INAPPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93878098282256B700AE4B6B /* INAPPVC.swift */; };
+		9388E5ED282E8ADB003E4E75 /* GrantSystemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388E5EA282E8ADB003E4E75 /* GrantSystemVC.swift */; };
+		9388E5EE282E8ADB003E4E75 /* GrantSystemVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9388E5EB282E8ADB003E4E75 /* GrantSystemVC.xib */; };
+		9388E5EF282E8ADB003E4E75 /* GrantSystemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388E5EC282E8ADB003E4E75 /* GrantSystemVM.swift */; };
+		9388E5F4282E8AE2003E4E75 /* WelcomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388E5F1282E8AE2003E4E75 /* WelcomeVM.swift */; };
+		9388E5F5282E8AE2003E4E75 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388E5F2282E8AE2003E4E75 /* WelcomeVC.swift */; };
+		9388E5F6282E8AE2003E4E75 /* WelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9388E5F3282E8AE2003E4E75 /* WelcomeVC.xib */; };
+		9388E5FB282E8C8C003E4E75 /* LoadFirebaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388E5F8282E8C8C003E4E75 /* LoadFirebaseVM.swift */; };
+		9388E5FC282E8C8C003E4E75 /* LoadFirebaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388E5F9282E8C8C003E4E75 /* LoadFirebaseVC.swift */; };
+		9388E5FD282E8C8C003E4E75 /* LoadFirebaseVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9388E5FA282E8C8C003E4E75 /* LoadFirebaseVC.xib */; };
+		9388E5FF282E8CA8003E4E75 /* FirebaseManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9388E5FE282E8CA8003E4E75 /* FirebaseManage.swift */; };
+		9388E601282E90A1003E4E75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9388E600282E90A1003E4E75 /* GoogleService-Info.plist */; };
 		9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399C1F52806D9E9007414FC /* TimeLineView.swift */; };
 		9399C1F82806D9FB007414FC /* TimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9399C1F72806D9FB007414FC /* TimeLineView.xib */; };
 		939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939BADB82805BEBE0054768D /* PropertyWapper.swift */; };
@@ -170,6 +181,17 @@
 		93878096282256B700AE4B6B /* INAPPVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = INAPPVC.xib; sourceTree = "<group>"; };
 		93878097282256B700AE4B6B /* INAPPVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INAPPVM.swift; sourceTree = "<group>"; };
 		93878098282256B700AE4B6B /* INAPPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INAPPVC.swift; sourceTree = "<group>"; };
+		9388E5EA282E8ADB003E4E75 /* GrantSystemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrantSystemVC.swift; sourceTree = "<group>"; };
+		9388E5EB282E8ADB003E4E75 /* GrantSystemVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GrantSystemVC.xib; sourceTree = "<group>"; };
+		9388E5EC282E8ADB003E4E75 /* GrantSystemVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrantSystemVM.swift; sourceTree = "<group>"; };
+		9388E5F1282E8AE2003E4E75 /* WelcomeVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVM.swift; sourceTree = "<group>"; };
+		9388E5F2282E8AE2003E4E75 /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		9388E5F3282E8AE2003E4E75 /* WelcomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeVC.xib; sourceTree = "<group>"; };
+		9388E5F8282E8C8C003E4E75 /* LoadFirebaseVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadFirebaseVM.swift; sourceTree = "<group>"; };
+		9388E5F9282E8C8C003E4E75 /* LoadFirebaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadFirebaseVC.swift; sourceTree = "<group>"; };
+		9388E5FA282E8C8C003E4E75 /* LoadFirebaseVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadFirebaseVC.xib; sourceTree = "<group>"; };
+		9388E5FE282E8CA8003E4E75 /* FirebaseManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManage.swift; sourceTree = "<group>"; };
+		9388E600282E90A1003E4E75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9399C1F52806D9E9007414FC /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		9399C1F72806D9FB007414FC /* TimeLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeLineView.xib; sourceTree = "<group>"; };
 		939BADB82805BEBE0054768D /* PropertyWapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWapper.swift; sourceTree = "<group>"; };
@@ -355,6 +377,7 @@
 				936E9FDD2802CE920034E2CC /* ViewController.swift */,
 				936E9FDF2802CE920034E2CC /* Main.storyboard */,
 				936E9FE22802CE940034E2CC /* Assets.xcassets */,
+				9388E600282E90A1003E4E75 /* GoogleService-Info.plist */,
 				936E9FE42802CE940034E2CC /* LaunchScreen.storyboard */,
 				936E9FE72802CE950034E2CC /* Info.plist */,
 			);
@@ -406,6 +429,7 @@
 		936EA0012802DB9F0034E2CC /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				9388E5FE282E8CA8003E4E75 /* FirebaseManage.swift */,
 				932C5AB028269414009F0B4F /* InApp */,
 				936EA0142802DF510034E2CC /* CampixManage.swift */,
 			);
@@ -451,6 +475,9 @@
 		936EA0132802DF320034E2CC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9388E5F7282E8C8C003E4E75 /* LoadFirebase */,
+				9388E5E9282E8ADB003E4E75 /* GrantSystem */,
+				9388E5F0282E8AE2003E4E75 /* Welcome */,
 				93878095282256A100AE4B6B /* INAPP */,
 				930F256F281982E9001E56BF /* MyMusic */,
 				93A31F832814FCC900DAAA1F /* Export */,
@@ -546,6 +573,36 @@
 				93878098282256B700AE4B6B /* INAPPVC.swift */,
 			);
 			path = INAPP;
+			sourceTree = "<group>";
+		};
+		9388E5E9282E8ADB003E4E75 /* GrantSystem */ = {
+			isa = PBXGroup;
+			children = (
+				9388E5EA282E8ADB003E4E75 /* GrantSystemVC.swift */,
+				9388E5EB282E8ADB003E4E75 /* GrantSystemVC.xib */,
+				9388E5EC282E8ADB003E4E75 /* GrantSystemVM.swift */,
+			);
+			path = GrantSystem;
+			sourceTree = "<group>";
+		};
+		9388E5F0282E8AE2003E4E75 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				9388E5F1282E8AE2003E4E75 /* WelcomeVM.swift */,
+				9388E5F2282E8AE2003E4E75 /* WelcomeVC.swift */,
+				9388E5F3282E8AE2003E4E75 /* WelcomeVC.xib */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		9388E5F7282E8C8C003E4E75 /* LoadFirebase */ = {
+			isa = PBXGroup;
+			children = (
+				9388E5F8282E8C8C003E4E75 /* LoadFirebaseVM.swift */,
+				9388E5F9282E8C8C003E4E75 /* LoadFirebaseVC.swift */,
+				9388E5FA282E8C8C003E4E75 /* LoadFirebaseVC.xib */,
+			);
+			path = LoadFirebase;
 			sourceTree = "<group>";
 		};
 		9399C1F42806D9C2007414FC /* TimeLine */ = {
@@ -716,6 +773,8 @@
 				936EA0402802E1C80034E2CC /* FontsFree-Net-SFProText-Semibold.ttf in Resources */,
 				936EA0412802E1C80034E2CC /* FontsFree-Net-SFProText-Medium.ttf in Resources */,
 				93B2576A2803E72C000BECA5 /* Localizable.strings in Resources */,
+				9388E601282E90A1003E4E75 /* GoogleService-Info.plist in Resources */,
+				9388E5F6282E8AE2003E4E75 /* WelcomeVC.xib in Resources */,
 				936EA0422802E1C80034E2CC /* FontsFree-Net-SFProDisplay-Bold.ttf in Resources */,
 				931CD1FB280563C9004EC061 /* NearsCell.xib in Resources */,
 				9399C1F82806D9FB007414FC /* TimeLineView.xib in Resources */,
@@ -724,6 +783,7 @@
 				93B257642803E172000BECA5 /* HomeCell.xib in Resources */,
 				931CD2002805680F004EC061 /* CheckVC.xib in Resources */,
 				936EA01A2802DFCC0034E2CC /* HomeVC.xib in Resources */,
+				9388E5FD282E8C8C003E4E75 /* LoadFirebaseVC.xib in Resources */,
 				93878099282256B700AE4B6B /* INAPPVC.xib in Resources */,
 				93B37A5728050CE800058E10 /* ProjectsCell.xib in Resources */,
 				93D59771280D905300C4C345 /* NewProjectVC.xib in Resources */,
@@ -734,6 +794,7 @@
 				936E9FE12802CE920034E2CC /* Main.storyboard in Resources */,
 				931701302809D3720005C030 /* ImportPopupVC.xib in Resources */,
 				931701262809A42E0005C030 /* ProjectListCell.xib in Resources */,
+				9388E5EE282E8ADB003E4E75 /* GrantSystemVC.xib in Resources */,
 				936EA03F2802E1C80034E2CC /* FontsFree-Net-SFProText-Regular.ttf in Resources */,
 				930F257428198307001E56BF /* MyMusicVC.xib in Resources */,
 				9317012B2809A63A0005C030 /* MyMusicCell.xib in Resources */,
@@ -790,11 +851,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				931CD1FA280563C9004EC061 /* NearsCell.swift in Sources */,
+				9388E5ED282E8ADB003E4E75 /* GrantSystemVC.swift in Sources */,
 				931701312809D3720005C030 /* ImportPopupVM.swift in Sources */,
 				936E9FFB2802D8C10034E2CC /* Request.swift in Sources */,
 				936EA01E2802E0A20034E2CC /* UIFont+Extension.swift in Sources */,
 				936EA00C2802DBE70034E2CC /* Storage.swift in Sources */,
 				93B257662803E50D000BECA5 /* BaseTableViewCell.swift in Sources */,
+				9388E5FF282E8CA8003E4E75 /* FirebaseManage.swift in Sources */,
 				9317580E2802F01C007FB3FE /* BaseVC.swift in Sources */,
 				930F256E28191A78001E56BF /* Encode+Extension.swift in Sources */,
 				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
@@ -820,9 +883,11 @@
 				936E9FFD2802D8C10034E2CC /* RealmModel.swift in Sources */,
 				936E9FDE2802CE920034E2CC /* ViewController.swift in Sources */,
 				932C5AB428269414009F0B4F /* Configuration.swift in Sources */,
+				9388E5EF282E8ADB003E4E75 /* GrantSystemVM.swift in Sources */,
 				93A31F892814FCDC00DAAA1F /* ExportAudioVC.swift in Sources */,
 				936EA0152802DF510034E2CC /* CampixManage.swift in Sources */,
 				936E9FDA2802CE920034E2CC /* AppDelegate.swift in Sources */,
+				9388E5F4282E8AE2003E4E75 /* WelcomeVM.swift in Sources */,
 				93DA6C56280874E40077D3F7 /* ProjectListVM.swift in Sources */,
 				931CD20E28056D0F004EC061 /* RecordingVC.swift in Sources */,
 				936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */,
@@ -833,14 +898,17 @@
 				9352B992281ACCD300545E10 /* SoundAPI.swift in Sources */,
 				936E9FDC2802CE920034E2CC /* SceneDelegate.swift in Sources */,
 				936E9FFA2802D8C10034E2CC /* ReadJson.swift in Sources */,
+				9388E5FC282E8C8C003E4E75 /* LoadFirebaseVC.swift in Sources */,
 				939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */,
 				930F257528198307001E56BF /* MyMusicVM.swift in Sources */,
 				936EA00F2802DBE70034E2CC /* ResultURLModel.swift in Sources */,
 				936E9FF82802D8C10034E2CC /* OptionalMessageDTO.swift in Sources */,
+				9388E5F5282E8AE2003E4E75 /* WelcomeVC.swift in Sources */,
 				931CD2062805690A004EC061 /* CheclCLCell.swift in Sources */,
 				936EA02A2802E1780034E2CC /* ListFont.swift in Sources */,
 				932C5AB328269414009F0B4F /* InAppPurchase.swift in Sources */,
 				9317012A2809A63A0005C030 /* MyMusicCell.swift in Sources */,
+				9388E5FB282E8C8C003E4E75 /* LoadFirebaseVM.swift in Sources */,
 				936EA0102802DBE70034E2CC /* RangeTimeSlider.swift in Sources */,
 				936EA0242802E0C90034E2CC /* GetHeightSafeArea.swift in Sources */,
 				936EA0252802E0C90034E2CC /* SettingDefaultFont.swift in Sources */,
@@ -1001,18 +1069,25 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capmix/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Need location access for updating nearby friends";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will use your location to show cool stuffs near you.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for uploading videos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need photo library access for uploading images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = haiphan.Capmix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiorecorder1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1035,18 +1110,25 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capmix/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Need location access for updating nearby friends";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will use your location to show cool stuffs near you.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need microphone access for uploading videos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Need photo library access for uploading images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = haiphan.Capmix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.audiorecorder1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -13,7 +13,7 @@ import RxSwift
 import AVFoundation
 import CoreLocation
 
-class GrantSystemVC: BaseNavigationSimple {
+class GrantSystemVC: BaseVC {
     
     struct Constant {
         static let x: CGFloat = 0
@@ -72,14 +72,10 @@ extension GrantSystemVC {
             guard let wSelf = self else { return }
             switch AVAudioSession.sharedInstance().recordPermission {
             case AVAudioSession.RecordPermission.granted:
-                let vc = BackUpWelcomeVC.createVC()
-                wSelf.navigationController?.pushViewController(vc, animated: true)
-            case AVAudioSession.RecordPermission.denied, AVAudioSession.RecordPermission.undetermined:
-                let vc = PermissionRequiredVC.createVC()
-                vc.modalTransitionStyle = .crossDissolve
-                vc.modalPresentationStyle = .overFullScreen
+                let vc = INAPPVC.createVC()
                 vc.delegate = self
                 wSelf.present(vc, animated: true, completion: nil)
+            case AVAudioSession.RecordPermission.denied, AVAudioSession.RecordPermission.undetermined: break
             @unknown default: break
             }
         }.disposed(by: disposeBag)
@@ -141,13 +137,9 @@ extension GrantSystemVC: CLLocationManagerDelegate {
     }
 }
 
-extension GrantSystemVC: PermissionRequiredDelegate {
-    func dismissPerrmision() {
-        
-    }
-    
-    func laterSetting() {
-        let vc = BackUpWelcomeVC.createVC()
+extension GrantSystemVC: INAPPDelegate {
+    func dismiss() {
+        let vc = HomeVC.createVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
