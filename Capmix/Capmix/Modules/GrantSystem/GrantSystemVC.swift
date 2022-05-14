@@ -74,6 +74,7 @@ extension GrantSystemVC {
             case AVAudioSession.RecordPermission.granted:
                 let vc = INAPPVC.createVC()
                 vc.delegate = self
+                vc.openfrom = .welcome
                 wSelf.present(vc, animated: true, completion: nil)
             case AVAudioSession.RecordPermission.denied, AVAudioSession.RecordPermission.undetermined: break
             @unknown default: break

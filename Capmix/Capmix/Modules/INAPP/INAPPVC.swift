@@ -24,14 +24,21 @@ class INAPPVC: UIViewController {
     enum Action: Int, CaseIterable {
         case restore, close, term, privacy, sub
     }
+    
+    enum openfrom {
+        case welcome, home
+    }
      
     var delegate: INAPPDelegate?
+    var openfrom: openfrom = .home
     
     // Add here outlets
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var lbSelect: UILabel!
     @IBOutlet weak var lbWeek: UILabel!
     @IBOutlet var bts: [UIButton]!
+    @IBOutlet weak var lbExport: UILabel!
+    @IBOutlet var lbs: [UILabel]!
     
     // Add here your view model
     private var listProductModel: [SKProductModel] = []
@@ -70,6 +77,14 @@ extension INAPPVC {
             } else {
                 wSelf.listProductModel = CampixManage.shared.listRawSKProduct()
             }
+        }
+        
+        if self.openfrom == .home {
+            self.lbs.forEach { lb in
+                lb.isHidden = true
+            }
+        } else {
+            self.lbExport.isHidden = true
         }
     }
     
