@@ -83,6 +83,9 @@
 		9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9399C1F52806D9E9007414FC /* TimeLineView.swift */; };
 		9399C1F82806D9FB007414FC /* TimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9399C1F72806D9FB007414FC /* TimeLineView.xib */; };
 		939BADB92805BEBE0054768D /* PropertyWapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939BADB82805BEBE0054768D /* PropertyWapper.swift */; };
+		93A2067A282F462800F262EC /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A20677282F462800F262EC /* SettingVC.xib */; };
+		93A2067B282F462800F262EC /* SettingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A20678282F462800F262EC /* SettingVM.swift */; };
+		93A2067C282F462800F262EC /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A20679282F462800F262EC /* SettingVC.swift */; };
 		93A31F872814FCDC00DAAA1F /* ExportAudioVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93A31F842814FCDC00DAAA1F /* ExportAudioVC.xib */; };
 		93A31F882814FCDC00DAAA1F /* ExportAudioVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A31F852814FCDC00DAAA1F /* ExportAudioVM.swift */; };
 		93A31F892814FCDC00DAAA1F /* ExportAudioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A31F862814FCDC00DAAA1F /* ExportAudioVC.swift */; };
@@ -195,6 +198,9 @@
 		9399C1F52806D9E9007414FC /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		9399C1F72806D9FB007414FC /* TimeLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeLineView.xib; sourceTree = "<group>"; };
 		939BADB82805BEBE0054768D /* PropertyWapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyWapper.swift; sourceTree = "<group>"; };
+		93A20677282F462800F262EC /* SettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
+		93A20678282F462800F262EC /* SettingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVM.swift; sourceTree = "<group>"; };
+		93A20679282F462800F262EC /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		93A31F842814FCDC00DAAA1F /* ExportAudioVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExportAudioVC.xib; sourceTree = "<group>"; };
 		93A31F852814FCDC00DAAA1F /* ExportAudioVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAudioVM.swift; sourceTree = "<group>"; };
 		93A31F862814FCDC00DAAA1F /* ExportAudioVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAudioVC.swift; sourceTree = "<group>"; };
@@ -475,6 +481,7 @@
 		936EA0132802DF320034E2CC /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				93A2067D282F463100F262EC /* Setting */,
 				9388E5F7282E8C8C003E4E75 /* LoadFirebase */,
 				9388E5E9282E8ADB003E4E75 /* GrantSystem */,
 				9388E5F0282E8AE2003E4E75 /* Welcome */,
@@ -612,6 +619,16 @@
 				9399C1F72806D9FB007414FC /* TimeLineView.xib */,
 			);
 			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		93A2067D282F463100F262EC /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				93A20677282F462800F262EC /* SettingVC.xib */,
+				93A20678282F462800F262EC /* SettingVM.swift */,
+				93A20679282F462800F262EC /* SettingVC.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		93A31F832814FCC900DAAA1F /* Export */ = {
@@ -792,6 +809,7 @@
 				93A31F872814FCDC00DAAA1F /* ExportAudioVC.xib in Resources */,
 				936EA02B2802E1780034E2CC /* ListFont.xib in Resources */,
 				936E9FE12802CE920034E2CC /* Main.storyboard in Resources */,
+				93A2067A282F462800F262EC /* SettingVC.xib in Resources */,
 				931701302809D3720005C030 /* ImportPopupVC.xib in Resources */,
 				931701262809A42E0005C030 /* ProjectListCell.xib in Resources */,
 				9388E5EE282E8ADB003E4E75 /* GrantSystemVC.xib in Resources */,
@@ -862,6 +880,7 @@
 				930F256E28191A78001E56BF /* Encode+Extension.swift in Sources */,
 				936EA00D2802DBE70034E2CC /* AppSettings.swift in Sources */,
 				9399C1F62806D9E9007414FC /* TimeLineView.swift in Sources */,
+				93A2067C282F462800F262EC /* SettingVC.swift in Sources */,
 				93A31F882814FCDC00DAAA1F /* ExportAudioVM.swift in Sources */,
 				936EA01C2802DFCC0034E2CC /* HomeVC.swift in Sources */,
 				936E9FF92802D8C10034E2CC /* ErrorTracker.swift in Sources */,
@@ -893,6 +912,7 @@
 				936E9FFC2802D8C10034E2CC /* RealmManager.swift in Sources */,
 				931CD20D28056D0F004EC061 /* RecordingVM.swift in Sources */,
 				93516E2228184F3800961144 /* PushNotificationKeys.swift in Sources */,
+				93A2067B282F462800F262EC /* SettingVM.swift in Sources */,
 				93B2576E2803E762000BECA5 /* Assets-Gen.swift in Sources */,
 				93DA6C57280874E40077D3F7 /* ProjectListVC.swift in Sources */,
 				9352B992281ACCD300545E10 /* SoundAPI.swift in Sources */,

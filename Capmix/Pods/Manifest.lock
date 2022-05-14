@@ -201,13 +201,11 @@ PODS:
     - SDWebImage/Core (= 5.12.5)
   - SDWebImage/Core (5.12.5)
   - SideMenu (6.5.0)
-  - SKPhotoBrowser (7.0.0)
   - SkyFloatingLabelTextField (4.0.0)
   - SnapKit (5.0.1)
   - SVPinView (1.0.11)
   - SVProgressHUD (2.2.5)
   - SwiftAlgorithms (1.0.0)
-  - SwiftDate (6.3.1)
   - SwiftGen (6.5.1)
   - SwiftPullToRefresh (3.1.1)
   - SwiftyGif (5.4.3)
@@ -254,12 +252,10 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - SideMenu
-  - SKPhotoBrowser
   - SkyFloatingLabelTextField
   - SnapKit
   - SVPinView
   - SVProgressHUD
-  - SwiftDate
   - SwiftGen
   - SwiftPullToRefresh
   - SwiftyJSON
@@ -321,13 +317,11 @@ SPEC REPOS:
     - RxSwift
     - SDWebImage
     - SideMenu
-    - SKPhotoBrowser
     - SkyFloatingLabelTextField
     - SnapKit
     - SVPinView
     - SVProgressHUD
     - SwiftAlgorithms
-    - SwiftDate
     - SwiftGen
     - SwiftPullToRefresh
     - SwiftyGif
@@ -389,13 +383,11 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
-  SKPhotoBrowser: 6aaa8f232752e87c7e76bace183bead0a137097d
   SkyFloatingLabelTextField: 79ddc40e4ad59707fedbb48d605417aee48bb78a
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVPinView: 9b538d0ba68cdb092afe4f0f67ec84cbed079466
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
-  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftGen: a6d22010845f08fe18fbdf3a07a8e380fd22e0ea
   SwiftPullToRefresh: f61d67439c5b8d66420fe57193cab8c279398e7a
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
@@ -406,6 +398,6 @@ SPEC CHECKSUMS:
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
   WMSegmentControl: 15120246d0fdbb7530d7fa03e90c3ec6f4fa85bd
 
-PODFILE CHECKSUM: aab7c5b2dc0ad7c1d463d10a4b91b6db59e28d05
+PODFILE CHECKSUM: ada439ac90437b623d5e76ac2fe51300716f0f91
 
 COCOAPODS: 1.11.3

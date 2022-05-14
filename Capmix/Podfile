@@ -9,7 +9,7 @@ target 'Capmix' do
 
 
 pod 'NVActivityIndicatorView'
-  pod 'SwiftDate'
+#  pod 'SwiftDate'
   pod 'Alamofire', '~> 5.2.2'
   pod 'AlamofireImage', '~> 4.1.0'
   pod 'AKNumericFormatter'
@@ -39,7 +39,7 @@ pod 'NVActivityIndicatorView'
   pod 'ActionSheetPicker-3.0'
   pod 'SwiftPullToRefresh'
   pod 'CRRefresh'
-  pod 'SKPhotoBrowser'
+#  pod 'SKPhotoBrowser'
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'Kingfisher', '~> 5.12.0'

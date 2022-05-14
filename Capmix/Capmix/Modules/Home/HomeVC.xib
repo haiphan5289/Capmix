@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="Capmix" customModuleProvider="target">
             <connections>
                 <outlet property="btPremium" destination="Tpe-6k-4Wf" id="5Q0-wk-1d5"/>
+                <outlet property="btSetting" destination="KjU-23-NGU" id="q63-Hi-Gkp"/>
                 <outlet property="tableView" destination="7Ex-RC-l0a" id="i7t-hU-x15"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -49,6 +49,7 @@ class HomeVC: BaseVC {
     // Add here outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btPremium: UIButton!
+    @IBOutlet weak var btSetting: UIButton!
     
     // Add here your view model
     private var viewModel: HomeVM = HomeVM()
@@ -124,6 +125,12 @@ extension HomeVC {
 //                wSelf.navigationController?.pushViewController(vc, completion: nil)
             }
         }.disposed(by: disposeBag)
+        
+        self.btSetting.rx.tap.bind { [weak self] _ in
+            guard let wSelf = self else { return }
+            let vc = SettingVC.createVC()
+            wSelf.navigationController?.pushViewController(vc, completion: nil)
+        }.disposed(by: self.disposeBag)
     }
     
     //create a record to be not error when start record
