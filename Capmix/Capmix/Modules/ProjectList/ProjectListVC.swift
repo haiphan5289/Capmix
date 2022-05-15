@@ -123,11 +123,17 @@ extension ProjectListVC {
             guard let wSelf = self else { return }
             switch action {
             case .imported:
-                let vc = ImportPopupVC.createVC()
-                vc.modalTransitionStyle = .crossDissolve
-                vc.modalPresentationStyle = .overFullScreen
-                vc.delegate = self
-                wSelf.present(vc, animated: true, completion: nil)
+                if Configuration.inPremiumUser() {
+                    let vc = ImportPopupVC.createVC()
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.delegate = self
+                    wSelf.present(vc, animated: true, completion: nil)
+                } else {
+                    let vc = INAPPVC.createVC()
+                    vc.modalPresentationStyle = .overFullScreen
+                    wSelf.present(vc, animated: true, completion: nil)
+                }
             case .musicApp:
                 let vc = MyMusicVC.createVC()
                 vc.delegate = self
