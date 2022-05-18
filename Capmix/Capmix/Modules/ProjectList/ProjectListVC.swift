@@ -67,7 +67,8 @@ class ProjectListVC: BaseVC {
         super.viewWillAppear(animated)
         self.removeBorder()
         self.navigationController?.isNavigationBarHidden = false
-        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icSearchProject.image)
+//        self.setupBtSearch(imageBack: Asset.icCloseProject.image, imgRight: Asset.icSearchProject.image)
+        self.setupBackButtonSingle()
     }
     
 }
@@ -242,13 +243,12 @@ extension ProjectListVC: UIDocumentPickerDelegate {
                     wSelf.imports.append(outputURLBrowser)
                     wSelf.tableView.reloadData()
                     SVProgressHUD.dismiss()
-                    wSelf.playAudio(url: outputURLBrowser, rate: 1, currentTime: 0)
                 }
                 
             } failure: { [weak self] text in
-                SVProgressHUD.dismiss()
                 guard let wSelf = self else { return }
                 wSelf.showAlert(title: nil, message: text)
+                SVProgressHUD.dismiss()
             }
         }
 
@@ -400,14 +400,14 @@ extension ProjectListVC: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch self.statusTap {
-        case .myMusic:
+        case .myMusic, .importFiles:
             return 0.1
         case .projects:
             if self.openfrom == .newProject {
                 return 0.1
             }
             return 56
-        case .recordings, .importFiles: return 56
+        case .recordings: return 56
             
         }
     }

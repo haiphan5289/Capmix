@@ -363,6 +363,7 @@ extension NewProjectVC {
         l.removeFirst()
         
         let audioEffect = AudioEffect()
+        let randomIndex = Int.random(in: 0...999999)
         SVProgressHUD.show()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             audioEffect.mergeAudiosSplits(musicUrl: url,
@@ -370,7 +371,7 @@ extension NewProjectVC {
                                           timeEnd: first.endSecond,
                                           index: 1, listAudioProtocol: l,
                                           deplayTime: first.startAudio(),
-                                          nameMusic: "self.nameMusic",
+                                          nameMusic: "self.nameMusic\(randomIndex)",
                                           folderName: ConstantApp.shared.folderConvert,
                                           nameId: AudioManage.shared.parseDatetoString()) { (outputURL, _) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

@@ -15,13 +15,13 @@ import EasyBaseAudio
 class HomeVC: BaseVC {
     
     enum ElementHomeCell: Int, CaseIterable {
-        case newMix, projects, recording
+        case newMix, myMusic, recording
         
         var title: String {
             switch self {
             case .newMix: return "Create New Mix"
-//            case .myMusic: return "My Music"
-            case .projects: return "Projects"
+            case .myMusic: return "My Music"
+//            case .projects: return "Projects"
             case .recording: return "Recording"
             }
         }
@@ -29,8 +29,8 @@ class HomeVC: BaseVC {
         var subTitle: String {
             switch self {
             case .newMix: return "Make the music or podcast easy than you think"
-//            case .myMusic: return "Browe your music that you’ve mixed"
-            case .projects: return "Your nearly projects"
+            case .myMusic: return "Browe your music that you’ve mixed"
+//            case .projects: return "Your nearly projects"
             case .recording: return "Record audio with high quality"
             }
         }
@@ -38,8 +38,8 @@ class HomeVC: BaseVC {
         var img: UIImage {
             switch self {
             case .newMix: return Asset.imgCreate.image
-//            case .myMusic: return Asset.imgMusic.image
-            case .projects: return Asset.imgCreate.image
+            case .myMusic: return Asset.imgMusic.image
+//            case .projects: return Asset.imgCreate.image
             case .recording: return Asset.imgRecording.image
             }
         }
@@ -92,12 +92,12 @@ extension HomeVC {
                 fatalError()
             }
             switch type {
-            case .projects:
-                guard let cell = tv.dequeueReusableCell(withIdentifier: ProjectsCell.identifier, for: IndexPath.init(row: row, section: 0)) as? ProjectsCell else {
-                    fatalError()
-                }
-                cell.dataProjects()
-                return cell
+//            case .projects: break
+//                guard let cell = tv.dequeueReusableCell(withIdentifier: ProjectsCell.identifier, for: IndexPath.init(row: row, section: 0)) as? ProjectsCell else {
+//                    fatalError()
+//                }
+//                cell.dataProjects()
+//                return cell
             default:
                 guard let cell = tv.dequeueReusableCell(withIdentifier: HomeCell.identifier, for: IndexPath.init(row: row, section: 0)) as? HomeCell else {
                     fatalError()
@@ -114,13 +114,16 @@ extension HomeVC {
             case .recording:
                 let vc = RecordingVC.createVC()
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
-            case .projects:
-                let vc = ProjectListVC.createVC()
-                wSelf.navigationController?.pushViewController(vc, completion: nil)
+//            case .projects:
+//                let vc = ProjectListVC.createVC()
+//                wSelf.navigationController?.pushViewController(vc, completion: nil)
             case .newMix:
                 let vc = NewProjectVC.createVC()
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
-//            case .myMusic:
+            case .myMusic:
+                let vc = ProjectListVC.createVC()
+                wSelf.navigationController?.pushViewController(vc, completion: nil)
+                
 //                let vc = MyMusicVC.createVC()
 //                wSelf.navigationController?.pushViewController(vc, completion: nil)
             }

@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_bg" translatesAutoresizingMaskIntoConstraints="NO" id="K4Z-Yd-S5w">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="766"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3Hn-N3-t6X">
                     <rect key="frame" x="16" y="44" width="382" height="852"/>
@@ -96,9 +96,8 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="K4Z-Yd-S5w" secondAttribute="bottom" id="0Wb-mn-sPb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="K4Z-Yd-S5w" secondAttribute="trailing" id="88p-2o-iZ5"/>
                 <constraint firstAttribute="bottom" secondItem="3Hn-N3-t6X" secondAttribute="bottom" id="QzS-ep-wck"/>
                 <constraint firstItem="K4Z-Yd-S5w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SGB-mI-GKY"/>
