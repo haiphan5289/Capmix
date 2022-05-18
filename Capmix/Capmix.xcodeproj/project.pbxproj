@@ -1089,7 +1089,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capmix/Info.plist;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This app requires Apple Musice to make Your Audio";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Need location access for updating nearby friends";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will use your location to show cool stuffs near you.";
@@ -1130,7 +1130,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Capmix/Info.plist;
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Play using while you are hiking";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This app requires Apple Musice to make Your Audio";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Need camera access for uploading images";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Need location access for updating nearby friends";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will use your location to show cool stuffs near you.";

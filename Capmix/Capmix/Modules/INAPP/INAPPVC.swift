@@ -69,6 +69,7 @@ extension INAPPVC {
         InAppPerchaseManager.shared.requestProducts { [weak self] isSuccess, skProducts in
             guard let wSelf = self else { return }
             if isSuccess, let sk = skProducts, sk.count >= 3 {
+                wSelf.listProductModel = []
                 sk.forEach { item in
                     let m = SKProductModel(productID: item.productIdentifier, price: item.price)
                     wSelf.listProductModel.append(m)
