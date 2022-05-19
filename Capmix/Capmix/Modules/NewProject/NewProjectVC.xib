@@ -18,6 +18,7 @@
                 <outlet property="btDoneVolume" destination="oPy-ip-mjy" id="Jxi-dg-q0L"/>
                 <outlet property="centerView" destination="qas-aY-Okb" id="P6q-36-niZ"/>
                 <outlet property="emptyView" destination="mxJ-0y-fEs" id="0Xl-mW-CcS"/>
+                <outlet property="lbNameAudio" destination="s78-7K-c10" id="4Wd-5y-WnF"/>
                 <outlet property="lbTime" destination="PUt-Hi-O2H" id="8WH-Km-aVx"/>
                 <outlet property="processView" destination="crW-9b-KPo" id="jfI-4l-bBv"/>
                 <outlet property="scrollView" destination="82I-1W-ixk" id="Fup-nA-n9j"/>

@@ -49,12 +49,15 @@ class ProjectListVC: BaseVC {
     
     // Add here your view model
     private var viewModel: ProjectListVM = ProjectListVM()
-    @VariableReplay private var statusTap: TabAction = .projects
+    @VariableReplay private var statusTap: TabAction = .myMusic
+    @VariableReplay private var actionImported: ActionImported = .imported
     private var recordings: [URL] = []
     private var myMusics: [URL] = []
     private var myProjects: [URL] = []
     private var imports: [URL] = []
     private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
+    private var mediaItems: [MPMediaItem] = []
+    private var urlsEvent: [URL] = []
     
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -87,6 +90,7 @@ extension ProjectListVC {
 //            self.projectView.isHidden = true
 //            self.tableView.reloadData()
 //        }
+        self.checkAppleMusicPermission()
     }
     
     private func setupRX() {
@@ -122,25 +126,32 @@ extension ProjectListVC {
         let musicApp = self.btMusicApp.rx.tap.map { ActionImported.musicApp }
         Observable.merge(imported, musicApp).bind { [weak self] action in
             guard let wSelf = self else { return }
+            wSelf.actionImported = action
+            wSelf.tableView.reloadData()
             switch action {
             case .imported:
-                if Configuration.inPremiumUser() {
-                    let vc = ImportPopupVC.createVC()
-                    vc.modalTransitionStyle = .crossDissolve
-                    vc.modalPresentationStyle = .overFullScreen
-                    vc.delegate = self
-                    wSelf.present(vc, animated: true, completion: nil)
-                } else {
-                    let vc = INAPPVC.createVC()
-                    vc.modalPresentationStyle = .overFullScreen
-                    wSelf.present(vc, animated: true, completion: nil)
-                }
+                wSelf.btImported.backgroundColor = Asset.paleLavender.color
+                wSelf.btMusicApp.backgroundColor = Asset.paleGrey.color
+//                if Configuration.inPremiumUser() {
+//                    let vc = ImportPopupVC.createVC()
+//                    vc.modalTransitionStyle = .crossDissolve
+//                    vc.modalPresentationStyle = .overFullScreen
+//                    vc.delegate = self
+//                    wSelf.present(vc, animated: true, completion: nil)
+//                } else {
+//                    let vc = INAPPVC.createVC()
+//                    vc.modalPresentationStyle = .overFullScreen
+//                    wSelf.present(vc, animated: true, completion: nil)
+//                }
             case .musicApp:
-                let vc = MyMusicVC.createVC()
-                vc.delegate = self
-                vc.openfrom = .importsProjects
-                wSelf.navigationController?.pushViewController(vc, completion: nil)
+                wSelf.btImported.backgroundColor = Asset.paleGrey.color
+                wSelf.btMusicApp.backgroundColor = Asset.paleLavender.color
+//                let vc = MyMusicVC.createVC()
+//                vc.delegate = self
+//                vc.openfrom = .importsProjects
+//                wSelf.navigationController?.pushViewController(vc, completion: nil)
             }
+            
         }.disposed(by: self.disposeBag)
         
         self.$statusTap.asObservable().bind { [weak self] action in
@@ -190,6 +201,31 @@ extension ProjectListVC {
         }.disposed(by: self.disposeBag)
         
     }
+    
+    func fetchApple() {
+        self.mediaItems = MPMediaQuery.songs().items ?? []
+        self.mediaItems.enumerated().forEach { (item) in
+            AudioManage.shared.saveAppleMusic(folder: ConstantApp.shared.folderApple, mediaItem: item.element) { [weak self] outputURL in
+                guard let wSelf = self else { return }
+                wSelf.urlsEvent = AudioManage.shared.getItemsFolder(folder: ConstantApp.shared.folderApple)
+            } failure: { _ in
+                
+            }
+
+        }
+    }
+    
+    func checkAppleMusicPermission() {
+        guard SKCloudServiceController.authorizationStatus() == .notDetermined else { return }
+        SKCloudServiceController.requestAuthorization {(status: SKCloudServiceAuthorizationStatus) in
+            switch status {
+            case .denied, .restricted: break
+            case .authorized:
+                self.fetchApple()
+            default: break
+            }
+        }
+    }
 }
 extension ProjectListVC: ImportPopupDelegate {
     func action(action: ImportPopupVC.Action) {
@@ -235,20 +271,17 @@ extension ProjectListVC: UIDocumentPickerDelegate {
         guard let first = urls.first else {
             return
         }
-        SVProgressHUD.show()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             AudioManage.shared.covertToCAF(folderConvert: ConstantApp.shared.folderImport, url: first, type: .caf) { [weak self] outputURLBrowser in
                 guard let wSelf = self else { return }
                 DispatchQueue.main.async {
                     wSelf.imports.append(outputURLBrowser)
                     wSelf.tableView.reloadData()
-                    SVProgressHUD.dismiss()
                 }
                 
             } failure: { [weak self] text in
                 guard let wSelf = self else { return }
                 wSelf.showAlert(title: nil, message: text)
-                SVProgressHUD.dismiss()
             }
         }
 
@@ -271,7 +304,10 @@ extension ProjectListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.statusTap {
         case .importFiles:
-            return self.imports.count
+            if self.actionImported == .imported {
+                return self.imports.count
+            }
+            return self.urlsEvent.count
         case .projects:
             return self.myProjects.count
         case .myMusic:
@@ -301,8 +337,14 @@ extension ProjectListVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MyMusicCell.identifier) as? MyMusicCell else {
                 fatalError()
             }
-            let item = self.imports[indexPath.row]
-            cell.loadValue(url: item)
+            if self.actionImported == .imported {
+                let item = self.imports[indexPath.row]
+                cell.loadValue(url: item)
+            } else {
+                let item = self.urlsEvent[indexPath.row]
+                cell.loadValue(url: item)
+            }
+            
             return cell
         case .projects:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectListCell.identifier) as? ProjectListCell else {
@@ -323,8 +365,11 @@ extension ProjectListVC: UITableViewDataSource {
         case .myMusic:
             selectURL = self.myMusics[indexPath.row]
         case .importFiles:
-            selectURL = self.imports[indexPath.row]
-
+            if self.actionImported == .imported {
+                selectURL = self.imports[indexPath.row]
+            } else {
+                selectURL = self.urlsEvent[indexPath.row]
+            }
         case .projects:
             selectURL = self.myProjects[indexPath.row]
         }
@@ -391,7 +436,19 @@ extension ProjectListVC: UITableViewDelegate {
             case .projects:
                 let vc = NewProjectVC.createVC()
                 wSelf.navigationController?.pushViewController(vc, completion: nil)
-            case .myMusic, .importFiles: break
+            case .importFiles:
+                if Configuration.inPremiumUser() {
+                    let vc = ImportPopupVC.createVC()
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.delegate = self
+                    wSelf.present(vc, animated: true, completion: nil)
+                } else {
+                    let vc = INAPPVC.createVC()
+                    vc.modalPresentationStyle = .overFullScreen
+                    wSelf.present(vc, animated: true, completion: nil)
+                }
+            case .myMusic: break
             }
         }.disposed(by: self.disposeBag)
         
@@ -400,14 +457,14 @@ extension ProjectListVC: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch self.statusTap {
-        case .myMusic, .importFiles:
+        case .myMusic:
             return 0.1
         case .projects:
             if self.openfrom == .newProject {
                 return 0.1
             }
             return 56
-        case .recordings: return 56
+        case .recordings, .importFiles: return 56
             
         }
     }

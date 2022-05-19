@@ -74,6 +74,7 @@ class NewProjectVC: BaseVC {
     @IBOutlet weak var btClose: UIButton!
     @IBOutlet weak var btDoneVolume: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet weak var lbNameAudio: UILabel!
     private var audioWidthConstraint: Constraint!
     private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
@@ -153,6 +154,7 @@ extension NewProjectVC {
                     wSelf.deleteAudio(url: url, selectView: selectView)
                 case .volume:
                     wSelf.viewVolume.isHidden = false
+                    wSelf.lbNameAudio.text = url.getName()
                 case .split:
                     if let video = wSelf.selectRange, let range = wSelf.selectRange?.waveForm {
                         print("==== detectPositionView \(wSelf.detectPositionView(view: range))")
@@ -364,7 +366,6 @@ extension NewProjectVC {
         
         let audioEffect = AudioEffect()
         let randomIndex = Int.random(in: 0...999999)
-        SVProgressHUD.show()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             audioEffect.mergeAudiosSplits(musicUrl: url,
                                           timeStart: 0,
@@ -377,14 +378,11 @@ extension NewProjectVC {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     AudioManage.shared.covertToAudio(url: outputURL, folder: ConstantApp.shared.folderConvert, type: .m4a) { [weak self] audioURL in
                         guard let wSelf = self else { return }
-                        SVProgressHUD.dismiss()
                         wSelf.exportAudio = audioURL
                     } failure: { _ in
-                        SVProgressHUD.dismiss()
                     }
                 }
             } failure: { (err, txt) in
-                SVProgressHUD.dismiss()
             }
         }
     }

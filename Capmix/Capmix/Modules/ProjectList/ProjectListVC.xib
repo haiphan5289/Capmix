@@ -46,8 +46,8 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Pbp-yJ-1he">
                                     <rect key="frame" x="30" y="0.0" width="354" height="52"/>
                                     <subviews>
-                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jk8-Mq-5y8">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="52"/>
+                                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jk8-Mq-5y8">
+                                            <rect key="frame" x="-50" y="0.0" width="50" height="52"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="cKi-iw-mFI">
                                                     <rect key="frame" x="1" y="5" width="48" height="42.5"/>
@@ -79,11 +79,11 @@
                                                 <constraint firstItem="cKi-iw-mFI" firstAttribute="centerX" secondItem="jk8-Mq-5y8" secondAttribute="centerX" id="vdS-4p-sMa"/>
                                             </constraints>
                                         </view>
-                                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjb-FC-cwj">
-                                            <rect key="frame" x="50" y="0.0" width="50" height="52"/>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjb-FC-cwj">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="52"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="V2u-uD-dyz">
-                                                    <rect key="frame" x="-2.5" y="5" width="55" height="42.5"/>
+                                                    <rect key="frame" x="2.5" y="5" width="55" height="42.5"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_mymusic_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="Uuv-eH-qnQ">
                                                             <rect key="frame" x="15.5" y="0.0" width="24" height="24"/>
@@ -97,7 +97,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6U-fz-6gA">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="52"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="52"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 </button>
                                             </subviews>
@@ -108,12 +108,12 @@
                                                 <constraint firstItem="V2u-uD-dyz" firstAttribute="centerY" secondItem="Xjb-FC-cwj" secondAttribute="centerY" id="6fC-Zz-GjO"/>
                                                 <constraint firstAttribute="trailing" secondItem="n6U-fz-6gA" secondAttribute="trailing" id="RRq-Qc-tK5"/>
                                                 <constraint firstItem="V2u-uD-dyz" firstAttribute="centerX" secondItem="Xjb-FC-cwj" secondAttribute="centerX" id="TqX-Oc-5lE"/>
-                                                <constraint firstAttribute="width" constant="50" id="fwo-OH-OGg"/>
+                                                <constraint firstAttribute="width" constant="60" id="fwo-OH-OGg"/>
                                                 <constraint firstItem="n6U-fz-6gA" firstAttribute="top" secondItem="Xjb-FC-cwj" secondAttribute="top" id="gMd-EU-JAr"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="243-sc-Yh6">
-                                            <rect key="frame" x="152" y="0.0" width="50" height="52"/>
+                                            <rect key="frame" x="154.5" y="0.0" width="50" height="52"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="F4f-Yj-kYW">
                                                     <rect key="frame" x="-7.5" y="5" width="65.5" height="42.5"/>
