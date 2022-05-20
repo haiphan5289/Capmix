@@ -237,7 +237,7 @@ extension NewProjectVC {
             }
             let max = list.map { $0.getEndTime() }.max()
             wSelf.modifyAudioFrame(maxLenght: Double(max ?? 0), count: Double(list.count + 1))
-            if list.count == 1 {
+            if wSelf.timeLineStackView.subviews.count <= 1 {
                 wSelf.numberOfRecording(addSecond: 600)
             }
         }.disposed(by: self.disposeBag)

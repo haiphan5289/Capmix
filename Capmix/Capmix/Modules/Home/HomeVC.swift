@@ -138,7 +138,7 @@ extension HomeVC {
     
     //create a record to be not error when start record
     func createRecorder() {
-        let recording = Recording(folderName: "\(ConstantApp.shared.folderRecording)")
+        let recording = Recording(folderName: "\(ConstantApp.shared.folderConvert)")
         // Optionally, you can prepare the recording in the background to
         // make it start recording faster when you hit `record()`.
 
