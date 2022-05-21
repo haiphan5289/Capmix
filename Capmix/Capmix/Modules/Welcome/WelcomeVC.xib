@@ -17,7 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeVC" customModule="Capmix" customModuleProvider="target">
             <connections>
-                <outlet property="btStart" destination="my0-P8-tos" id="J9t-ab-i1O"/>
+                <outlet property="btWelcome" destination="my0-P8-tos" id="VFE-ed-QcI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

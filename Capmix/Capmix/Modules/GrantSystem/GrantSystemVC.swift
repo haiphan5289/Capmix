@@ -11,7 +11,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 import AVFoundation
-import CoreLocation
 
 class GrantSystemVC: BaseVC {
     
@@ -31,7 +30,6 @@ class GrantSystemVC: BaseVC {
     
     // Add here your view model
     private var viewModel: GrantSystemVM = GrantSystemVM()
-    private var locationManager: CLLocationManager = CLLocationManager()
     
     private let disposeBag = DisposeBag()
     override func viewDidLoad() {
@@ -63,7 +61,6 @@ extension GrantSystemVC {
                                                                        blur: Constant.blur,
                                                                        spread: Constant.Spread)
         self.requestVoice()
-        self.setupLocation()
     }
     
     private func setupRX() {
@@ -98,44 +95,6 @@ extension GrantSystemVC {
         }
     }
     
-    private func getAuthorizationStatus() -> CLAuthorizationStatus {
-            if #available(iOS 14.0, *) {
-                return locationManager.authorizationStatus
-            } else {
-                return CLLocationManager.authorizationStatus()
-            }
-    }
-    
-    func setupLocation() {
-        let status = getAuthorizationStatus()
-        
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        
-        if status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled() {
-            return
-        }
-
-        if status == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-            return
-        }
-        // Ask for Authorisation from the User.
-        self.locationManager.requestAlwaysAuthorization()
-
-        // For use in foreground
-        self.locationManager.requestWhenInUseAuthorization()
-    }
-}
-extension GrantSystemVC: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedAlways, .authorizedWhenInUse:
-            self.icCheckLocation.image = Asset.icAllowed.image
-        default:
-            self.icCheckLocation.image = Asset.icUnAllow.image
-        }
-    }
 }
 
 extension GrantSystemVC: INAPPDelegate {

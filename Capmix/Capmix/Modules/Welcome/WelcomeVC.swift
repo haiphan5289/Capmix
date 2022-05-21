@@ -14,7 +14,7 @@ import RxSwift
 class WelcomeVC: UIViewController {
     
     // Add here outlets
-    @IBOutlet weak var btStart: UIButton!
+    @IBOutlet weak var btWelcome: UIButton!
     
     // Add here your view model
     private var viewModel: WelcomeVM = WelcomeVM()
@@ -40,7 +40,7 @@ extension WelcomeVC {
     
     private func setupRX() {
         // Add here the setup for the RX
-        self.btStart.rx.tap.bind { [weak self] _ in
+        self.btWelcome.rx.tap.bind { [weak self] _ in
             guard let wSelf = self else { return }
             let vc = GrantSystemVC.createVC()
             wSelf.navigationController?.pushViewController(vc, animated: true)
