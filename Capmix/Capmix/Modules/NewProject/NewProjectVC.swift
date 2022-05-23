@@ -75,6 +75,8 @@ class NewProjectVC: BaseVC {
     @IBOutlet weak var btDoneVolume: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var lbNameAudio: UILabel!
+    @IBOutlet weak var leadingSV: NSLayoutConstraint!
+    @IBOutlet weak var widthSV: NSLayoutConstraint!
     private var audioWidthConstraint: Constraint!
     private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
@@ -136,6 +138,7 @@ extension NewProjectVC {
             fAudio.origin.y = self.timeLineStackView.frame.height + 30
             fAudio.size = CGSize(width: 50, height: 100)
             self.audioStackView.frame = fAudio
+            self.leadingSV.constant = self.positionCenter()
             
         }
         self.startPosition = self.positionCenter()
@@ -237,8 +240,16 @@ extension NewProjectVC {
             }
             let max = list.map { $0.getEndTime() }.max()
             wSelf.modifyAudioFrame(maxLenght: Double(max ?? 0), count: Double(list.count + 1))
-            if wSelf.timeLineStackView.subviews.count <= 1 {
-                wSelf.numberOfRecording(addSecond: 600)
+        }.disposed(by: self.disposeBag)
+        
+        self.$sourcesURL.asObservable().bind { [weak self] list in
+            guard let wSelf = self else { return }
+            let max = list.map { $0.getEndTime() }.max()
+            if let max = max {
+                wSelf.timeLineStackView.subviews.forEach { v in
+                    v.removeFromSuperview()
+                }
+                wSelf.numberOfRecording(addSecond: Int(max))
             }
         }.disposed(by: self.disposeBag)
         
@@ -593,16 +604,18 @@ extension NewProjectVC {
             self.addTimeLineView(index: i)
         }
         let count: CGFloat = CGFloat(self.timeLineStackView.subviews.count)
-        var f = self.timeLineStackView.frame
-        f.size.width = CGFloat(count * Constant.withTimeLine)
-        self.timeLineStackView.frame = f
+        self.widthSV.constant = CGFloat(count * Constant.withTimeLine)
     }
     
     private func addTimeLineView(index: Int) {
-        let v: TimeLineView = TimeLineView.loadXib()
-        v.frame = CGRect(origin: .zero, size: CGSize(width: Constant.withTimeLine, height: 28))
-        v.lbTime.text = index.getTextFromSecond()
+        let v: UIView = UIView()
+        let vTime: TimeLineView = TimeLineView.loadXib()
+        vTime.lbTime.text = index.getTextFromSecond()
         
+        v.addSubview(vTime)
+        vTime.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         self.timeLineStackView.addArrangedSubview(v)
     }
     

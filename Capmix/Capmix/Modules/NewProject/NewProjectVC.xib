@@ -20,6 +20,7 @@
                 <outlet property="emptyView" destination="mxJ-0y-fEs" id="0Xl-mW-CcS"/>
                 <outlet property="lbNameAudio" destination="s78-7K-c10" id="4Wd-5y-WnF"/>
                 <outlet property="lbTime" destination="PUt-Hi-O2H" id="8WH-Km-aVx"/>
+                <outlet property="leadingSV" destination="Gpy-pn-u0i" id="I2y-25-qDK"/>
                 <outlet property="processView" destination="crW-9b-KPo" id="jfI-4l-bBv"/>
                 <outlet property="scrollView" destination="82I-1W-ixk" id="Fup-nA-n9j"/>
                 <outlet property="timeLineStackView" destination="obT-sy-gLX" id="bfZ-fu-eKh"/>
@@ -28,6 +29,7 @@
                 <outlet property="viewVolume" destination="RUg-c0-6r0" id="NQy-Ls-xPS"/>
                 <outlet property="volumeSlider" destination="Qll-BL-khQ" id="qkn-rh-HFX"/>
                 <outlet property="widthContentView" destination="5ji-DF-WRo" id="YPt-5g-BlL"/>
+                <outlet property="widthSV" destination="VV7-h2-pZZ" id="m54-6W-zz3"/>
                 <outletCollection property="bts" destination="KWu-0V-S8g" collectionClass="NSMutableArray" id="ddv-GN-hpX"/>
                 <outletCollection property="bts" destination="sfi-hQ-HKb" collectionClass="NSMutableArray" id="xuE-K7-kkg"/>
                 <outletCollection property="bts" destination="Uh3-TJ-czJ" collectionClass="NSMutableArray" id="TqS-FZ-aXc"/>
@@ -59,6 +61,13 @@
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOv-7S-fK9">
                                                             <rect key="frame" x="0.0" y="0.0" width="1000" height="1622"/>
                                                             <subviews>
+                                                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="obT-sy-gLX">
+                                                                    <rect key="frame" x="200" y="0.0" width="60" height="28"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="28" id="Fon-XE-L1B"/>
+                                                                        <constraint firstAttribute="width" constant="60" id="VV7-h2-pZZ"/>
+                                                                    </constraints>
+                                                                </stackView>
                                                                 <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vGJ-c8-yYQ">
                                                                     <rect key="frame" x="87" y="247" width="240" height="80"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -67,12 +76,10 @@
                                                             <color key="backgroundColor" name="paleGrey"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="1000" id="5ji-DF-WRo"/>
+                                                                <constraint firstItem="obT-sy-gLX" firstAttribute="top" secondItem="fOv-7S-fK9" secondAttribute="top" id="DRx-nR-xAq"/>
+                                                                <constraint firstItem="obT-sy-gLX" firstAttribute="leading" secondItem="fOv-7S-fK9" secondAttribute="leading" constant="200" id="Gpy-pn-u0i"/>
                                                             </constraints>
                                                         </view>
-                                                        <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="obT-sy-gLX">
-                                                            <rect key="frame" x="200" y="0.0" width="60" height="28"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -279,15 +286,15 @@
                                                             <rect key="frame" x="0.0" y="30" width="334" height="66"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="tSD-TO-PKv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="334" height="66"/>
+                                                                    <rect key="frame" x="67" y="0.0" width="200" height="66"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-dd-eKe">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="28" height="66"/>
+                                                                        <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvR-dd-eKe">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="66"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal" image="ic_unde"/>
                                                                         </button>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H8Z-4Z-BrO">
-                                                                            <rect key="frame" x="67" y="0.0" width="200" height="66"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="66"/>
                                                                             <subviews>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pxQ-C5-UeQ">
                                                                                     <rect key="frame" x="0.0" y="9" width="200" height="48"/>
@@ -345,8 +352,8 @@
                                                                                 <constraint firstAttribute="trailing" secondItem="pxQ-C5-UeQ" secondAttribute="trailing" id="yrD-1l-bbU"/>
                                                                             </constraints>
                                                                         </view>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExV-xC-gUM">
-                                                                            <rect key="frame" x="306" y="0.0" width="28" height="66"/>
+                                                                        <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExV-xC-gUM">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="66"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal" image="in_redo"/>
                                                                         </button>
@@ -356,9 +363,8 @@
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="tSD-TO-PKv" firstAttribute="top" secondItem="ANZ-9d-J7T" secondAttribute="top" id="15I-3n-g39"/>
+                                                                <constraint firstItem="tSD-TO-PKv" firstAttribute="centerX" secondItem="ANZ-9d-J7T" secondAttribute="centerX" id="3U6-Fh-e1V"/>
                                                                 <constraint firstAttribute="bottom" secondItem="tSD-TO-PKv" secondAttribute="bottom" id="56H-go-TlD"/>
-                                                                <constraint firstItem="tSD-TO-PKv" firstAttribute="leading" secondItem="ANZ-9d-J7T" secondAttribute="leading" id="JQO-4J-pEV"/>
-                                                                <constraint firstAttribute="trailing" secondItem="tSD-TO-PKv" secondAttribute="trailing" id="tXG-Mm-kgq"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
