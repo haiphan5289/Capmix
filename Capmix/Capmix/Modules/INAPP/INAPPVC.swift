@@ -68,15 +68,22 @@ extension INAPPVC {
         
         InAppPerchaseManager.shared.requestProducts { [weak self] isSuccess, skProducts in
             guard let wSelf = self else { return }
-            if isSuccess, let sk = skProducts, sk.count >= 3 {
-                wSelf.listProductModel = []
-                sk.forEach { item in
-                    let m = SKProductModel(productID: item.productIdentifier, price: item.price)
-                    wSelf.listProductModel.append(m)
+            DispatchQueue.main.async {
+                if isSuccess, let sk = skProducts, sk.count >= 3 {
+                    var skProduct: [SKProductModel] = []
+                    sk.forEach { item in
+                        let m = SKProductModel(productID: item.productIdentifier, price: item.price)
+                        skProduct.append(m)
+                    }
+                    wSelf.listProductModel = skProduct.sorted(by: { sk1, sk2 in
+                        return (sk1.price as Decimal) < (sk2.price as Decimal)
+                    })
+                    wSelf.lbWeek.text = "$\(wSelf.listProductModel[1].price)/\(PaymentInApp.month.text) - 3 days free trial"
+                    wSelf.lbSelect.text = "$\(wSelf.listProductModel[1].price)/\(PaymentInApp.month.text)"
+                } else {
+                    wSelf.listProductModel = CampixManage.shared.listRawSKProduct()
+                    wSelf.lbSelect.text = "$\(wSelf.listProductModel[1].price)/\(PaymentInApp.month.text)"
                 }
-                wSelf.lbWeek.text = "$\(wSelf.listProductModel[1].price)/\(PaymentInApp.month.text) - 3 days free trial"
-            } else {
-                wSelf.listProductModel = CampixManage.shared.listRawSKProduct()
             }
         }
         

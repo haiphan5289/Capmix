@@ -72,6 +72,9 @@ enum ProductID: String, CaseIterable {
 let kIAPPurchasedNotification = "IAPPurchasedNotification"
 let kIAPFailedNotification = "IAPFailedNotification"
 
+public typealias ProductIdentifier = String
+public typealias ProductsRequestCompletionHandler = (_ success: Bool, _ products: [SKProduct]?) -> Void
+
 open class InAppPerchaseManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     static var shared = InAppPerchaseManager()
     var productIdentifiers: Set<String>?
@@ -87,6 +90,10 @@ open class InAppPerchaseManager: NSObject, SKProductsRequestDelegate, SKPaymentT
         super.init()
         SKPaymentQueue.default().add(self)
         productIdentifiers = Set<String>()
+        
+        ProductID.allCases.forEach { product in
+            self.addProductId(product.rawValue)
+        }
     }
     
     /**
