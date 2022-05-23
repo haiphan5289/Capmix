@@ -108,18 +108,18 @@ extension ProjectListVC {
         
         self.viewModel.imports.asObservable().bind(onNext: { [weak self] list in
             guard let wSelf = self else { return }
-            wSelf.imports = list
+            wSelf.imports = list.filter { $0.getDuration() > 0 }
         }).disposed(by: self.disposeBag)
         
         self.viewModel.mymusic.asObservable().bind(onNext: { [weak self] list in
             guard let wSelf = self else { return }
-            wSelf.myMusics = list
-            wSelf.myProjects = list
+            wSelf.myMusics = list.filter { $0.getDuration() > 0 }
+            wSelf.myProjects = list.filter { $0.getDuration() > 0 }
         }).disposed(by: self.disposeBag)
         
         self.viewModel.recordings.asObservable().bind(onNext: { [weak self] list in
             guard let wSelf = self else { return }
-            wSelf.recordings = list
+            wSelf.recordings = list.filter { $0.getDuration() > 0 }
         }).disposed(by: self.disposeBag)
         
         let imported = self.btImported.rx.tap.map { ActionImported.imported }
