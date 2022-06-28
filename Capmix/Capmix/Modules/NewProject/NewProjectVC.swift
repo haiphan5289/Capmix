@@ -162,12 +162,16 @@ extension NewProjectVC {
                     if let video = wSelf.selectRange, let range = wSelf.selectRange?.waveForm {
                         print("==== detectPositionView \(wSelf.detectPositionView(view: range))")
                         let endTime = wSelf.detectPositionView(view: range) / Constant.withTimeLine
-                        if endTime > 1 {
+                        if endTime >= 2 {
                             wSelf.isSplitAudio = true
                             let position = wSelf.startPosition - wSelf.positionCenter()
                             let detectTimeStart = position / Constant.withTimeLine
-                            wSelf.splitAudio = SplitAudio(abVideoRange: video, startTime: endTime, detectTimeStart: detectTimeStart)
-                            wSelf.scaleRange.onNext(ABRangerModel(abVideoRange: video, startTime: 0, endTime: endTime))
+                            if detectTimeStart >= 2 {
+                                wSelf.splitAudio = SplitAudio(abVideoRange: video, startTime: endTime, detectTimeStart: detectTimeStart)
+                                wSelf.scaleRange.onNext(ABRangerModel(abVideoRange: video, startTime: 0, endTime: endTime))
+                            } else {
+                                wSelf.isSplitAudio = false
+                            }
                         }
                     }
                 }
@@ -642,7 +646,9 @@ extension NewProjectVC {
 }
 extension NewProjectVC: ABVideoRangeSliderDelegate {
     func didChangeValue(videoRangeSlider: ABVideoRangeSlider, startTime: Float64, endTime: Float64) {
-        self.scaleRange.onNext(ABRangerModel(abVideoRange: videoRangeSlider, startTime: startTime, endTime: endTime))
+        if endTime - startTime >= 2 {
+            self.scaleRange.onNext(ABRangerModel(abVideoRange: videoRangeSlider, startTime: startTime, endTime: endTime))
+        }
     }
     
     func indicatorDidChangePosition(videoRangeSlider: ABVideoRangeSlider, position: Float64) {
